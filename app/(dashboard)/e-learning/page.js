@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 /* Images Link */
 
-import Navimage from "./adminnavbar.PNG"
+
 
 export default function ELearningHomePage() {
   return (
@@ -37,7 +37,7 @@ export default function ELearningHomePage() {
       </ul>
       <div className="my-6">
          <h1 className='my-4'>Admin Navbar Image Sample</h1>
-        <Image src={Navimage} alt="Admin Navbar" layout="responsive" width={700} height={475} />
+        <Image src={"./Adminnavbar.PNG"} alt="Admin Navbar" layout="responsive" width={700} height={475} />
       </div>
       <p className="text-lg mt-4">
         Please note that as an Admin Level 1, you don't have access to some of these pages. When you try to access them, you will be redirected to the forbidden page indicating that you don't have the authorization or permission to access that page.

@@ -11,7 +11,7 @@ const RemoveBtn = ({ id }) => {
 
     if (confirmed) {
       try {
-        const res = await fetch(`http://localhost:3000/api/order?id=${id}`, {
+        const res = await fetch(`https://ziprus-chemicals.vercel.app/api/order?id=${id}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
         });

@@ -11,7 +11,7 @@ const RemoveContact = ({ id }) => {
 
     if (confirmed) {
       try {
-        const res = await fetch(`http://localhost:3000/api/contacts?id=${id}`, {
+        const res = await fetch(`https://ziprus-chemicals.vercel.app/api/contacts?id=${id}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
         });

@@ -19,7 +19,7 @@ export default function ContactForm() {
     const newContact = { fullname, email, phonenumber, message };
 
     try {
-      const res = await fetch("http://localhost:3000/api/contacts", {
+      const res = await fetch("https://ziprus-chemicals.vercel.app/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newContact),

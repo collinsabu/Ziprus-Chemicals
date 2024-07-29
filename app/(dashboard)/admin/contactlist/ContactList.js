@@ -3,7 +3,7 @@ import RemoveContact from "../../../components/RemoveContact";
 
 async function getList() {
   try {
-    const res = await fetch("http://localhost:3000/api/contacts", {
+    const res = await fetch("https://ziprus-chemicals.vercel.app/api/contacts", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

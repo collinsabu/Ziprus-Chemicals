@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 async function getContact(id) {
   try {
-    const res = await fetch(`http://localhost:3000/api/contacts/${id}`, {
+    const res = await fetch(`https://ziprus-chemicals.vercel.app/api/contacts/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

@@ -15,7 +15,7 @@ export default function page() {
      
         <Link
    
-          href='http://localhost:3000/report'
+          href='https://ziprus-chemicals.vercel.app/report'
           className="text-white bg-base_color border-2 px-14 py-3 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300 mt-4"
         >
           Home Page

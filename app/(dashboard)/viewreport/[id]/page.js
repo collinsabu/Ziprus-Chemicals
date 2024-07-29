@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 async function getCrudeEntry(id) {
   try {
-    const res = await fetch(`http://localhost:3000/api/crudeEntries/${id}`, {
+    const res = await fetch(`https://ziprus-chemicals.vercel.app/api/crudeEntries/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

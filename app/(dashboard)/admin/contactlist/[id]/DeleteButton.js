@@ -12,7 +12,7 @@ export default function DeleteButton({ id }) {
   const handleClick = async () => {
     setIsLoading(true)
     
-    const res = await fetch(`http://localhost:3000/api/contacts/${id}`, {
+    const res = await fetch(`https://ziprus-chemicals.vercel.app/api/contacts/${id}`, {
       method: 'DELETE'
     })
     const json = await res.json()
@@ -23,7 +23,7 @@ export default function DeleteButton({ id }) {
     }
     if (!json.error) {
       router.refresh()
-      router.push('http://localhost:3000/admin/contactlist')
+      router.push('https://ziprus-chemicals.vercel.app/admin/contactlist')
       console.log("deleted successfully")
     }
   }

@@ -20,7 +20,7 @@ export default function Page() {
           </p>
         </div>
         <Link
-          href="http://localhost:3000/"
+          href="https://ziprus-chemicals.vercel.app/"
           className="text-white bg-base_color border-2 px-8 py-3 sm:px-14 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300 mt-4 text-center"
         >
           Home Page

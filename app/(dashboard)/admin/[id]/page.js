@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 async function getOrder(id) {
   try {
-    const res = await fetch(`http://localhost:3000/api/order/${id}`, {
+    const res = await fetch(`https://ziprus-chemicals.vercel.app/api/order/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

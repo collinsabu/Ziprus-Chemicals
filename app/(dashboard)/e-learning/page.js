@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 /* Images Link */
 
-import Navimage from "../../../public/images/Adminnavbar.png"
+import Navimage from "./adminnavbar.PNG"
 
 export default function ELearningHomePage() {
   return (

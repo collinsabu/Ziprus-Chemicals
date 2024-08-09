@@ -48,7 +48,7 @@ export default function ContactDetails({ params }) {
 
   if (loading) {
     return (
-      <div className="text-xl sm:text-9xl flex justify-center items-center bg-base_color text-base_text h-[400px]">
+      <div className="text-xl sm:text-2xl flex justify-center items-center bg-base_color text-base_text h-[400px]">
         Loading Details...
       </div>
     );
@@ -63,23 +63,23 @@ export default function ContactDetails({ params }) {
   }
 
   return (
-    <main className="bg-base_color my-10 py-11 ">
-      <div className="w-[50%] mx-auto py-10 text-black bg-base_text px-5">
-        <h5 className="text-xl my-4 border-b-2 border-b-black pb-1">
+    <main className="bg-base_color my-10 py-11">
+      <div className="w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] mx-auto py-10 text-black bg-base_text px-5 sm:px-10 rounded-md shadow-lg">
+        <h5 className="text-lg sm:text-xl my-4 border-b-2 border-b-black pb-1">
           <span className="font-bold text-white">Full Name: </span> {contact.fullname}
         </h5>
-        <h5 className="text-xl my-4 border-b-2 border-b-black pb-1">
+        <h5 className="text-lg sm:text-xl my-4 border-b-2 border-b-black pb-1">
           <span className="font-bold text-white">Contact Address: </span> {contact.email}
         </h5>
-        <h5 className="text-xl my-4 border-b-2 border-b-black pb-1">
+        <h5 className="text-lg sm:text-xl my-4 border-b-2 border-b-black pb-1">
           <span className="font-bold text-white">Phone Number: </span> {contact.phonenumber}
         </h5>
-        <p className="text-xl my-4 border-b-2 border-b-black pb-1">
+        <p className="text-lg sm:text-xl my-4 border-b-2 border-b-black pb-1">
           <span className="font-bold text-white">Message: </span> {contact.message}
         </p>
         <button
           onClick={() => router.push('/admin/contactlist')}
-          className="mt-4 px-4 py-2 bg-base_color text-white rounded hover:bg-base_two"
+          className="mt-6 px-4 py-2 bg-base_color text-white rounded hover:bg-base_two"
         >
           Back to Contact List
         </button>

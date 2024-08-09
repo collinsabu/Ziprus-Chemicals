@@ -76,6 +76,7 @@ export const config = {
     '/viewreport',
     '/viewreport/:path*' ,
     '/viewloadingandpayment', 
+    '/loadingandpayment/custmerpayment',
     '/balance', 
     '/about', 
     '/faq', 

@@ -7,11 +7,12 @@ import { FiMenu, FiX } from "react-icons/fi"; // Importing icons for the hamburg
 import { signOut } from "next-auth/react";
 
 const navLinks = [
-  { name: "Crude", href: "/viewreport" },
-  { name: "BagAccount", href: "/viewreport/bagAccountEntriesList" },
+  { name: "CrudeIn", href: "/viewreport" },
+  { name: "C.paymt", href: "/viewreport/crudePaymentList" },
+  { name: "BagAcct", href: "/viewreport/bagAccountEntriesList" },
   { name: "Production", href: "/viewreport/productionRecordList" },
   { name: "Despatch", href: "/viewreport/despatchRecordsList" },
-  { name: "WagesAccount", href: "/viewreport/wagesAccountList" },
+  { name: "WagesAcct", href: "/viewreport/wagesAccountList" },
   { name: "LightUsage", href: "/viewreport/lightMonitoringList" },
   { name: "MorningReport", href: "/viewreport/morningReportsList" },
   { name: "SituationReport", href: "/viewreport/situationReportsList" },

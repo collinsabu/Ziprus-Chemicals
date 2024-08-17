@@ -17,7 +17,7 @@ export async function GET(request, { params }) {
 
     return NextResponse.json({ payment }, { status: 200 });
   } catch (error) {
-    console.error("Error fetching crude payment details:", error.message);
-    return NextResponse.json({ error: "Error fetching crude payment details" }, { status: 500 });
+    console.error("Error fetching crude payment:", error.message);
+    return NextResponse.json({ error: "Error fetching crude payment" }, { status: 500 });
   }
 }

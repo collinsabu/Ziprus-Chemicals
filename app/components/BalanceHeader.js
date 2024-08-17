@@ -9,6 +9,7 @@ import { signOut } from "next-auth/react"; // Importing the signOut function
 const navLinks = [
   { name: "WagesBalance", href: "/balance" },
   { name: "CrudeBalance", href: "/balance/crudebalance/" },
+  { name: "CrudePaymentBalance", href: "/balance/crudepaymentbalance" },
   { name: "BagBalance", href: "/balance/bagbalance" },
   { name: "CustomerBalance", href: "/balance/customersaccounts" },
 ];

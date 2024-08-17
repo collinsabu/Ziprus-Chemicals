@@ -8,15 +8,12 @@ export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, amountSent, sentTo, materialType, tonnage, comment } = await request.json();
+    const { date, amount, paidBy, comment } = await request.json();
 
     const newCrudePayment = new CrudePayment({
       date,
-      time,
-      amountSent,
-      sentTo,
-      materialType,
-      tonnage,
+      amount,
+      paidBy,
       comment,
     });
 
@@ -33,7 +30,15 @@ export async function GET(request) {
   try {
     await connectMongoDB();
 
-    const payments = await CrudePayment.find();
+    const { searchParams } = new URL(request.url);
+    const month = parseInt(searchParams.get("month"), 10);
+    const year = parseInt(searchParams.get("year"), 10);
+
+    const payments = await CrudePayment.find({
+      date: {
+        $regex: new RegExp(`^${year}-${month < 10 ? `0${month}` : month}`),
+      },
+    });
 
     return NextResponse.json({ payments }, { status: 200 });
   } catch (error) {

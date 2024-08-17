@@ -1,46 +1,69 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link"; // Importing Link for navigation
 
-export default function CrudeBalance() {
-  const [crudePurchases, setCrudePurchases] = useState([]);
-  const [crudePayments, setCrudePayments] = useState([]);
+const CrudePaymentBalance = () => {
+  const [crudeTotal, setCrudeTotal] = useState(0);
+  const [totalCrudePayment, setTotalCrudePayment] = useState(0);
   const [balance, setBalance] = useState(0);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch('/api/crude-balance');
+  const fetchCrudeTotal = async () => {
+    try {
+      const res = await fetch("/api/crudeTotal");
       const data = await res.json();
-      
-      setCrudePurchases(data.crudePurchases);
-      setCrudePayments(data.crudePayments);
-
-      // Calculate balance after fetching data
-      const totalCrudePurchase = calculateTotalTonnage(data.crudePurchases);
-      const totalCrudePayment = calculateTotalTonnage(data.crudePayments);
-      setBalance(totalCrudePurchase - totalCrudePayment);
+      setCrudeTotal(data.total); // Assuming data.total is in tons
+    } catch (error) {
+      console.error("Error fetching crude total:", error);
     }
-
-    fetchData();
-  }, []);
-
-  // Function to calculate the total tonnage
-  const calculateTotalTonnage = (records) => {
-    return records.reduce((total, record) => total + record.tonnage, 0);
   };
 
-  return (
-    <main className="bg-base_color text-base_text p-6 rounded-lg">
-      <h2 className="text-2xl font-bold mb-6">Crude Payment Balance</h2>
-      
-      <div className="bg-base_text p-4 rounded mb-4">
-        <p className="text-white">Total Crude Purchase Tonnage: {calculateTotalTonnage(crudePurchases)} tons</p>
-        <p className="text-white">Total Crude Payment Tonnage: {calculateTotalTonnage(crudePayments)} tons</p>
-      </div>
+  const fetchTotalCrudePayment = async () => {
+    try {
+      const res = await fetch("/api/totalCrudePayment");
+      const data = await res.json();
+      setTotalCrudePayment(data.total); // Assuming data.total is in tons
+    } catch (error) {
+      console.error("Error fetching total crude payment:", error);
+    }
+  };
 
-      <div className="bg-base_text p-4 rounded">
-        <p className="text-white font-bold text-lg">Balance: {balance} tons</p>
+  useEffect(() => {
+    // Fetch data when component mounts
+    fetchCrudeTotal();
+    fetchTotalCrudePayment();
+  }, []);
+
+  useEffect(() => {
+    // Calculate balance whenever crudeTotal or totalCrudePayment changes
+    setBalance(totalCrudePayment - crudeTotal);
+  }, [crudeTotal, totalCrudePayment]);
+
+  return (
+    <main className="bg-base_text min-h-screen">
+      <div className="max-w-4xl mx-auto p-4 md:p-8 bg-base_color text-white font-semibold shadow-md my-10">
+        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Crude Payment Balance</h2>
+        <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-10">
+          <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
+            Total Paid For: {totalCrudePayment} tons
+          </p>
+          <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
+            Total Purchase: {crudeTotal} tons
+          </p>
+        </div>
+        <h1 className="text-green-500 text-3xl md:text-5xl text-center bg-base_two py-10 md:py-20 mt-5">
+          Balance: {balance} tons
+        </h1>
+        <div className="flex justify-center mt-10">
+          <Link href="/balance">
+            <button className="bg-base_text hover:bg-base_two hover:text-white text-base_color  py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Go Back to Admin
+            </button>
+          </Link>
+        </div>
       </div>
     </main>
   );
-}
+};
+
+export default CrudePaymentBalance;

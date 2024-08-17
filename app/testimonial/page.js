@@ -36,22 +36,24 @@ export default function Testimonial() {
           <Image src={img} alt="Happy client" className="img-container" />
         </div>
 
-        <div className="sm:w-6/12 sm:p-14 text-center py-10">
-          <h2 className="text-white text-xl mb-10">What Our Clients Say</h2>
-          <p className="text-left text-white text-sm font-extralight mb-10">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
-            nesciunt cum ea consequatur est provident veritatis iste tenetur
-            quibusdam. Nam alias aperiam iusto numquam doloremque similique
-            illo, pariatur nemo odio eaque et adipisci iste sequi modi
-            doloribus. Non, vitae amet?
-            <br />
-            <br />
-            Quibusdam. Nam alias aperiam iusto numquam doloremque similique
-            illo, pariatur nemo odio eaque et adipisci iste sequi modi.
-          </p>
-          <p className="text-base_text font-medium mb-2">Garry Paul</p>
-          <p className="text-white text-sm font-extralight mb-1">Kobac Paint Industries</p>
-          <p className="text-white text-sm font-extralight mb-5">MD/CEO</p>
+        <div className="sm:w-6/12 sm:p-14 text-center py-10 text-white">
+          
+          <div>
+    <h4 className=" text-xl mb-6">Testimonial</h4>
+
+    <p class="text-sm font-extralight leading-loose">
+        "As a long-standing partner of Ziprus Chemical, I can confidently say that their products have consistently exceeded our expectations. At Agro Feed, we rely on high-quality minerals for our animal feed production, and Ziprus Chemical has been our go-to supplier for years. Their calcium and other minerals are of exceptional quality, which has significantly contributed to the efficiency and effectiveness of our feed formulations.
+    </p>
+
+    <p class="text-sm font-extralight leading-loose">
+        Beyond the products, their customer service is outstanding. The team at Ziprus Chemical is always responsive, professional, and committed to ensuring timely deliveries, even when unexpected challenges arise. Their dedication to maintaining high standards in both product quality and service has made a real difference to our business. I highly recommend Ziprus Chemical to any company seeking reliable and top-grade mineral supplies."
+    </p>
+
+    <p class="text-sm font-semibold leading-loose text-green-500">
+        — Earnest, Agro Feed, Lagos, Nigeria
+    </p>
+</div>
+
         </div>
       </div>
     </section>

@@ -109,7 +109,7 @@ export default function Home() {
             Kindly fill the form below to place an order.
           </h1>
           <p className="sm:w-2/4 mb-10 mt-3 text-white text-center font-light">
-            Please fill the form below to place an order. When your order is submitted successfully, our sales rep will contact you immediately. Please provide valid information.
+          Please complete the form below to submit your order. Once your order is successfully submitted, one of our sales representatives will promptly contact you. Kindly ensure that all the information provided is accurate and up-to-date.
           </p>
 
           <div className="w-[99%] sm:w-[50%] sm:p-10 sm:rounded-[50px] sm:border-2 border-white border-solid mb-[40px]">

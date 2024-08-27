@@ -1,70 +1,85 @@
-![ziprus](https://github.com/collinsabu/ziprus/assets/64439462/299074bc-168f-46af-90be-21f1216f830e)
-# Zprus: Company Website and Admin Dashboard
+# 🏗️ Responsive Website Design for Solid Mineral Processing Organization
 
-Ziprus is a comprehensive project that serves as a company website and includes an admin dashboard for managing orders and contact form submissions. This README provides an overview of the project, its features, and instructions for installation and usage.
+This project is a responsive information website developed for a solid mineral processing organization. The application features a public-facing website that provides information about the organization and an admin panel with role-based access control, allowing authenticated users to manage internal processes and data.
 
-## Features
+## 📋 Table of Contents
+- [Features](#features)
+  - [Public Route](#public-route)
+  - [Admin Route](#admin-route)
+    - [Admin Level One Access](#admin-level-one-access)
+    - [Admin Level Two Access](#admin-level-two-access)
+  - [E-Learning Route](#e-learning-route)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-- **Company Website:** Showcase your company's products, services, and information to visitors.
-- **Admin Dashboard:** Secure login for authorized members to manage orders and contact form submissions.
-- **Order Management:** View, edit, and update orders received through the website.
-- **Contact List Management:** Access and manage the list of contacts submitted via the contact form.
-- **Authentication:** Only authorized members can access the admin dashboard and sensitive data.
-- - **Database:** to store the orders placed and the contact form submitted.
+## 🌟 Features
 
-## Installation
+### Public Route
+The public route is the information website accessible to everyone. It provides detailed information about the organization's services and products. Key features include:
 
-To get started with Zprus on your local machine, follow these steps:
+- **Order Form:** Visitors can place orders by filling out an order form. The submitted data is sent to the database and later displayed in the admin panel for processing.
+- **Contact Form:** Visitors can also send inquiries through a contact form. Like the order form, the data is stored in the database and displayed in the admin section.
+
+### Admin Route
+The admin route is accessible only to authenticated users. Role-based access control (RBAC) is implemented to restrict access based on the admin's level.
+
+#### Admin Level One Access
+Admins with Level One access have limited permissions within the admin panel. They can view and manage specific sections of the application, including:
+
+- **Order List:** View and manage the list of orders placed by customers.
+- **Contact List:** Access and manage contact form submissions.
+- **Reports:** Submit and view reports related to various aspects of the organization's operations.
+- **Light Usage:** Calculate production efficiency based on light availability and usage against set targets. This helps determine whether the available light is being fully utilized.
+
+#### Admin Level Two Access
+Admins with Level Two access have broader permissions and can access all routes, including the balance management sections. Key features include:
+
+- **Customer Payment and Balance:** Track customer supplies, payments made, and calculate outstanding balances.
+- **Salary Balance:** Calculate the work done by workers and the corresponding payments made.
+- **Bag Balance:** Monitor bag purchases and usage to ensure inventory management.
+- **Crude Balance:** Manage and track crude purchases and supplies.
+- **Crude Payment Balance:** Calculate and manage payments made for crude materials against their purchase.
+
+### E-Learning Route
+The application includes an e-learning route with access controlled based on user levels. This section provides detailed tutorials and explanations on how to use the admin panel for both Level One and Level Two admins.
+
+## 🛠️ Technologies Used
+
+- ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white) - A React-based framework used for building the website and admin panel.
+- ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) - A NoSQL database used to store orders, contact forms, reports, and other data.
+- ![NextAuth.js](https://img.shields.io/badge/NextAuth.js-000000?style=for-the-badge&logo=next.js&logoColor=white) - For handling authentication and session management, including role-based access control.
+
+## 🚀 Getting Started
+
+To get started with the Responsive Website Design project, follow these steps:
+
+### Installation
 
 1. **Clone the repository:**
-    ```
-    git clone https://github.com/yourusername/Zprus.git
-    ```
+   ```bash
+   git clone https://github.com/yourusername/responsive-website-design.git
+   cd responsive-website-design
+Install dependencies:
 
-2. **Install dependencies:**
-    ```
-    npm install
-    ```
+bash
+Copy code
+npm install
+Set up environment variables: Create a .env.local file in the root directory and add the necessary environment variables for MongoDB, NextAuth, etc.
 
-3. **Configure environment variables:**
-    - Rename `.env.example` to `.env`.
-    - Update the `.env` file with your environment-specific variables, such as database credentials and authentication settings.
+Run the development server:
 
-4. **Run the application:**
-    ```
-    npm start
-    ```
+bash
+Copy code
+npm run dev
+The app will be available at http://localhost:3000.
 
-5. **Access the application:**
-    - Open your web browser and navigate to `http://localhost:3000` to view the company website.
-    - To access the admin dashboard, go to `http://localhost:3000/admin` and log in with your credentials.
-     - To access the admin e-training, go to `http://localhost:3000/e-learning` and log in with your credentials.
-
-## Usage
-
-Once the application is running, here's how you can use it:
-
-- **Company Website:** Explore the website to learn about your company's offerings and services.
-- **Admin Dashboard:** Log in to the admin dashboard to manage orders and contact form submissions.
-    - View orders: See a list of orders received and their details.
-    - Manage contacts: Access and update the contact list filled by users.
-
-## Contributing
-
-Contributions to Zprus are welcome! If you'd like to contribute to the project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature-name`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`).
-5. Push to the branch (`git push origin feature/your-feature-name`).
-6. Create a new Pull Request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For any inquiries or support, please contact letsconnect@collinsabu.tech
-you can also view this project on : ziprus.collinsabu.tech
+Usage
+Public Route: Accessible by all users to view information and interact with order/contact forms.
+Admin Route: Accessible only by authenticated users with appropriate role-based permissions.
+E-Learning Route: Provides guidance on how to use the admin panel.
+🤝 Contributing
+Contributions are welcome! If you have suggestions or improvements, please feel free to submit a Pull Request or open an issue.

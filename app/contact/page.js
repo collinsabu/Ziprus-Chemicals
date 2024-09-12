@@ -56,8 +56,8 @@ export default function Contact() {
 
           <div className="flex flex-col items-center mb-4">
             <IoPhonePortrait className="text-xl" />
-            <p className="text-sm font-extralight">+2347121130017</p>
-            <p className="text-sm font-extralight">+2347121130017</p>
+            <p className="text-sm font-extralight">+2347085544340</p>
+            <p className="text-sm font-extralight">+23408121130017</p>
           </div>
         </div>
       </div>

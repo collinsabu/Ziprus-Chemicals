@@ -68,7 +68,7 @@ export default function Home() {
         <div className="w-3/4 flex flex-col items-center text-center mx-auto">
           <h1 className="text-xl sm:text-4xl text-base_text font-bold">Images From Our Production Line</h1>
           <p className="sm:w-2/4 mb-10 mt-3 text-center">
-            Please fill the form below to place an order. When your order is submitted successfully, our sales rep will contact you immediately. Please provide valid information.
+          Step Inside Our Production Line: A Visual Journey.
           </p>
         </div>
 

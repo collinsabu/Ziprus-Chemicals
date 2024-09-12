@@ -57,7 +57,7 @@ export default function Header() {
           </div>
           <div className="division-line mr-1">|</div>
           <div>
-            <a href="http://localhost:3000/weather" className="font-semibold">WEATHER</a>
+            <a href="/weather" className="font-semibold">WEATHER</a>
           </div>
         </div>
       </div>

@@ -8,27 +8,39 @@ export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, materialType, totalProduce, paid, balance, comment } = await request.json();
+    const {
+      date,
+      time,
+      workerId, // Replaced customerId with workerId
+      materialType,
+      totalProduce,
+      amountPerBag,
+      totalProductionAmount,
+      comment,
+    } = await request.json();
 
     const newProductionRecord = new ProductionRecord({
       date,
       time,
+      workerId, // Changed from customerId to workerId
       materialType,
       totalProduce,
-      paid,
-      balance,
+      amountPerBag,
+      totalProductionAmount,
       comment,
     });
 
     await newProductionRecord.save();
 
-    return NextResponse.json({ message: "Production record created successfully", data: newProductionRecord }, { status: 201 });
+    return NextResponse.json(
+      { message: "Production record created successfully", data: newProductionRecord },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error creating production record:", error.message);
     return NextResponse.json({ error: "Error creating production record" }, { status: 500 });
   }
 }
-
 
 export async function GET(request) {
   try {

@@ -68,10 +68,10 @@ export default function ProductionRecordDetails({ params }) {
         {[
           { label: "Date", value: entry.date },
           { label: "Time", value: entry.time },
+          { label: "workerId", value: entry.workerId },
           { label: "Material Type", value: entry.materialType },
           { label: "Total Produce", value: entry.totalProduce },
-          { label: "Paid", value: entry.paid },
-          { label: "Balance", value: entry.balance },
+          { label: "total Production Amount", value: entry.totalProductionAmount },
         ].map((field) => (
           <div key={field.label} className="my-6">
             <h5 className=" sm:text-xl ">{field.label}:</h5>

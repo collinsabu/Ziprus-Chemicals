@@ -8,11 +8,10 @@ export default function WagesAccountForm() {
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [workerName, setWorkerName] = useState("");
+  const [workerId, setWorkerId] = useState(""); // Changed WorkerName to WorkerId
   const [bags, setBags] = useState("");
   const [materialType, setMaterialType] = useState("");
   const [paid, setPaid] = useState("");
-  const [balance, setBalance] = useState("");
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +19,7 @@ export default function WagesAccountForm() {
     e.preventDefault();
     setIsLoading(true);
 
-    const newWagesAccount = { date, time, workerName, bags, materialType, paid, balance, comment };
+    const newWagesAccount = { date, time, workerId, bags, materialType, paid, comment };
 
     const res = await fetch("/api/wagesAccounts", {
       method: "POST",
@@ -64,14 +63,23 @@ export default function WagesAccountForm() {
       </div>
 
       <div className="mb-4">
-        <label className="block font-bold mb-2">Worker / Workers Name</label>
-        <input
-          type="text"
-          onChange={(e) => setWorkerName(e.target.value)}
-          value={workerName}
+        <label className="block font-bold mb-2">Worker ID</label>
+        <select
+          onChange={(e) => setWorkerId(e.target.value)} // Updated workerName to workerId
+          value={workerId}
           required
           className="w-full px-3 py-2 border rounded-lg text-black"
-        />
+        >
+          <option value="" disabled>Select Worker ID</option>
+          <option value="ZGCW01">ZGCW01</option>
+          <option value="ZGCW02">ZGCW02</option>
+          <option value="ZGCW03">ZGCW03</option>
+          <option value="ZGCW04">ZGCW04</option>
+          <option value="ZGCW05">ZGCW05</option>
+          <option value="ZGCW06">ZGCW06</option>
+          <option value="ZGCW07">ZGCW07</option>
+          <option value="ZGCW08">ZGCW08</option>
+        </select>
       </div>
 
       <div className="mb-4">
@@ -111,17 +119,6 @@ export default function WagesAccountForm() {
           type="number"
           onChange={(e) => setPaid(e.target.value)}
           value={paid}
-          required
-          className="w-full px-3 py-2 border rounded-lg text-black"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block font-bold mb-2">Balance</label>
-        <input
-          type="number"
-          onChange={(e) => setBalance(e.target.value)}
-          value={balance}
           required
           className="w-full px-3 py-2 border rounded-lg text-black"
         />

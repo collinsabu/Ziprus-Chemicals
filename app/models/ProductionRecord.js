@@ -11,6 +11,11 @@ const ProductionRecordSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  workerId: { // Changed from customerId to workerId
+    type: String,
+    required: true,
+    enum: ["ZGCW01", "ZGCW02", "ZGCW03", "ZGCW04", "ZGCW05", "ZGCW06", "ZGCW07", "ZGCW08"],
+  },
   materialType: {
     type: String,
     required: true,
@@ -20,11 +25,11 @@ const ProductionRecordSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  paid: {
+  amountPerBag: { // New field
     type: Number,
     required: true,
   },
-  balance: {
+  totalProductionAmount: { // New field
     type: Number,
     required: true,
   },

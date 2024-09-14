@@ -1,5 +1,3 @@
-// src/app/api/wagesAccounts/route.js
-
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import WagesAccount from "../../models/WagesAccount";
@@ -8,16 +6,15 @@ export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, workerName, bags, materialType, paid, balance, comment } = await request.json();
+    const { date, time, workerId, bags, materialType, paid, comment } = await request.json();
 
     const newWagesAccount = new WagesAccount({
       date,
       time,
-      workerName,
+      workerId, // Updated from workerName to workerId
       bags,
       materialType,
       paid,
-      balance,
       comment,
     });
 

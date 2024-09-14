@@ -61,6 +61,7 @@ const ProductionRecordList = () => {
             <li key={entry._id} className="mb-2">
               <Link href={`/viewreport/productionRecordList/${entry._id}`} className="block p-4 bg-white hover:bg-base_text rounded-lg">
                 <p>Date: {entry.date}</p>
+                <p>workerId: {entry.workerId}</p>
                 <p>Material Type: {entry.materialType}</p>
                 <p>Total Produce: {entry.totalProduce}</p>
               </Link>

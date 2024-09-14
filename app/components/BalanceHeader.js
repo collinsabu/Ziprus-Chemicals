@@ -7,7 +7,8 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { signOut } from "next-auth/react"; // Importing the signOut function
 
 const navLinks = [
-  { name: "WagesBalance", href: "/balance" },
+  { name: "Total Wages", href: "/balance" },
+  { name: "Workers Wages", href: "/balance/workerswages" },
   { name: "CrudeBalance", href: "/balance/crudebalance/" },
   { name: "CrudePaymentBalance", href: "/balance/crudepaymentbalance" },
   { name: "BagBalance", href: "/balance/bagbalance" },

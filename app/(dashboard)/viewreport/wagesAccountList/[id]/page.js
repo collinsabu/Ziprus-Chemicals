@@ -67,11 +67,10 @@ export default function WagesAccountDetails({ params }) {
         {[
           { label: "Date", value: entry.date },
           { label: "Time", value: entry.time },
-          { label: "Worker Name", value: entry.workerName },
+          { label: "worker Id", value: entry.workerId },
           { label: "Bags", value: entry.bags },
           { label: "Material Type", value: entry.materialType },
           { label: "Paid", value: entry.paid },
-          { label: "Balance", value: entry.balance },
         ].map((field) => (
           <div key={field.label} className="my-6">
             <h5 className="sm:text-xl">{field.label}:</h5>

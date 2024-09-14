@@ -11,12 +11,13 @@ const OrderForm = dynamic(() => import("./OrderForm"), {
 });
 
 import Banner1 from "./banner1.jpg";
-import Banner3 from "./images/img2.jpg";
-import Banner4 from "./images/img3.jpg";
-import Banner5 from "./images/img4.jpg";
-import Banner6 from "./images/img5.jpg";
-import Banner7 from "./images/img6.jpg";
-import Banner8 from "./images/img7.jpg";
+import Banner2 from "./images/img2.jpg";
+import Banner3 from "./images/img3.jpg";
+import Banner4 from "./images/img4.jpg";
+import Banner5 from "./images/img5.jpg";
+import Banner6 from "./images/img6.jpg";
+import Banner7 from "./images/img7.jpg";
+import Banner8 from "./images/img8.jpg";
 
 export const metadata = {
   title: "Ziprus - Solid Mineral Producers in Africa",
@@ -75,10 +76,10 @@ export default function Home() {
         <div className="w-3/4 mx-auto">
           <div className="top-image flex flex-col sm:flex-row gap-5 mb-10">
             <div className="sm:w-1/3 rounded-3xl overflow-hidden">
-              <Image className="img-container" src={Banner3} alt="Production Image 1" />
+              <Image className="img-container" src={Banner2} alt="Production Image 1" />
             </div>
             <div className="sm:w-1/3 rounded-3xl overflow-hidden">
-              <Image className="img-container" src={Banner6} alt="Production Image 2" />
+              <Image className="img-container" src={Banner3} alt="Production Image 2" />
             </div>
             <div className="sm:w-1/3 rounded-3xl overflow-hidden">
               <Image className="img-container" src={Banner4} alt="Production Image 3" />

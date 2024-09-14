@@ -61,7 +61,7 @@ const WagesAccountList = () => {
             <li key={entry._id} className="mb-2">
               <Link href={`/viewreport/wagesAccountList/${entry._id}`} className="block p-4 bg-white hover:bg-base_text rounded-lg">
                 <p>Date: {entry.date}</p>
-                <p>Worker Name: {entry.workerName}</p>
+                <p>workerId: {entry.workerId}</p>
                 <p>Bags: {entry.bags}</p>
               </Link>
             </li>

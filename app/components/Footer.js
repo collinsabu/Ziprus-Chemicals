@@ -69,6 +69,10 @@ export default function Footer() {
             </p>{" "}
             <p className="mb-0 leading-8 text-sm font-light">
               {" "}
+              <Link href="/blog">Our Blog</Link>{" "}
+            </p>{" "}
+            <p className="mb-0 leading-8 text-sm font-light">
+              {" "}
               <Link href="/faq">FAQ</Link>{" "}
             </p>{" "}
           </div>{" "}
@@ -90,6 +94,10 @@ export default function Footer() {
             <p className="mb-0 leading-8 text-sm font-light">
               {" "}
               <Link href="/partnership">Partnership</Link>{" "}
+            </p>{" "}
+            <p className="mb-0 leading-8 text-sm font-light">
+              {" "}
+              <Link href="/weather">Auchi Weather</Link>
             </p>{" "}
           </div>{" "}
         </div>{" "}

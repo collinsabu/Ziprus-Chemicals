@@ -37,7 +37,7 @@ export default function About() {
       <div className="container flex flex-col justify-center items-center m-auto w-4/5">
         <div className="sm:flex">
           <div className="sm:w-2/4">
-            <Image src={Image1} alt="About Us Image" width={800} />
+            <Image src={Image2} alt="About Us Image" width={800} />
           </div>
           <div className="sm:pr-20 sm:pl-9 mt-12 sm:w-2/4">
             <h2 className="text-base_text text-2xl font-semibold mb-6">

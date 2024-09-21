@@ -29,6 +29,7 @@ export const metadata = {
 
 import Image from "next/image";
 import Image1 from "./img1.jpg";
+import Image2 from "./img2.jpg";
 
 export default function About() {
   return (
@@ -77,7 +78,7 @@ export default function About() {
 
         <div className="sm:flex mt-20">
           <div className="sm:hidden">
-            <Image src={Image1} alt="Our Vision Image" width={800} />
+            <Image src={Image2} alt="Our Vision Image" width={800} />
           </div>
           <div className="sm:pr-14 sm:pl-9 mt-12 sm:w-2/4">
             <h2 className="text-base_text text-2xl font-semibold mb-6">

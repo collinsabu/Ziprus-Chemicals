@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 import { SiAdguard } from "react-icons/si";
 import { TbTruckDelivery, TbCurrencyNaira } from "react-icons/tb";
 
+
+import TawkToWidget from './components/TawkToWidget';
+
 // Dynamically import OrderForm to reduce initial bundle size
 const OrderForm = dynamic(() => import("./OrderForm"), {
   ssr: false,
@@ -118,6 +121,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <TawkToWidget />
     </main>
   );
 }

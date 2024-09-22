@@ -69,7 +69,7 @@ export default function Footer() {
             </p>{" "}
             <p className="mb-0 leading-8 text-sm font-light">
               {" "}
-              <Link href="/blog">Our Blog</Link>{" "}
+              <Link href="/career">Career</Link>{" "}
             </p>{" "}
             <p className="mb-0 leading-8 text-sm font-light">
               {" "}

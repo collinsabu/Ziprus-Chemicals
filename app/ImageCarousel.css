@@ -1,0 +1,15 @@
+/* Custom Swiper styles for navigation and pagination */
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #032C26; /* Change the navigation arrow color */
+}
+
+.swiper-pagination-bullet {
+  background-color: #032C26 !important; /* Change the pagination bullet color */
+}
+
+/* For active bullet (optional: darker tone) */
+.swiper-pagination-bullet-active {
+  background-color: #01433C !important; /* Darker shade for active bullet */
+}

@@ -14,6 +14,7 @@ export async function middleware(req) {
     '/viewreport', 
     '/e-learning',
     '/balance/workerswages',
+    '/applications'
   ];
   const publicRoutes = [
     '/login', 
@@ -91,6 +92,7 @@ export const config = {
     '/e-learning',
     '/e-learning/adminLevelTwo',
     '/e-learning/marketing',
-    '/balance/workerswages'
+    '/balance/workerswages',
+    '/applications'
   ],
 };

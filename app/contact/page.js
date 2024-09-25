@@ -50,8 +50,8 @@ export default function Contact() {
 
           <div className="flex flex-col items-center mb-10">
             <FaEnvelope className="text-xl" />
-            <p className="text-sm font-extralight">Sales@Ziprus.com</p>
-            <p className="text-sm font-extralight">Info@ziprus.com</p>
+            <p className="text-sm font-extralight">info@Zipruschemicals.com</p>
+            <p className="text-sm font-extralight">sales@Zipruschemicals.com</p>
           </div>
 
           <div className="flex flex-col items-center mb-4">

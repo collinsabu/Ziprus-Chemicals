@@ -33,7 +33,7 @@ export default function Header() {
     <main className="poppins">
       <div className="top-bar flex justify-between items-center px-5 bg-base_two h-10 text-base_text">
         <div>
-          <h6 className="font-semibold">+2347085544340</h6>
+          <h6 className="font-semibold">+2342018870085</h6>
         </div>
         <div className="socials flex items-center  w-40">
           <div className="flex justify-around  w-20">

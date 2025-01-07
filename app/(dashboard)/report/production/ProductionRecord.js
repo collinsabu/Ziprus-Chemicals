@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ProductionRecord() {
   const router = useRouter();
@@ -10,16 +12,20 @@ export default function ProductionRecord() {
   const [time, setTime] = useState("");
   const [materialType, setMaterialType] = useState("");
   const [totalProduce, setTotalProduce] = useState("");
-  const [amountPerBag, setAmountPerBag] = useState(""); // New State for Amount per Bag
-  const [workerId, setWorkerId] = useState(""); // Changed from customerId to workerId
+  const [amountPerBag, setAmountPerBag] = useState("");
+  const [workerId, setWorkerId] = useState("");
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (totalProduce <= 0 || amountPerBag <= 0) {
+      toast.error("Total Produce and Amount per Bag must be greater than 0");
+      return;
+    }
     setIsLoading(true);
 
-    const totalProductionAmount = totalProduce * amountPerBag; // Calculate totalProductionAmount
+    const totalProductionAmount = totalProduce * amountPerBag;
 
     const newRecord = {
       date,
@@ -27,141 +33,143 @@ export default function ProductionRecord() {
       materialType,
       totalProduce,
       amountPerBag,
-      totalProductionAmount, // Include totalProductionAmount
-      workerId, // Include workerId instead of customerId
+      totalProductionAmount,
+      workerId,
       comment,
     };
 
-    const res = await fetch("/api/productionRecords", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newRecord),
-    });
+    try {
+      const res = await fetch("/api/productionRecords", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRecord),
+      });
 
-    const json = await res.json();
+      const json = await res.json();
 
-    if (json.error) {
-      console.log(json.error);
-    } else {
-      router.push("/report/recordsuccesful");
+      if (json.error) {
+        toast.error(`Error: ${json.error}`, { autoClose: 5000 });
+      } else {
+        toast.success("Record submitted successfully!", { autoClose: 3000 });
+        setTimeout(() => router.push("/report/recordsuccesful"), 3000);
+      }
+    } catch (err) {
+      toast.error("An unexpected error occurred. Please try again.", {
+        autoClose: 5000,
+      });
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-lg mx-auto p-8 bg-base_color shadow-md rounded-lg"
-    >
-      <h2 className="text-2xl font-bold mb-6 text-white">Production Record</h2>
-
-      {/* Date Field */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Date</label>
-        <input
-          type="date"
-          onChange={(e) => setDate(e.target.value)}
-          value={date}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      {/* Time Field */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Time</label>
-        <input
-          type="time"
-          onChange={(e) => setTime(e.target.value)}
-          value={time}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      {/* Worker ID Field (Updated) */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Worker ID</label>
-        <select
-          onChange={(e) => setWorkerId(e.target.value)}
-          value={workerId}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        >
-          <option value="" disabled>Select Worker ID</option>
-          <option value="ZGCW01">ZGCW01</option>
-          <option value="ZGCW02">ZGCW02</option>
-          <option value="ZGCW03">ZGCW03</option>
-          <option value="ZGCW04">ZGCW04</option>
-          <option value="ZGCW05">ZGCW05</option>
-          <option value="ZGCW06">ZGCW06</option>
-          <option value="ZGCW07">ZGCW07</option>
-          <option value="ZGCW08">ZGCW08</option>
-        </select>
-      </div>
-
-      {/* Material Type Field */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Material Type</label>
-        <select
-          onChange={(e) => setMaterialType(e.target.value)}
-          value={materialType}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        >
-          <option value="" disabled>Select Material Type</option>
-          <option value="Feed">Feed</option>
-          <option value="Glass">Glass</option>
-          <option value="Texcoat">Texcoat</option>
-          <option value="Sugar">Sugar</option>
-          <option value="Dust">Dust</option>
-          <option value="White">White</option>
-          <option value="Off-white">Off-white</option>
-          <option value="Calcite">Calcite</option>
-        </select>
-      </div>
-
-      {/* Total Produce Field */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Total Produce</label>
-        <input
-          type="number"
-          onChange={(e) => setTotalProduce(e.target.value)}
-          value={totalProduce}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      {/* Amount per Bag Field */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Amount per Bag</label>
-        <input
-          type="number"
-          onChange={(e) => setAmountPerBag(e.target.value)}
-          value={amountPerBag}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      {/* Comment Field */}
-      <div className="mb-4">
-        <label className="block text-white mb-2">Comment</label>
-        <textarea
-          onChange={(e) => setComment(e.target.value)}
-          value={comment}
-          className="w-full px-3 py-2 border rounded-lg"
-        ></textarea>
-      </div>
-
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-base_text text-white font-bold py-2 px-4 rounded-lg hover:bg-lime-950"
+    <>
+      <ToastContainer />
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto p-8 bg-base_color shadow-md rounded-lg"
       >
-        {isLoading ? "Submitting..." : "Submit"}
-      </button>
-    </form>
+        <h2 className="text-2xl font-bold mb-6 text-white">Production Record</h2>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Date</label>
+          <input
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+            value={date}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Time</label>
+          <input
+            type="time"
+            onChange={(e) => setTime(e.target.value)}
+            value={time}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Worker ID</label>
+          <select
+            onChange={(e) => setWorkerId(e.target.value)}
+            value={workerId}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          >
+            <option value="" disabled>
+              Select Worker ID
+            </option>
+            <option value="ZGCW01">ZGCW01</option>
+            <option value="ZGCW02">ZGCW02</option>
+            <option value="ZGCW03">ZGCW03</option>
+            <option value="ZGCW04">ZGCW04</option>
+            <option value="ZGCW05">ZGCW05</option>
+            <option value="ZGCW06">ZGCW06</option>
+            <option value="ZGCW07">ZGCW07</option>
+            <option value="ZGCW08">ZGCW08</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Material Type</label>
+          <select
+            onChange={(e) => setMaterialType(e.target.value)}
+            value={materialType}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          >
+            <option value="" disabled>
+              Select Material Type
+            </option>
+            <option value="Feed">Feed</option>
+            <option value="Glass">Glass</option>
+            <option value="Texcoat">Texcoat</option>
+            <option value="Sugar">Sugar</option>
+            <option value="Dust">Dust</option>
+            <option value="White">White</option>
+            <option value="Off-white">Off-white</option>
+            <option value="Calcite">Calcite</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Total Produce</label>
+          <input
+            type="number"
+            min="0"
+            onChange={(e) => setTotalProduce(e.target.value)}
+            value={totalProduce}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Amount per Bag</label>
+          <input
+            type="number"
+            min="0"
+            onChange={(e) => setAmountPerBag(e.target.value)}
+            value={amountPerBag}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Comment</label>
+          <textarea
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+            className="w-full px-3 py-2 border rounded-lg"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-base_text text-white font-bold py-2 px-4 rounded-lg hover:bg-lime-950"
+        >
+          {isLoading ? "Submitting..." : "Submit"}
+        </button>
+      </form>
+    </>
   );
 }

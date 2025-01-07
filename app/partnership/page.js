@@ -26,7 +26,7 @@ export const metadata = {
 
 export default function Partnership() {
   return (
-    <section className="bg-base_color poppins mt-10 mb-16 pb-20">
+    <section className="bg-base_color poppins sm:pt-32 pt-24 mb-16 pb-20">
       <div className="container w-3/4 mx-auto text-white">
         <h1 className="text-4xl text-center pt-32 pb-10">Partner with Us</h1>
         <div>

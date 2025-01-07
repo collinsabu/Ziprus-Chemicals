@@ -33,7 +33,7 @@ import Image2 from "./img2.jpg";
 
 export default function About() {
   return (
-    <main className="mt-5 mb-10 sm:mb-16 bg-base_color poppins">
+    <main className="pt-40 mb-10 sm:mb-16 bg-base_color poppins">
       <div className="container flex flex-col justify-center items-center m-auto w-4/5">
         <div className="sm:flex">
           <div className="sm:w-2/4">

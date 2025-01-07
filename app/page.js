@@ -1,6 +1,15 @@
-import Image from "next/image";
 import dynamic from "next/dynamic";
 
+import ImageCarousel from "./components/ImageCarousel";
+import Image from "next/image";
+
+import Banner2 from "./images/img2.jpg";
+import Banner3 from "./images/img3.jpg";
+import Banner4 from "./images/img4.jpg";
+import Banner5 from "./images/img5.jpg";
+import Banner6 from "./images/img6.jpg";
+import Banner7 from "./images/img7.jpg";
+import Banner8 from "./images/img8.jpg";
 //import from react icons
 import { SiAdguard } from "react-icons/si";
 import { TbTruckDelivery, TbCurrencyNaira } from "react-icons/tb";
@@ -11,15 +20,6 @@ import TawkToWidget from "./components/TawkToWidget";
 const OrderForm = dynamic(() => import("./OrderForm"), {
   ssr: false,
 });
-
-import ImageCarousel from "./components/ImageCarousel";
-import Banner2 from "./images/img2.jpg";
-import Banner3 from "./images/img3.jpg";
-import Banner4 from "./images/img4.jpg";
-import Banner5 from "./images/img5.jpg";
-import Banner6 from "./images/img6.jpg";
-import Banner7 from "./images/img7.jpg";
-import Banner8 from "./images/img8.jpg";
 
 export const metadata = {
   title: "Ziprus - Solid Mineral Producers in Africa",
@@ -34,7 +34,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="z-0">
+    <main className="z-0 pt-28">
       <section className="banner-container poppins">
         <div className="bg-base_color text-base_text">
           <ImageCarousel />
@@ -77,6 +77,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Factory images section */}
 
       <section className="images-text mt-7 sm:mt-0">
         <div className="w-3/4 flex flex-col items-center text-center mx-auto">

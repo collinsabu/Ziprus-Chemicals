@@ -32,7 +32,7 @@ import ContactForm from "./ContactForm";
 
 export default function Contact() {
   return (
-    <section className="mt-5 mb-10 sm:mb-16 bg-base_color poppins">
+    <section className="pt-36 mb-10 sm:mb-16 bg-base_color poppins">
       <div className="container flex m-auto sm:w-4/5 py-20 flex-col sm:flex-row justify-center">
         <div className="form_container sm:w-2/5 text-white">
           <div>

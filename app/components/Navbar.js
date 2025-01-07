@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi"; // Importing icons for the hamburger menu
 
 const customers = [
-  { name: "Customer 1", id: "zip74dabu" },
+  { name: "Afri Agro", id: "zip74dabu" },
   { name: "Customer 2", id: "customer2" },
   { name: "Customer 3", id: "customer3" },
 ];

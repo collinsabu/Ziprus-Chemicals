@@ -24,16 +24,16 @@ export default async function OrderList() {
   const orders = await getList();
 
   return (
-    <main className="bg-base_color py-10 my-10">
+    <main className="bg-base_color py-10 mt-5 mt10">
       <h1 className="text-2xl font-semibold text-center mb-10 text-white">Order List</h1>
       
       <div className="max-w-screen-lg mx-auto px-4">
         {orders.map((order) => (
           <div
             key={order._id}
-            className="bg-base_text mb-6 p-4 rounded-lg flex flex-col sm:flex-row justify-between items-center"
+            className="bg-base_text mb-6 p-2 sm:p-4 rounded-lg flex  sm:flex-row justify-between items-center"
           >
-            <Link href={`/admin/${order._id}`} className="flex-grow mb-4 sm:mb-0 text-center sm:text-left">
+            <Link href={`/admin/${order._id}`} className="flex-grow mb-4 sm:mb-0  sm:text-left">
               <div>
                 <h5 className="text-xl font-semibold">{order.name}</h5>
                 <div>{order.company}</div>

@@ -8,18 +8,24 @@ export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, amount, paidBy, comment } = await request.json();
+    const { date, time, amountSent, sentTo, materialType, tonnage, comment } = await request.json();
 
     const newCrudePayment = new CrudePayment({
       date,
-      amount,
-      paidBy,
+      time,
+      amountSent,
+      sentTo,
+      materialType,
+      tonnage,
       comment,
     });
 
     await newCrudePayment.save();
 
-    return NextResponse.json({ message: "Crude payment created successfully", data: newCrudePayment }, { status: 201 });
+    return NextResponse.json(
+      { message: "Crude payment created successfully", data: newCrudePayment },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error creating crude payment:", error.message);
     return NextResponse.json({ error: "Error creating crude payment" }, { status: 500 });

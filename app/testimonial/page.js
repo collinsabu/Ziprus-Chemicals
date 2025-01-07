@@ -30,7 +30,7 @@ import img from "./img.jpg";
 
 export default function Testimonial() {
   return (
-    <section className="bg-base_color mt-10 mb-10 sm:mb-16 poppins">
+    <section className="bg-base_color pt-40 mb-10 sm:mb-16 poppins">
       <div className="container w-3/4 mx-auto sm:flex">
         <div className="sm:w-6/12 bg-black">
           <Image src={img} alt="Happy client" className="img-container" />

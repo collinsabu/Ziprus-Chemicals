@@ -3,7 +3,7 @@ import RemoveContact from "../../../components/RemoveContact";
 
 async function getList() {
   try {
-    const res = await fetch("https://ziprus-chemicals.vercel.app/api/contacts", {
+    const res = await fetch("/api/contacts", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -31,9 +31,9 @@ export default async function Contacts() {
         {contacts.map((contact) => (
           <div
             key={contact._id}
-            className="bg-base_text mb-6 p-4 rounded-lg flex flex-col sm:flex-row justify-between items-center"
+            className="bg-base_text mb-6 p-4 rounded-lg flex  sm:flex-row justify-between items-center"
           >
-            <Link href={`/admin/contactlist/${contact._id}`} className="flex-grow mb-4 sm:mb-0 text-center sm:text-left">
+            <Link href={`/admin/contactlist/${contact._id}`} className="flex-grow sm:b-4 sm:mb-0  sm:text-left">
               <div>
                 <h5 className="text-xl font-semibold">{contact.fullname}</h5>
                 <div>{contact.email}</div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -8,17 +9,10 @@ import { signOut } from "next-auth/react"; // For sign out functionality
 import { motion, AnimatePresence } from "framer-motion"; // For animations
 
 const navLinks = [
-  { name: "Orders", href: "/admin" },
-  { name: "Contacts", href: "/admin/contactlist" },
-  { name: "Report", href: "/report" },
-  { name: "View Report", href: "/viewreport" },
-  { name: "Loading/Payment", href: "/loadingandpayment" },
-  { name: "View Load/Payment", href: "/viewloadingandpayment" },
-  { name: "Balance", href: "/balance" },
-  { name: "PhoneBook", href: "/business-partners" },
+  { name: "Home", href: "/business-partners" },
 ];
 
-export default function AdminHeader() {
+export default function PhoneBookNav() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -34,7 +28,9 @@ export default function AdminHeader() {
     <div className="menu-bar bg-base_color h-20 flex items-center gap-[100px] sm:gap-[190px] px-6 md:px-20 relative pt-40 pb-10">
       {/* Logo/Title */}
       <Link href={"/admin"}>
-        <h1 className="admin-nav text-white text-xl">Admin Home</h1>
+      <div>
+        <h1 className="admin-nav text-white text-xl">Admin PhoneBook</h1>
+      </div>
       </Link>
 
       {/* Hamburger Menu Button */}

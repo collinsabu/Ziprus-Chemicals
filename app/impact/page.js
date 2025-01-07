@@ -11,7 +11,7 @@ import banner from "./banner.jpg";
 
 export default function Impact() {
   return (
-    <section className=" bg-base_color poppins mb-10 sm:mb-16 mt-10">
+    <section className=" bg-base_color poppins mb-10 sm:mb-16 pt-36">
       <div className="banner relative ">
         <Image class="img-container" src={banner} />
         <div class="overlay"></div>

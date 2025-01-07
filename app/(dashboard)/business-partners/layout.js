@@ -1,5 +1,5 @@
+import PhoneBookNav from "../../components/PhoneBookNav";
 
-import ReportHeader from "../../components/ReportHeader";
 
 
 
@@ -8,7 +8,7 @@ export default async function layout( {children}) {
  
   return (
     <>
-    <ReportHeader/>
+   <PhoneBookNav/>
     {children}
     </>
   )

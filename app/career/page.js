@@ -71,7 +71,7 @@ export default function CareerPage() {
   
 
   return (
-    <div className="min-h-screen bg-base_color flex justify-center items-center p-6 my-10">
+    <div className="min-h-screen bg-base_color flex justify-center items-center p-6 pt-36 mb-10">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
         <h1 className="text-4xl font-bold mb-6 text-center text-base_two">Work with Us</h1>
         <p className="text-center mb-6 text-xl font-semibold">Fill the form below to apply for a job and join our team</p>

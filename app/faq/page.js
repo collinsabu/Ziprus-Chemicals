@@ -16,7 +16,7 @@ export default function Faq() {
   };
 
   return (
-    <main className="poppins  bg-base_color mt-5 pt-16 mb-10 sm:mb-16">
+    <main className="poppins  bg-base_color  pt-40 mb-10 sm:mb-16">
       <h1 className="text-center text-white text-2xl ">FAQs</h1>
       <div className="faq-container  py-10 ">
       {data && data.length > 0 ? (

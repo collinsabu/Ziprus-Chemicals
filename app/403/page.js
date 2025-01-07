@@ -11,7 +11,7 @@ const Forbidden = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-base_two text-center px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-base_two text-center px-4 sm:px-6 lg:px-8 pt-40">
       <h1 className="text-4xl font-bold text-base_text mb-4">403 - Forbidden</h1>
       <p className="text-lg text-white mb-6">
         You do not have permission to access this page.

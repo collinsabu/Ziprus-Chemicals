@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function BagAccountForm() {
   const router = useRouter();
@@ -20,96 +22,111 @@ export default function BagAccountForm() {
 
     const newEntry = { date, time, purchase, used, balance, comment };
 
-    const res = await fetch("/api/bagAccountEntries", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newEntry),
-    });
+    try {
+      const res = await fetch("/api/bagAccountEntries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEntry),
+      });
 
-    const json = await res.json();
+      const json = await res.json();
 
-    if (json.error) {
-      console.log(json.error);
-    } else {
-      router.push("/report/recordsuccesful");
+      if (json.error) {
+        toast.error(`Error: ${json.error}`, {
+          position: "top-right",
+          autoClose: 5000,
+        });
+      } else {
+        toast.success("Record submitted successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        setTimeout(() => router.push("/report/recordsuccesful"), 3000);
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred.", {
+        position: "top-right",
+        autoClose: 5000,
+      });
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-8 bg-base_color  shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-white">Bag Account</h2>
-      <div className="mb-4">
-        <label className="block text-white mb-2">Date</label>
-        <input
-          type="date"
-          onChange={(e) => setDate(e.target.value)}
-          value={date}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-white mb-2">Time</label>
-        <input
-          type="time"
-          onChange={(e) => setTime(e.target.value)}
-          value={time}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-white mb-2">Purchase</label>
-        <input
-          type="number"
-          onChange={(e) => setPurchase(e.target.value)}
-          value={purchase}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-white mb-2">Used</label>
-        <input
-          type="number"
-          onChange={(e) => setUsed(e.target.value)}
-          value={used}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-white mb-2">Balance</label>
-        <input
-          type="number"
-          onChange={(e) => setBalance(e.target.value)}
-          value={balance}
-          required
-          className="w-full px-3 py-2 border rounded-lg"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-white mb-2">Comment</label>
-        <textarea
-          onChange={(e) => setComment(e.target.value)}
-          value={comment}
-          className="w-full px-3 py-2 border rounded-lg"
-        ></textarea>
-      </div>
-
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-base_text text-white font-bold py-2 px-4 rounded-lg hover:bg-lime-950"
+    <>
+      <ToastContainer />
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto p-8 bg-base_color shadow-md rounded-lg"
       >
-        {isLoading ? "Submitting..." : "Submit"}
-      </button>
-    </form>
+        <h2 className="text-2xl font-bold mb-6 text-white">Bag Account</h2>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Date</label>
+          <input
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+            value={date}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Time</label>
+          <input
+            type="time"
+            onChange={(e) => setTime(e.target.value)}
+            value={time}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Purchase</label>
+          <input
+            type="number"
+            onChange={(e) => setPurchase(e.target.value)}
+            value={purchase}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Used</label>
+          <input
+            type="number"
+            onChange={(e) => setUsed(e.target.value)}
+            value={used}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Balance</label>
+          <input
+            type="number"
+            onChange={(e) => setBalance(e.target.value)}
+            value={balance}
+            required
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white mb-2">Comment</label>
+          <textarea
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+            className="w-full px-3 py-2 border rounded-lg"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-base_text text-white font-bold py-2 px-4 rounded-lg hover:bg-lime-950"
+        >
+          {isLoading ? "Submitting..." : "Submit"}
+        </button>
+      </form>
+    </>
   );
 }

@@ -54,25 +54,22 @@ export async function GET(request) {
 export async function DELETE(request) {
   try {
     const url = new URL(request.url);
-    const id = url.searchParams.get('id');
+    const id = url.searchParams.get("id");
 
     if (!id) {
-      return NextResponse.json({ message: "ID is required" }, { status: 400 });
+      return NextResponse.json({ error: "ID is required" }, { status: 400 });
     }
 
     await connectMongoDB();
-
     const result = await Order.findByIdAndDelete(id);
 
     if (!result) {
-      console.log(`Order not found with ID: ${id}`);
-      return NextResponse.json({ message: "Order not found" }, { status: 404 });
+      return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
-    console.log(`Order deleted with ID: ${id}`);
     return NextResponse.json({ message: "Order deleted successfully" }, { status: 200 });
   } catch (error) {
     console.error("Error deleting order:", error.message);
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

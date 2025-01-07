@@ -27,13 +27,24 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
+export async function GET(request) {
   try {
     await connectMongoDB();
-    const entries = await LightMonitoring.find();
+
+    const { searchParams } = new URL(request.url);
+    const month = parseInt(searchParams.get("month"), 10);
+    const year = parseInt(searchParams.get("year"), 10);
+
+    const entries = await LightMonitoring.find({
+      date: {
+        $regex: new RegExp(`^${year}-${month < 10 ? `0${month}` : month}`),
+      },
+    });
+
     return NextResponse.json({ entries }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching light monitoring entries:', error.message);
-    return NextResponse.json({ error: 'Error fetching light monitoring entries' }, { status: 500 });
+    console.error("Error fetching light monitoring entries:", error.message);
+    return NextResponse.json({ error: "Error fetching light monitoring entries" }, { status: 500 });
   }
 }
+

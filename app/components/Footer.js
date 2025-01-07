@@ -29,7 +29,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href={"https://www.youtube.com/@zipruschemicals828"}
+                  href={"https://youtube.com/@zipruschemicals?si=PyDgAhGYlthsP5zW"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -65,7 +65,7 @@ export default function Footer() {
             </p>{" "}
             <p className="mb-0 leading-8 text-sm font-light">
               {" "}
-              <Link href="#order">Place Order</Link>{" "}
+              <Link href="/">Place Order</Link>{" "}
             </p>{" "}
             <p className="mb-0 leading-8 text-sm font-light">
               {" "}

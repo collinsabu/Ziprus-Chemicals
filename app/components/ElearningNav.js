@@ -16,7 +16,7 @@ export default function ElearningNav() {
   };
 
   return (
-    <nav className="bg-base_two p-4 mt-3">
+    <nav className="bg-base_two p-4 pt-40 pb-10">
       <div className="flex flex-wrap justify-center space-x-2 sm:space-x-4">
         <Link href="/e-learning">
           <p className="bg-base_text text-base_two py-2 px-4 rounded mb-2 sm:mb-0">Admin Level 1</p>

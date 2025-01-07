@@ -1,46 +1,115 @@
-// src/app/customerPaymentList/[id]/page.js
-
 "use client";
 
+import { notFound } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const CustomerPaymentDetails = ({ params }) => {
-  const [entry, setEntry] = useState(null);
-  const router = useRouter();
+async function getCustomerPaymentDetails(id) {
+  try {
+    const res = await fetch(`/api/customerPayments/${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch customer payment details");
+    }
+
+    const data = await res.json();
+    return data.entry;
+  } catch (error) {
+    console.error("Error fetching customer payment details:", error);
+    return null;
+  }
+}
+
+export default function CustomerPaymentDetails({ params }) {
   const { id } = params;
+  const [entry, setEntry] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchEntry = async () => {
-      const res = await fetch(`/api/customerPayments/${id}`);
-      const data = await res.json();
-      setEntry(data.entry);
-    };
+    async function fetchEntry() {
+      try {
+        const fetchedEntry = await getCustomerPaymentDetails(id);
+        if (fetchedEntry) {
+          setEntry(fetchedEntry);
+        } else {
+          setError("Customer payment entry not found");
+        }
+      } catch (error) {
+        setError("An unexpected error occurred while fetching data");
+      } finally {
+        setLoading(false);
+      }
+    }
 
     fetchEntry();
   }, [id]);
 
-  if (!entry) {
+  if (loading) {
     return (
-      <div className="text-xl sm:text-9xl flex justify-center items-center bg-base_color text-base_text h-[400px]">
-      loading details...
-    </div>
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <p className="text-lg text-gray-600 animate-pulse">Loading...</p>
+      </div>
     );
   }
 
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <p className="text-lg text-red-500">{error}</p>
+      </div>
+    );
+  }
+
+  if (!entry) {
+    return notFound();
+  }
+
   return (
-    <main className="bg-base_two">
-      <div className="max-w-4xl mx-auto p-8 bg-base_color text-white shadow-md my-10">
-        <h2 className="text-2xl font-bold mb-4">Customer Payment Details</h2>
-        <p><strong>Date:</strong> {entry.date}</p>
-        <p><strong>Time:</strong> {entry.time}</p>
-        <p><strong>Customer Unique ID:</strong> {entry.customerUniqueID}</p>
-        <p><strong>Payment Amount:</strong> {entry.paymentAmount}</p>
-        <p><strong>Summary Note:</strong> {entry.summaryNote}</p>
-        <button onClick={() => router.push('/viewloadingandpayment/payment')} className="mt-4 p-2 bg-base_text text-white rounded-lg">Back to List</button>
+    <main className="min-h-screen bg-base_color mb-10 py-10">
+      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        {/* Header Section */}
+        <div className="bg-gradient-to-r from-base_text to-base_two text-white py-6 px-8">
+          <h1 className="text-2xl font-bold">Customer Payment Details</h1>
+        </div>
+
+        {/* Entry Details Section */}
+        <div className="p-6 sm:p-8 space-y-4">
+          {[
+            { label: "Date", value: entry.date },
+            { label: "Time", value: entry.time },
+            { label: "Customer Unique ID", value: entry.customerUniqueID },
+            { label: "Payment Amount", value: entry.paymentAmount },
+          ].map((field) => (
+            <div key={field.label} className="flex justify-between">
+              <h5 className="text-lg font-medium">{field.label}:</h5>
+              <p className="text-lg text-gray-700 break-words">
+                {field.value || "N/A"}
+              </p>
+            </div>
+          ))}
+          <div className="mt-4">
+            <h5 className="text-lg font-medium">Summary Note:</h5>
+            <p className="text-lg text-gray-700 break-words">
+              {entry.summaryNote || "No summary note available"}
+            </p>
+          </div>
+        </div>
+
+        {/* Footer Section */}
+        <div className="flex justify-end bg-gray-100 py-4 px-6">
+          <button
+            onClick={() => router.push("/viewloadingandpayment/payment")}
+            className="px-4 py-2 bg-base_two text-white rounded-lg hover:bg-indigo-600"
+          >
+            Go Back
+          </button>
+        </div>
       </div>
     </main>
   );
-};
-
-export default CustomerPaymentDetails;
+}

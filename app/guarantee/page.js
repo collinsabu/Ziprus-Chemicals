@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Gaurantee() {
   return (
-    <section className=" bg-base_color poppins  mt-10 mb-10 sm:mb-16 pb-20">
+    <section className=" bg-base_color poppins  pt-36 mb-10 sm:mb-16 pb-20">
       <div className="container w-3/4 mx-auto text-white">
-        <h1 className="text-4xl text-center pt-32  pb-10">Our Guarantee</h1>
+        <h1 className="text-4xl text-center pt-10  pb-10">Our Guarantee</h1>
         <div>
           <p className="text-sm font-extralight leading-loose">
             At Ziprus Chemical, we understand that the quality of the minerals

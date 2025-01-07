@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactForm() {
   const router = useRouter();
@@ -19,7 +21,7 @@ export default function ContactForm() {
     const newContact = { fullname, email, phonenumber, message };
 
     try {
-      const res = await fetch("https://ziprus-chemicals.vercel.app/api/contacts", {
+      const res = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newContact),
@@ -29,74 +31,95 @@ export default function ContactForm() {
 
       if (json.error) {
         console.error(json.error);
+        toast.error(json.error, {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setIsLoading(false);
         return;
       }
 
       if (json.message) {
-        router.refresh();
-        router.push("/thanks/contact");
+        console.log("Toast: Success Message Triggered");
+        toast.success("Message sent successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        setIsLoading(false);
+
+        setTimeout(() => {
+          router.refresh();
+          router.push("/thanks/contact");
+        }, 3000);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast.error("Error submitting form. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
       setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
-      <div className="w-full flex flex-col items-center">
-        <label className="block text-sm font-light">Enter Full Name</label>
-        <input
-          type="text"
-          onChange={(e) => setFullName(e.target.value)}
-          value={fullname}
-          required
-          className="w-2/3 h-8 text-black"
-        />
-      </div>
+    <>
+      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
+        <div className="w-full flex flex-col items-center">
+          <label className="block text-sm font-light">Enter Full Name</label>
+          <input
+            type="text"
+            onChange={(e) => setFullName(e.target.value)}
+            value={fullname}
+            required
+            className="w-2/3 h-8 text-black"
+          />
+        </div>
 
-      <div className="w-full flex flex-col items-center">
-        <label className="block text-sm font-light">Email Address</label>
-        <input
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-          className="w-2/3 h-8 text-black"
-        />
-      </div>
+        <div className="w-full flex flex-col items-center">
+          <label className="block text-sm font-light">Email Address</label>
+          <input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+            className="w-2/3 h-8 text-black"
+          />
+        </div>
 
-      <div className="w-full flex flex-col items-center">
-        <label className="block text-sm font-light">Phone Number</label>
-        <input
-          type="text"
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          value={phonenumber}
-          required
-          className="w-2/3 h-8 text-black"
-        />
-      </div>
+        <div className="w-full flex flex-col items-center">
+          <label className="block text-sm font-light">Phone Number</label>
+          <input
+            type="text"
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={phonenumber}
+            required
+            className="w-2/3 h-8 text-black"
+          />
+        </div>
 
-      <div className="w-full flex flex-col items-center">
-        <label className="block text-sm font-light">Message</label>
-        <textarea
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-          required
-          className="w-2/3 h-24 text-black"
-        />
-      </div>
+        <div className="w-full flex flex-col items-center">
+          <label className="block text-sm font-light">Message</label>
+          <textarea
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            required
+            className="w-2/3 h-24 text-black"
+          />
+        </div>
 
-      <div className="w-full flex justify-center">
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="text-white bg-base_color w-36 border-2 py-2 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300"
-        >
-          {isLoading ? "Submitting..." : "Submit"}
-        </button>
-      </div>
-    </form>
+        <div className="w-full flex justify-center">
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="text-white bg-base_color w-36 border-2 py-2 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300"
+          >
+            {isLoading ? "Submitting..." : "Submit"}
+          </button>
+        </div>
+      </form>
+
+      <ToastContainer />
+    </>
   );
 }

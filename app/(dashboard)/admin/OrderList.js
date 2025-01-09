@@ -3,7 +3,8 @@ import RemoveBtn from "../../components/RemoveBtn";
 
 async function getList() {
   try {
-    const res = await fetch("https://ziprus-chemicals.vercel.app/api/order", {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.zipruschemicals.com/"; // Adjust for production
+    const res = await fetch(`${baseUrl}/api/order`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

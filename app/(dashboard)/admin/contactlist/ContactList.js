@@ -3,7 +3,9 @@ import RemoveContact from "../../../components/RemoveContact";
 
 async function getList() {
   try {
-    const res = await fetch("/api/contacts", {
+    // Construct the full URL dynamically
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.zipruschemicals.com/"; // Adjust for production
+    const res = await fetch(`${baseUrl}/api/contacts`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -19,6 +21,7 @@ async function getList() {
     return [];
   }
 }
+
 
 export default async function Contacts() {
   const contacts = await getList();

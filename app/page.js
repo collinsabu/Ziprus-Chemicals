@@ -41,104 +41,112 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-2 mb-12 bg-base_color h-auto sm:h-72">
-        <div className="w-4/5 mx-auto h-full flex flex-col sm:flex-row pt-6">
+      <section className="mt-4 mb-16 bg-gradient-to-r from-base_color via-base_two to-base_two text-base_two py-10">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 px-6">
           {/* Card 1 */}
-          <div className="card w-full sm:w-2/6 text-white flex flex-col items-center justify-center mb-6 sm:mb-0">
-            <div className="circle relative">
-              <SiAdguard className="text-5xl sm:text-6xl absolute right-4 top-5 " />
+          <article
+            className="card w-full sm:w-1/3 bg-white text-base_color flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            aria-label="Top Quality"
+          >
+            <div className="circle bg-base_color p-4 rounded-full mb-4">
+              <SiAdguard className="text-6xl text-white" />
             </div>
-            <p className="text-lg sm:text-2xl font-normal mt-5 text-base_text">
-              Top Quality
-            </p>
-            <div className="divider2"></div>
-          </div>
+            <p className="text-xl text-base_color sm:text-2xl font-semibold">Top Quality</p>
+            <div className="w-16 h-1 bg-base_color mt-4"></div>
+          </article>
 
           {/* Card 2 */}
-          <div className="card w-full sm:w-2/6 text-white flex flex-col items-center justify-center mb-6 sm:mb-0">
-            <div className="circle relative">
-              <TbTruckDelivery className="text-5xl sm:text-6xl absolute right-4 top-5" />
+          <article
+            className="card w-full sm:w-1/3 bg-white text-base_color flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            aria-label="Fast Delivery"
+          >
+            <div className="circle bg-base_color p-4 rounded-full mb-4">
+              <TbTruckDelivery className="text-6xl text-white" />
             </div>
-            <p className="text-lg sm:text-2xl font-normal mt-5 text-base_text">
-              Fast Delivery
-            </p>
-            <div className="divider2"></div>
-          </div>
+            <p className="text-xl text-base_color sm:text-2xl font-semibold">Fast Delivery</p>
+            <div className="w-16 h-1  bg-base_color mt-4"></div>
+          </article>
 
           {/* Card 3 */}
-          <div className="card w-full sm:w-2/6 text-white flex flex-col items-center justify-center">
-            <div className="circle relative">
-              <TbCurrencyNaira className="text-5xl sm:text-6xl absolute right-4 top-5" />
+          <article
+            className="card w-full sm:w-1/3 bg-white text-base_color flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            aria-label="Best Price"
+          >
+            <div className="circle bg-base_color p-4 rounded-full mb-4">
+              <TbCurrencyNaira className="text-6xl text-white" />
             </div>
-            <p className="text-lg sm:text-2xl font-normal mt-5 text-base_text">
-              Best Price
-            </p>
-            <div className="divider2"></div>
-          </div>
+            <p className="text-xl sm:text-2xl  text-base_color font-semibold">Best Price</p>
+            <div className="w-16 h-1 bg-base_color mt-4"></div>
+          </article>
         </div>
       </section>
 
-      {/* Factory images section */}
-
-      <section className="images-text mt-7 sm:mt-0">
-        <div className="w-3/4 flex flex-col items-center text-center mx-auto">
-          <h1 className="text-xl sm:text-4xl text-base_text font-bold">
+      {/* {/* Factory images section white/} */}
+      <section className="images-text mt-10 sm:mt-0 bg-gray-50 py-12">
+        {/* Heading Section */}
+        <div className="w-4/5 mx-auto text-center">
+          <h1 className="text-2xl sm:text-4xl text-base_two font-extrabold mb-4">
             Images From Our Production Line
           </h1>
-          <p className="sm:w-2/4 mb-10 mt-3 text-center">
-            Step Inside Our Production Line: A Visual Journey.
+          <p className="text-lg sm:w-3/5 mx-auto text-base_two">
+            Step inside our production line and take a visual journey through
+            innovation and craftsmanship.
           </p>
         </div>
 
-        <div className="w-3/4 mx-auto">
-          <div className="top-image flex flex-col sm:flex-row gap-5 mb-10">
-            <div className="sm:w-1/3 rounded-3xl overflow-hidden">
+        {/* Images Section */}
+        <div className="w-4/5 mx-auto mt-10">
+          {/* First Row of Images */}
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-12">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner2}
                 alt="Production Image 1"
               />
             </div>
-            <div className="sm:w-1/3 rounded-3xl overflow-hidden">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner3}
                 alt="Production Image 2"
               />
             </div>
-            <div className="sm:w-1/3 rounded-3xl overflow-hidden">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner4}
                 alt="Production Image 3"
               />
             </div>
-            <div className="sm:w-1/3 rounded-3xl overflow-hidden">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner5}
                 alt="Production Image 4"
               />
             </div>
           </div>
-          <div className="top-image flex flex-col sm:flex-row gap-5 mb-16 justify-center">
-            <div className="sm:w-1/4 rounded-3xl overflow-hidden">
+
+          {/* Second Row of Images */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner6}
                 alt="Production Image 5"
               />
             </div>
-            <div className="sm:w-1/4 rounded-3xl overflow-hidden">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner7}
                 alt="Production Image 6"
               />
             </div>
-            <div className="sm:w-1/4 rounded-3xl overflow-hidden">
+            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
               <Image
-                className="img-container"
+                className="w-full h-full object-cover"
                 src={Banner8}
                 alt="Production Image 7"
               />

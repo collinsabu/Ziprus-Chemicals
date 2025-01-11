@@ -8,12 +8,12 @@ import { signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { name: "Crude", href: "/report" },
+  { name: "C.Stock", href: "/report" },
   { name: "C. payment", href: "/report/crudepayment" },
-  { name: "BagAccount", href: "/report/bagaccount" },
+  { name: "EmptyBag", href: "/report/bagaccount" },
   { name: "Production", href: "/report/production" },
   { name: "Despatch", href: "/report/despatch" },
-  { name: "WagesAccount", href: "/report/wagesaccount" },
+  { name: "SalaryRecord", href: "/report/wagesaccount" },
   { name: "LightUsage", href: "/report/lightusage" },
   { name: "MorningReport", href: "/report/morningreport" },
   { name: "SituationReport", href: "/report/situationreport" },

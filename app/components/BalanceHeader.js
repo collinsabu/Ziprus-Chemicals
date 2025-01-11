@@ -8,11 +8,11 @@ import { signOut } from "next-auth/react"; // Importing the signOut function
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { name: "Total Wages", href: "/balance" },
-  { name: "Workers Wages", href: "/balance/workerswages" },
+  { name: "TotalSalaryBalance", href: "/balance" },
+  { name: "WorkersSalary", href: "/balance/workerswages" },
   { name: "CrudeBalance", href: "/balance/crudebalance/" },
   { name: "CrudePaymentBalance", href: "/balance/crudepaymentbalance" },
-  { name: "BagBalance", href: "/balance/bagbalance" },
+  { name: "EmptyBagsBalance", href: "/balance/bagbalance" },
   { name: "CustomerBalance", href: "/balance/customersaccounts" },
 ];
 

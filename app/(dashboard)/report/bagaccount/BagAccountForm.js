@@ -60,7 +60,7 @@ export default function BagAccountForm() {
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto p-8 bg-base_color shadow-md rounded-lg"
       >
-        <h2 className="text-2xl font-bold mb-6 text-white">Bag Account</h2>
+        <h2 className="text-2xl font-bold mb-6 text-white">Empty Bag Stock Take</h2>
         <div className="mb-4">
           <label className="block text-white mb-2">Date</label>
           <input
@@ -89,6 +89,7 @@ export default function BagAccountForm() {
             value={purchase}
             required
             className="w-full px-3 py-2 border rounded-lg"
+            placeholder="enter quantity"
           />
         </div>
         <div className="mb-4">
@@ -99,6 +100,7 @@ export default function BagAccountForm() {
             value={used}
             required
             className="w-full px-3 py-2 border rounded-lg"
+            placeholder="how much has been used, you can entr Zero"
           />
         </div>
         <div className="mb-4">
@@ -109,6 +111,7 @@ export default function BagAccountForm() {
             value={balance}
             required
             className="w-full px-3 py-2 border rounded-lg"
+            placeholder="how many left after use"
           />
         </div>
         <div className="mb-4">
@@ -117,6 +120,7 @@ export default function BagAccountForm() {
             onChange={(e) => setComment(e.target.value)}
             value={comment}
             className="w-full px-3 py-2 border rounded-lg"
+            placeholder="give more details like where bag was purchase + anything relevant"
           ></textarea>
         </div>
         <button

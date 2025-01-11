@@ -57,7 +57,7 @@ export default function WagesAccountForm() {
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto p-8 bg-base_color text-white shadow-md rounded-lg"
       >
-        <h2 className="text-2xl font-bold mb-6">Wages Account</h2>
+        <h2 className="text-2xl font-bold mb-6">Salary payment Record</h2>
         <div className="mb-4">
           <label className="block font-bold mb-2">Date</label>
           <input
@@ -110,6 +110,7 @@ export default function WagesAccountForm() {
             value={bags}
             required
             className="w-full px-3 py-2 border rounded-lg text-black"
+            placeholder="number of bags worked that day"
           />
         </div>
 
@@ -143,6 +144,7 @@ export default function WagesAccountForm() {
             value={paid}
             required
             className="w-full px-3 py-2 border rounded-lg text-black"
+            placeholder="initial amount paid"
           />
         </div>
 
@@ -152,6 +154,7 @@ export default function WagesAccountForm() {
             onChange={(e) => setComment(e.target.value)}
             value={comment}
             className="w-full px-3 py-2 border rounded-lg text-black"
+            placeholder="any relevant information"
           ></textarea>
         </div>
 

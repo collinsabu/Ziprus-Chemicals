@@ -73,7 +73,7 @@ export default function CrudeForm() {
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto p-8 bg-base_color shadow-md rounded-lg my-6"
       >
-        <h2 className="text-2xl font-bold mb-6 text-white">Crude Record</h2>
+        <h2 className="text-2xl font-bold mb-6 text-white">Crude Stock Take</h2>
         <div className="mb-4">
           <label className="block text-white mb-2">Date</label>
           <input

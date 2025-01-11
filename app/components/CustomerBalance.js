@@ -30,7 +30,7 @@ const CustomerBalance = () => {
   }, [customerUniqueID]);
 
   useEffect(() => {
-    setCurrentBalance(totalLoading - totalPayment);
+    setCurrentBalance(totalPayment - totalLoading);
   }, [totalLoading, totalPayment]);
 
   return (

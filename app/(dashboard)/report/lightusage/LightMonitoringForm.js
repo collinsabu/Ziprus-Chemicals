@@ -57,7 +57,7 @@ export default function LightMonitoringForm() {
     <>
       <ToastContainer />
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-8 bg-base_color text-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-6">Light Monitoring</h2>
+        <h2 className="text-2xl font-bold mb-6">Light Monitoring Form</h2>
 
         <div className="mb-4">
           <label className="block mb-2">Date</label>
@@ -96,6 +96,7 @@ export default function LightMonitoringForm() {
             value={numberOfBags}
             required
             className="w-full px-3 py-2 border rounded-lg text-black"
+            placeholder="numbers of bags produced"
           />
         </div>
 

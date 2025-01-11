@@ -160,6 +160,7 @@ export default function ProductionRecord() {
             onChange={(e) => setComment(e.target.value)}
             value={comment}
             className="w-full px-3 py-2 border rounded-lg"
+            placeholder="give any relevant information like workers detail"
           ></textarea>
         </div>
         <button

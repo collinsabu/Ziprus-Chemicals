@@ -11,6 +11,8 @@ import EditExpenseModal from "./EditExpenseModal";
 
 export default function ExpensesPage() {
   const [expenses, setExpenses] = useState([]);
+  const [totalMonth, setTotalMonth] = useState(0);
+  const [totalAllTime, setTotalAllTime] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -25,6 +27,10 @@ export default function ExpensesPage() {
       if (res.ok) {
         const data = await res.json();
         setExpenses(data);
+
+        // Calculate total for the month
+        const monthTotal = data.reduce((sum, expense) => sum + expense.amount, 0);
+        setTotalMonth(monthTotal);
       } else {
         throw new Error();
       }
@@ -34,6 +40,25 @@ export default function ExpensesPage() {
       setIsLoading(false);
     }
   };
+
+  const fetchTotalAllTime = async () => {
+    try {
+      const res = await fetch("/api/expenses/total");
+      if (res.ok) {
+        const data = await res.json();
+        setTotalAllTime(data.total);
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      toast.error("Failed to fetch total expenses");
+    }
+  };
+
+  useEffect(() => {
+    fetchExpenses();
+    fetchTotalAllTime();
+  }, [month, year]);
 
   const handlePrevMonth = () => {
     if (month === 0) {
@@ -52,10 +77,6 @@ export default function ExpensesPage() {
       setMonth(month + 1);
     }
   };
-
-  useEffect(() => {
-    fetchExpenses();
-  }, [month, year]);
 
   const handleDelete = async (id) => {
     try {
@@ -77,60 +98,79 @@ export default function ExpensesPage() {
   ];
 
   return (
-    <div className="min-h-screen sm:px-7 px-4 pt-40 py-12 bg-gradient-to-b from-base_color to-base_two">
-    <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
->
-  <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 text-center">
-    Expense Tracker
-  </h1>
-  <div className="flex flex-col sm:flex-row sm:justify-between gap-4 sm:gap-0 mb-6">
-    <button
-      onClick={handlePrevMonth}
-      className="w-full sm:w-auto px-4 py-2 bg-base_text text-white font-semibold rounded-lg hover:bg-base_two"
-    >
-      Previous Month
-    </button>
-    <h2 className="text-xl sm:text-2xl font-bold text-base_text text-center sm:text-left">
-      {monthNames[month]} {year}
-    </h2>
-    <button
-      onClick={handleNextMonth}
-      className="w-full sm:w-auto px-4 py-2 bg-base_text text-white font-semibold rounded-lg hover:bg-base_two"
-    >
-      Next Month
-    </button>
-  </div>
-  <div className="flex justify-center">
-    <button
-      onClick={() => setIsModalOpen(true)}
-      className="w-full sm:w-auto px-6 py-3 bg-base_text text-white font-semibold rounded-lg shadow-md hover:bg-base_two transition duration-300"
-    >
-      Add Expense
-    </button>
-  </div>
-</motion.div>
-
+    <div className="min-h-screen sm:px-7 px-4 pt-10 py-12 bg-gradient-to-b from-base_two via-base_color to-base_color mb-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 text-center">
+          Expense Tracker
+        </h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-4 sm:gap-0 mb-6">
+          <button
+            onClick={handlePrevMonth}
+            className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-base_text to-base_color text-white font-semibold rounded-lg shadow-lg hover:from-base_text hover:to-base_two transition-all"
+          >
+            Previous Month
+          </button>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center sm:text-left">
+            {monthNames[month]} {year}
+          </h2>
+          <button
+            onClick={handleNextMonth}
+            className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-base_text to-base_color text-white font-semibold rounded-lg shadow-lg hover:from-base_text hover:to-base_two transition-all"
+          >
+            Next Month
+          </button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <motion.div
+            className="bg-white text-base_two rounded-lg shadow-md p-6 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-lg font-semibold">Total This Month</h3>
+            <p className="text-3xl font-bold">₦{totalMonth}</p>
+          </motion.div>
+          <motion.div
+            className="bg-white text-base_two rounded-lg shadow-md p-6 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-lg font-semibold">Total All Time</h3>
+            <p className="text-3xl font-bold">₦{totalAllTime}</p>
+          </motion.div>
+        </div>
+        <div className="flex justify-center">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg shadow-md hover:from-green-400 hover:to-green-600 transition-all"
+          >
+            Add Expense
+          </button>
+        </div>
+      </motion.div>
 
       {isLoading ? (
         <div className="h-96 flex items-center justify-center">
           <motion.div
-            className="spinner border-t-4 border-blue-600 border-solid rounded-full w-16 h-16"
+            className="spinner border-t-4 border-white border-solid rounded-full w-16 h-16"
             animate={{ rotate: 360 }}
             transition={{ repeat: Infinity, duration: 1 }}
           ></motion.div>
         </div>
       ) : expenses.length === 0 ? (
         <motion.div
-          className="text-center mt-20 text-base_two"
+          className="text-center mt-20 text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <p className="text-xl font-semibold">No expenses found for this month!</p>
-          <p className="text-gray-500 mt-2">
+          <p className="text-gray-300 mt-2">
             Adjust the month or year to view other expenses.
           </p>
         </motion.div>
@@ -161,7 +201,7 @@ export default function ExpensesPage() {
               </Link>
               <div className="flex gap-4">
                 <button
-                  className="text-base_two hover:text-base_text"
+                  className="text-base_two hover:text-base_color"
                   onClick={() => {
                     setIsEditModalOpen(true);
                     setExpenseToEdit(expense);

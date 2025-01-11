@@ -34,8 +34,8 @@ export default function ExpenseDetails() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <p className="text-lg text-gray-500 animate-pulse">Loading...</p>
+      <div className="flex justify-center items-center h-screen bg-base_color">
+        <p className="text-lg text-white animate-pulse">Loading...</p>
       </div>
     );
   }
@@ -72,7 +72,7 @@ export default function ExpenseDetails() {
           <div className="flex items-center justify-between border-b pb-4">
             <h5 className="text-lg font-medium">Amount</h5>
             <p className="text-lg text-gray-700 font-semibold">
-              ${parseFloat(expense.amount).toLocaleString()}
+            ₦{parseFloat(expense.amount).toLocaleString()}
             </p>
           </div>
 

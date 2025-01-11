@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion"; // For animations
 
 const navLinks = [
-  { name: "CrudeIn", href: "/viewreport" },
+  { name: "C.Stock", href: "/viewreport" },
   { name: "C.paymt", href: "/viewreport/crudePaymentList" },
   { name: "BagAcct", href: "/viewreport/bagAccountEntriesList" },
   { name: "Production", href: "/viewreport/productionRecordList" },

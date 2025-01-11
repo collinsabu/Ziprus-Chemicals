@@ -25,7 +25,7 @@ export default function Page() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          For Contacting Us.
+          For your Order.
         </motion.p>
 
         {/* Animating the Icon and Paragraph */}
@@ -37,7 +37,7 @@ export default function Page() {
         >
           <RiCustomerService2Fill className="text-3xl" />
           <p className="text-center sm:text-left text-lg sm:text-xl">
-            We will get in touch with you shortly, please feel free to go through our website.
+          one of our sales representatives will promptly contact you,<br/> please feel free to go through our website
           </p>
         </motion.div>
 

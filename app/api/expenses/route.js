@@ -1,4 +1,3 @@
-// 3. Expense APIs (app/api/expenses/route.js)
 import connectMongoDB from "../../libs/mongodb";
 import Expense from "../../models/Expense";
 
@@ -10,8 +9,8 @@ export async function GET(req) {
     const year = parseInt(searchParams.get("year"), 10);
 
     const regexDate = new RegExp(`^${year}-${month < 10 ? `0${month}` : month}`);
-
     const expenses = await Expense.find({ date: { $regex: regexDate } });
+
     return new Response(JSON.stringify(expenses), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: "Error fetching expenses" }), { status: 500 });
@@ -26,5 +25,22 @@ export async function POST(req) {
     return new Response(JSON.stringify(newExpense), { status: 201 });
   } catch (error) {
     return new Response(JSON.stringify({ error: "Error creating expense" }), { status: 500 });
+  }
+}
+
+export async function TOTAL(req) {
+  try {
+    await connectMongoDB();
+    const total = await Expense.aggregate([{ $group: { _id: null, total: { $sum: "$amount" } } }]);
+
+    return new Response(
+      JSON.stringify({ total: total[0]?.total || 0 }),
+      { status: 200 }
+    );
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: "Error calculating total expenses" }),
+      { status: 500 }
+    );
   }
 }

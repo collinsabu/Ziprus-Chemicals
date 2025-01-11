@@ -28,19 +28,3 @@ export async function POST(req) {
   }
 }
 
-export async function TOTAL(req) {
-  try {
-    await connectMongoDB();
-    const total = await Expense.aggregate([{ $group: { _id: null, total: { $sum: "$amount" } } }]);
-
-    return new Response(
-      JSON.stringify({ total: total[0]?.total || 0 }),
-      { status: 200 }
-    );
-  } catch (error) {
-    return new Response(
-      JSON.stringify({ error: "Error calculating total expenses" }),
-      { status: 500 }
-    );
-  }
-}

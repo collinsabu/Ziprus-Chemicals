@@ -42,7 +42,7 @@ const CrudeBalance = () => {
   return (
     <main className="bg-base_text min-h-screen">
       <div className="max-w-4xl mx-auto p-4 md:p-8 bg-base_color text-white font-semibold shadow-md my-10">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Crude Balance</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Crude Stock Balance</h2>
         <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-10">
           <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
             Purchase: {crudeTotal} tons

@@ -36,7 +36,7 @@ const CustomerBalance = () => {
   return (
     <div className="bg-base_two">
       <div className="max-w-4xl mx-auto p-8 bg-base_color text-black font-semibold shadow-md my-10">
-        <h2 className="text-2xl font-bold mb-4 text-center text-white">Customer Balance</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center text-white">Customer Payment Balance</h2>
         <div className=" block sm:flex  justify-around sm:gap-5 my-20 ">
         <p className="py-20 px-10 bg-base_text  text-center text-xl my-5">Customer Unique ID: {customerUniqueID}</p>
         <p className="py-20 px-10 bg-base_text  text-center text-xl my-5">Total Loading: ₦{totalLoading.toFixed(2)}</p>

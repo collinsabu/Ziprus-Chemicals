@@ -36,6 +36,7 @@ export default function ExpensesPage() {
       }
     } catch (error) {
       toast.error("Failed to fetch expenses");
+      console.error("Error fetching expenses:", error);
     } finally {
       setIsLoading(false);
     }
@@ -43,15 +44,20 @@ export default function ExpensesPage() {
 
   const fetchTotalAllTime = async () => {
     try {
-      const res = await fetch("/api/expenses/total");
+      const res = await fetch("/api/expenses/total", {
+        method: "GET",
+        headers: { "Cache-Control": "no-cache" }, // Prevent caching
+      });
       if (res.ok) {
         const data = await res.json();
-        setTotalAllTime(data.total);
+        console.log("Total all time:", data.total); // Debug log
+        setTotalAllTime(data.total || 0);
       } else {
         throw new Error();
       }
     } catch (error) {
       toast.error("Failed to fetch total expenses");
+      console.error("Error fetching total expenses:", error);
     }
   };
 
@@ -83,12 +89,14 @@ export default function ExpensesPage() {
       const res = await fetch(`/api/expenses/${id}`, { method: "DELETE" });
       if (res.ok) {
         toast.success("Expense deleted successfully");
-        fetchExpenses();
+        await fetchExpenses();
+        await fetchTotalAllTime(); // Refresh total after deletion
       } else {
         throw new Error();
       }
-    } catch {
+    } catch (error) {
       toast.error("Error deleting expense");
+      console.error("Error deleting expense:", error);
     }
   };
 

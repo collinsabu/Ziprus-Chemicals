@@ -49,7 +49,7 @@ const ProductionRecordList = () => {
     <main className="bg-base_two">
       <div className="max-w-4xl mx-auto p-8 bg-base_color text-base_color font-semibold shadow-md my-10">
       <div className=" flex justify-around mb-5">
-      <h1 className="text-2xl font-bold text-white mb-4">Production List</h1>
+      <h1 className="text-2xl font-bold text-white mb-4">Worker Production List</h1>
       <h2 className="text-2xl font-bold mb-4 text-white">{`${monthNames[month]} ${year}`}</h2>
       </div>
         <div className="flex justify-between mb-4">

@@ -28,7 +28,7 @@ export default async function Contacts() {
 
   return (
     <main className="bg-base_color py-10 my-10">
-      <h1 className="text-3xl font-bold text-center mb-10 text-white">Contact List</h1>
+      <h1 className="text-3xl font-bold text-center mb-10 text-white">Customer Contact List</h1>
       
       <div className="max-w-screen-lg mx-auto px-4">
         {contacts.map((contact) => (

@@ -26,7 +26,7 @@ export default async function OrderList() {
 
   return (
     <main className="bg-base_color py-10 mt-5 mt10">
-      <h1 className="text-2xl font-semibold text-center mb-10 text-white">Order List</h1>
+      <h1 className="text-2xl font-semibold text-center mb-10 text-white">Customer Order List</h1>
       
       <div className="max-w-screen-lg mx-auto px-4">
         {orders.map((order) => (

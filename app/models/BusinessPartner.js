@@ -12,7 +12,7 @@ const BusinessPartnerSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ["Miners", "Tipper", "Truck"],
+    enum: ["Miners", "Tipper", "Truck", "Welder", "Other"],
     required: true,
   },
   description: {

@@ -48,7 +48,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
         exit={{ opacity: 0 }}
       >
         <motion.div
-          className="bg-white p-6 rounded-md w-11/12 max-w-md relative"
+          className="bg-base_color p-6 rounded-md w-11/12 max-w-md relative"
           initial={{ y: "-50%", opacity: 0 }}
           animate={{ y: "0", opacity: 1 }}
           exit={{ y: "-50%", opacity: 0 }}
@@ -73,7 +73,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
             <div>
@@ -84,7 +84,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
             <div>
@@ -94,11 +94,13 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 value={formData.category}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md bg-base_color"
               >
                 <option value="Miners">Miners</option>
                 <option value="Tipper">Tipper</option>
                 <option value="Truck">Truck</option>
+                <option value="Welder">Welder</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <div>
@@ -108,12 +110,12 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 value={formData.description}
                 onChange={handleChange}
                 rows={4}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
             <button
               type="submit"
-              className="mt-4 w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
+              className="mt-4 w-full bg-base_text text-white p-2 rounded-md hover:bg-base_two"
             >
               Submit
             </button>

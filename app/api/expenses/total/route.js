@@ -15,11 +15,14 @@ export async function GET(req) {
       },
     ]);
 
+    console.log("Total all-time expenses:", total); // Debugging log
+
     return new Response(
-      JSON.stringify({ total: total[0]?.total || 0 }), // Return total amount or 0 if no expenses
+      JSON.stringify({ total: total[0]?.total || 0 }), // Return total or 0 if no expenses
       { status: 200 }
     );
   } catch (error) {
+    console.error("Error calculating total expenses:", error);
     return new Response(
       JSON.stringify({ error: "Error calculating total expenses" }),
       { status: 500 }

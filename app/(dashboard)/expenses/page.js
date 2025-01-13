@@ -66,7 +66,7 @@ export default function ExpensesPage() {
 
   useEffect(() => {
     fetchTotalAllTime();
-  }, [expenses]); // Re-fetch when 'expenses' changes
+  }, [expenses]); // Re-fetch when 'expenses' change
 
   const handlePrevMonth = () => {
     if (month === 0) {
@@ -154,7 +154,83 @@ export default function ExpensesPage() {
             <p className="text-3xl font-bold">₦{totalAllTime}</p>
           </motion.div>
         </div>
+        <div className="flex justify-center">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg shadow-md hover:from-green-400 hover:to-green-600 transition-all"
+          >
+            Add Expense
+          </button>
+        </div>
       </motion.div>
+
+      {isLoading ? (
+        <div className="h-96 flex items-center justify-center">
+          <motion.div
+            className="spinner border-t-4 border-white border-solid rounded-full w-16 h-16"
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          ></motion.div>
+        </div>
+      ) : expenses.length === 0 ? (
+        <motion.div
+          className="text-center mt-20 text-white"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-xl font-semibold">No expenses found for this month!</p>
+          <p className="text-gray-300 mt-2">
+            Adjust the month or year to view other expenses.
+          </p>
+        </motion.div>
+      ) : (
+        <motion.ul
+          className="grid gap-6 mt-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {expenses.map((expense) => (
+            <motion.li
+              key={expense._id}
+              className="bg-white shadow-md rounded-lg p-6 flex justify-between items-center"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.02, boxShadow: "0px 4px 10px rgba(0,0,0,0.1)" }}
+            >
+              <Link href={`/expenses/${expense._id}`} className="flex-1">
+                <div>
+                  <h2 className="font-bold text-lg text-base_two">
+                    {expense.title}
+                  </h2>
+                  <p className="text-gray-600">Amount: ₦{expense.amount}</p>
+                  <p className="text-sm text-gray-500">{expense.date}</p>
+                </div>
+              </Link>
+              <div className="flex gap-4">
+                <button
+                  className="text-base_two hover:text-base_color"
+                  onClick={() => {
+                    setIsEditModalOpen(true);
+                    setExpenseToEdit(expense);
+                  }}
+                >
+                  <FiEdit size={20} />
+                </button>
+                <button
+                  className="text-red-600 hover:text-red-800"
+                  onClick={() => handleDelete(expense._id)}
+                >
+                  <FiTrash size={20} />
+                </button>
+              </div>
+            </motion.li>
+          ))}
+        </motion.ul>
+      )}
+
       <AnimatePresence>
         {isModalOpen && (
           <ExpenseModal

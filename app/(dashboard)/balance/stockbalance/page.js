@@ -48,7 +48,7 @@ const StockBalance = () => {
             Total Production: {totalProduced} bags
           </p>
           <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
-            Total Depatch: {totalDespatch}
+            Total Despatch: {totalDespatch}
           </p>
         </div>
         <h1 className="text-green-500 text-3xl md:text-5xl text-center bg-base_two py-10 md:py-20 mt-5">

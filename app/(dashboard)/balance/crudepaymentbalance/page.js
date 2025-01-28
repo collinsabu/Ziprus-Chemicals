@@ -10,7 +10,7 @@ const CrudePaymentBalance = () => {
 
   const fetchCrudeTotal = async () => {
     try {
-      const res = await fetch("/api/crudeTotal");
+      const res = await fetch("https://www.zipruschemicals.com/api/crudeTotal");
       const data = await res.json();
       setCrudeTotal(data.total); // Assuming data.total is in tons
     } catch (error) {
@@ -20,7 +20,7 @@ const CrudePaymentBalance = () => {
 
   const fetchTotalCrudePayment = async () => {
     try {
-      const res = await fetch("/api/totalCrudePayment");
+      const res = await fetch("https://www.zipruschemicals.com/api/totalCrudePayment");
       const data = await res.json();
       setTotalCrudePayment(data.total); // Assuming data.total is in tons
     } catch (error) {

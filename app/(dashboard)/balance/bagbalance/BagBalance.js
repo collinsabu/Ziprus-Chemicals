@@ -10,7 +10,7 @@ const BagBalance = () => {
 
   const fetchTotalPurchases = async () => {
     try {
-      const res = await fetch("/api/totalPurchases");
+      const res = await fetch("https://www.zipruschemicals.com/api/totalPurchases");
       const data = await res.json();
       setTotalPurchases(data.total);
     } catch (error) {
@@ -20,7 +20,7 @@ const BagBalance = () => {
 
   const fetchTotalProduced = async () => {
     try {
-      const res = await fetch("/api/totalProduced");
+      const res = await fetch("https://www.zipruschemicals.com/api/totalProduced");
       const data = await res.json();
       setTotalProduced(data.total);
     } catch (error) {

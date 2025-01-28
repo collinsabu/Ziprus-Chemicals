@@ -10,7 +10,7 @@ export default function AdminApplications() {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const res = await fetch("/api/jobApplications");
+        const res = await fetch("https://www.zipruschemicals.com/api/jobApplications");
         const data = await res.json();
 
         if (res.ok) {

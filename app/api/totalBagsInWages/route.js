@@ -15,7 +15,10 @@ export async function GET(request) {
       },
     ]);
 
-    return NextResponse.json({ total: totalBagsInWages[0]?.total || 0 });
+    return NextResponse.json(
+      { total: totalBagsInWages[0]?.total || 0 },
+      { headers: { "Cache-Control": "no-store" } } // Disable caching
+    );
   } catch (error) {
     console.error("Error fetching total bags in wages:", error.message);
     return NextResponse.json({ error: "Error fetching total bags in wages" }, { status: 500 });

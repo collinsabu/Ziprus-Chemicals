@@ -23,7 +23,7 @@ export default function ExpensesPage() {
   const fetchExpenses = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`/api/expenses?month=${month + 1}&year=${year}`);
+      const res = await fetch(`https://www.zipruschemicals.com/api/expenses?month=${month + 1}&year=${year}`);
       if (res.ok) {
         const data = await res.json();
         setExpenses(data);
@@ -44,10 +44,7 @@ export default function ExpensesPage() {
 
   const fetchTotalAllTime = async () => {
     try {
-      const res = await fetch("/api/expenses/total", {
-        method: "GET",
-        headers: { "Cache-Control": "no-cache", "Pragma": "no-cache", "Expires": "0" },
-      });
+      const res = await fetch("https://www.zipruschemicals.com/api/expenses/total", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         setTotalAllTime(data.total || 0);

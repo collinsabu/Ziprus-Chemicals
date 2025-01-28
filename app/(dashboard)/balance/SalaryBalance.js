@@ -10,7 +10,7 @@ const SalaryBalance = () => {
 
   const fetchTotalProduced = async () => {
     try {
-      const res = await fetch("/api/totalProduced", { cache: "no-store" }); // Disable caching
+      const res = await fetch("https://www.zipruschemicals.com/api/totalProduced", { cache: "no-store" }); // Disable caching
       const data = await res.json();
       setTotalProduced(data.total);
     } catch (error) {
@@ -20,7 +20,7 @@ const SalaryBalance = () => {
 
   const fetchTotalBagsInWages = async () => {
     try {
-      const res = await fetch("/api/totalBagsInWages", { cache: "no-store" }); // Disable caching
+      const res = await fetch("https://www.zipruschemicals.com/api/totalBagsInWages", { cache: "no-store" }); // Disable caching
       const data = await res.json();
       setTotalBagsInWages(data.total);
     } catch (error) {

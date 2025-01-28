@@ -9,11 +9,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "TotalSalaryBalance", href: "/balance" },
+  { name: "StockBalance", href: "/balance/stockbalance" },
   { name: "WorkersSalary", href: "/balance/workerswages" },
   { name: "CrudeBalance", href: "/balance/crudebalance/" },
   { name: "CrudePaymentBalance", href: "/balance/crudepaymentbalance" },
   { name: "EmptyBagsBalance", href: "/balance/bagbalance" },
-  { name: "CustomerBalance", href: "/balance/customersaccounts" },
+  { name: "CustomerBalance", href: "/balance/customersaccounts" }, 
 ];
 
 export default function AdminHeader({ user }) {

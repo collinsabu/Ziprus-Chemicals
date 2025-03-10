@@ -81,7 +81,7 @@ const Header = () => {
             <FaFacebookSquare className="text-lg" />
           </a>
           <div className="division-line mr-1">|</div>
-          <Link href="https://ziprus-blog.vercel.app/">
+          <Link href="https://blog.zipruschemicals.com/">
             <span className="font-semibold text-sm cursor-pointer">NEWS</span>
           </Link>
         </div>

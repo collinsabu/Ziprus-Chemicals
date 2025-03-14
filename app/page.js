@@ -28,7 +28,7 @@ export const metadata = {
   keywords:
     "solid minerals, mineral production, Africa, Ziprus, top quality, fast delivery, best prices",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
   },
 };
 

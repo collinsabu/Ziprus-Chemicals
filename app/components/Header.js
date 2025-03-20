@@ -7,9 +7,13 @@ import {
   FaUserAlt,
   FaTools,
   FaMapMarkerAlt,
+  FaPaintRoller ,
 } from "react-icons/fa";
+
+import { GiGoat } from "react-icons/gi";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { FaBottleDroplet } from "react-icons/fa6";
 
 // react imports
 import { useState } from "react";
@@ -29,6 +33,9 @@ const navLinks = [
   { name: "Who we are", href: "/about", icon: <FaUserAlt /> },
   { name: "How we work", href: "/faq", icon: <FaTools /> },
   { name: "Visit our Factory", href: "/contact", icon: <FaMapMarkerAlt /> },
+  { name: "GlassGradeLimestone", href: "/glass-grade-limestone", icon: <FaBottleDroplet /> },
+  { name: "AmimalFeed", href: "/animal-feed-limestone", icon: <GiGoat /> },
+  { name: "Dolomite", href: "/calcium-carbonate-dolomite", icon: <FaPaintRoller /> },
 ];
 
 const Header = () => {

@@ -26,7 +26,7 @@ export const metadata = {
   description:
     "Your Number 1 trusted Solid Mineral Producers in Africa. Top quality, fast delivery, and best prices guaranteed.",
   keywords:
-    "solid minerals, mineral production, Africa, Ziprus, top quality, fast delivery, best prices",
+    "solid minerals, calcium carbornate production, linestone, dolomite, calcite, Ziprus, top quality, fast delivery, best prices",
   icons: {
     icon: "/favicon.png",
   },

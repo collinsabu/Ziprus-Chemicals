@@ -14,6 +14,7 @@ import { GiGoat } from "react-icons/gi";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { FaBottleDroplet } from "react-icons/fa6";
+import { GiStoneWheel } from "react-icons/gi";
 
 // react imports
 import { useState } from "react";
@@ -36,7 +37,7 @@ const navLinks = [
   { name: "GlassLimestone", href: "/glass-grade-limestone", icon: <FaBottleDroplet /> },
   { name: "AmimalFeed", href: "/animal-feed-limestone", icon: <GiGoat /> },
   { name: "Dolomite", href: "/calcium-carbonate-dolomite", icon: <FaPaintRoller /> },
-  { name: "Calcium", href: "/calcium-carbonate", icon: <FaPaintRoller /> },
+  { name: "Calcium", href: "/calcium-carbonate", icon: <GiStoneWheel />},
   
 ];
 

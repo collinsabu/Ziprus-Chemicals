@@ -11,6 +11,7 @@ export async function GET() {
      '/calcium-carbonate',
      '/glass-grade-limestone',
      '/calcium-carbonate-dolomite',
+     '/calcium-carbonate',
      '/faq',
      '/career',
      '/guarantee',

@@ -33,9 +33,11 @@ const navLinks = [
   { name: "Who we are", href: "/about", icon: <FaUserAlt /> },
   { name: "How we work", href: "/faq", icon: <FaTools /> },
   { name: "Visit our Factory", href: "/contact", icon: <FaMapMarkerAlt /> },
-  { name: "GlassGradeLimestone", href: "/glass-grade-limestone", icon: <FaBottleDroplet /> },
+  { name: "GlassLimestone", href: "/glass-grade-limestone", icon: <FaBottleDroplet /> },
   { name: "AmimalFeed", href: "/animal-feed-limestone", icon: <GiGoat /> },
   { name: "Dolomite", href: "/calcium-carbonate-dolomite", icon: <FaPaintRoller /> },
+  { name: "Calcium", href: "/calcium-carbonate", icon: <FaPaintRoller /> },
+  
 ];
 
 const Header = () => {

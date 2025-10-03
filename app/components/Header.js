@@ -66,7 +66,7 @@ const Header = () => {
       {/* Top Bar */}
       <div className="top-bar flex justify-between items-center px-5 sm:px-7 bg-base_two h-10 text-base_text fixed w-full z-50">
         <div>
-          <h6 className="font-semibold text-sm">+2342018899613</h6>
+          <h6 className="font-semibold text-sm">+2347085544340</h6>
         </div>
         <div className="socials flex items-center gap-2">
           <a

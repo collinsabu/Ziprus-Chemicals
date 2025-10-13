@@ -105,7 +105,7 @@ export default function OrderDetails({ params }) {
 
         <div className="flex justify-end bg-gray-100 py-4 px-6">
           <button
-            onClick={() => router.push("/admin")}
+            onClick={() => router.push("/admin/orderlist")}
             className="flex items-center gap-2 px-4 py-2 bg-base_text text-white rounded-lg hover:bg-indigo-600"
           >
             <FaArrowLeft />

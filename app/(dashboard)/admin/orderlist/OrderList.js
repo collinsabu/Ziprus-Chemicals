@@ -1,5 +1,5 @@
 import Link from "next/link";
-import RemoveBtn from "../../components/RemoveBtn";
+import RemoveBtn from "../../../components/RemoveBtn";
 
 async function getList() {
   try {
@@ -34,7 +34,7 @@ export default async function OrderList() {
             key={order._id}
             className="bg-base_text mb-6 p-2 sm:p-4 rounded-lg flex  sm:flex-row justify-between items-center"
           >
-            <Link href={`/admin/${order._id}`} className="flex-grow mb-4 sm:mb-0  sm:text-left">
+            <Link href={`/admin/orderlist/${order._id}`} className="flex-grow mb-4 sm:mb-0  sm:text-left">
               <div>
                 <h5 className="text-xl font-semibold">{order.name}</h5>
                 <div>{order.company}</div>

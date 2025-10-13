@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react"; // For sign out functionality
 import { motion, AnimatePresence } from "framer-motion"; // For animations
 
 const navLinks = [
-  { name: "Orders", href: "/admin" },
+  { name: "Orders", href: "/admin/orderlist" },
   { name: "Contacts", href: "/admin/contactlist" },
   { name: "Report", href: "/report" },
   { name: "View Report", href: "/viewreport" },

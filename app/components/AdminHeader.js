@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiMenu, FiX } from "react-icons/fi"; // Hamburger menu icons
-import { signOut } from "next-auth/react"; // For sign out functionality
-import { motion, AnimatePresence } from "framer-motion"; // For animations
+import { FiMenu, FiX } from "react-icons/fi";
+import { signOut } from "next-auth/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "Orders", href: "/admin/orderlist" },
@@ -24,93 +24,89 @@ export default function AdminHeader() {
 
   const menuVariants = {
     hidden: { x: "100%", opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
-    exit: { x: "100%", opacity: 0, transition: { duration: 0.5 } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.4 } },
+    exit: { x: "100%", opacity: 0, transition: { duration: 0.4 } },
   };
 
   const handleCloseMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className="menu-bar bg-base_color h-20 flex items-center gap-[100px] sm:gap-[190px] px-6 md:px-20 relative pt-40 pb-10">
-      {/* Logo/Title */}
-      <Link href={"/admin"}>
-        <h1 className="admin-nav text-white text-xl">Admin Home</h1>
-      </Link>
+    <header className="bg-base_color text-white fixed top-0 left-0 w-full z-50 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/admin">
+          <h1 className="text-lg sm:text-xl font-semibold cursor-pointer">
+            Admin Home
+          </h1>
+        </Link>
 
-      {/* Hamburger Menu Button */}
-      <button
-        className="md:hidden text-white text-2xl z-50"
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-      >
-        {isMenuOpen ? <FiX /> : <FiMenu />}
-      </button>
-
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center gap-5">
-        {navLinks.map((link) => {
-          const isActive = pathname.startsWith(link.href);
-          return (
-            <Link
-              href={link.href}
-              className={
-                isActive
-                  ? "text-base_text text-lg tracking-wide border-b-2 border-base_text pb-1"
-                  : "text-white text-lg tracking-wide border-b-2 border-transparent pb-1"
-              }
-              key={link.name}
-            >
-              {link.name}
-            </Link>
-          );
-        })}
+        {/* Hamburger Menu Button (Mobile) */}
         <button
-          onClick={() => signOut({ callbackUrl: "/login" })} // Redirect to login after sign out
-          className="text-white text-lg tracking-wide border-b-2 border-transparent pb-1"
+          className="md:hidden text-2xl focus:outline-none"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
         >
-          Sign Out
+          {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
-      </nav>
 
-      {/* Mobile Navigation */}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                href={link.href}
+                key={link.name}
+                className={`text-sm lg:text-base tracking-wide pb-1 transition-colors ${
+                  isActive
+                    ? "text-base_text border-b-2 border-base_text"
+                    : "text-white hover:text-base_text border-b-2 border-transparent"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="text-sm lg:text-base tracking-wide hover:text-base_text transition-colors border-b-2 border-transparent"
+          >
+            Sign Out
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="absolute top-0 right-0 w-[80%] h-screen bg-base_color flex flex-col items-end justify-center gap-4 text-white pt-24 px-6 z-40 border-l-2 border-base_text"
+            className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-20 px-6 gap-6 md:hidden"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={menuVariants}
           >
-            {/* Close Icon */}
-            <button
-              className="absolute top-4 right-4 text-white text-2xl"
-              onClick={handleCloseMenu}
-            >
-              <FiX />
-            </button>
-
             {navLinks.map((link) => (
               <Link
                 href={link.href}
                 key={link.name}
-                className="text-lg tracking-wide border-b border-base_text pb-2 hover:text-base_text transition-all duration-300"
-                onClick={handleCloseMenu} // Close menu on link click
+                className="text-lg tracking-wide border-b border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
+                onClick={handleCloseMenu}
               >
                 {link.name}
               </Link>
             ))}
             <button
               onClick={() => {
-                handleCloseMenu(); // Close menu
+                handleCloseMenu();
                 signOut({ callbackUrl: "/login" });
               }}
-              className="text-lg tracking-wide border-b border-base_text pb-2 hover:text-green-500 transition-all duration-300"
+              className="text-lg tracking-wide border-b border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
             >
               Sign Out
             </button>
           </motion.nav>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }

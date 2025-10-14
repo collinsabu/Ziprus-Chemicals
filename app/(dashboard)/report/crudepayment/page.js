@@ -73,7 +73,7 @@ export default function CrudePayment() {
   };
 
   return (
-    <main className="bg-base_text py-6">
+    <main className="bg-base_text py-6 mb-10 pt-40">
       <ToastContainer />
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-8 bg-base_color text-white shadow-md rounded-lg">
         <h2 className="text-3xl font-bold mb-6">Crude Payment</h2>

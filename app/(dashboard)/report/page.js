@@ -3,7 +3,7 @@ import Crude from "./Crude"
 
 export default function page() {
   return (
-    <main>
+    <main className="mb-10 pt-40">
       <Crude/>
     </main>
   )

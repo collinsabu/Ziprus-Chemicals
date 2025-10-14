@@ -24,57 +24,68 @@ export default function AdminHeader({ user }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuVariants = {
-    hidden: { y: "-100%", opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
-    exit: { y: "-100%", opacity: 0, transition: { duration: 0.5 } },
+   const menuVariants = {
+    hidden: { x: "100%", opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.4 } },
+    exit: { x: "100%", opacity: 0, transition: { duration: 0.4 } },
   };
 
+   const handleCloseMenu = () => setIsMenuOpen(false);
+
   return (
-    <div className="menu-bar bg-base_color h-20 flex items-center justify-between px-4 md:px-20 pt-40 pb-10 relative">
-      <div>
-        <Link href={"/admin"} className="admin-nav text-white text-xl">
+    <header className="bg-base_color text-white fixed top-[120px] left-0 w-full shadow-lg border-t border-white z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-16 flex items-center justify-between">
+        {/* Logo / Home */}
+        <Link href={"/admin"} className="text-white text-xl font-semibold">
           Admin Report
         </Link>
-      </div>
-      <button
-        className="md:hidden text-white text-2xl"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
-        {isMenuOpen ? <FiX /> : <FiMenu />}
-      </button>
 
-      {/* Desktop View */}
-      <nav className="hidden md:flex items-center gap-5">
-        {navLinks.map((link) => {
-          const isActive = pathname.startsWith(link.href);
-          return (
-            <Link
-              href={link.href}
-              className={
-                isActive
-                  ? "text-base_text text-lg tracking-wide border-b-2 border-base_text pb-1"
-                  : "text-white text-lg tracking-wide border-b-2 border-transparent pb-1"
-              }
-              key={link.name}
-            >
-              {link.name}
-            </Link>
-          );
-        })}
+      {/* Hamburger Menu Button (Tablet & Mobile) */}
         <button
-          onClick={() => signOut()}
-          className="text-white text-lg tracking-wide border-b-2 border-transparent pb-1 hover:border-base_text"
+          className="lg:hidden text-2xl focus:outline-none relative z-[60]"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
         >
-          Sign Out
+          {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
-      </nav>
 
-      {/* Mobile View */}
+        {/* Desktop Navigation with Horizontal Scroll */}
+        <nav
+          className="
+            hidden lg:flex items-center gap-6
+            overflow-x-auto whitespace-nowrap scrollbar-hide
+            max-w-[80%] pl-4
+          "
+        >
+          {navLinks.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-sm lg:text-base tracking-wide pb-1 transition-colors ${
+                  isActive
+                    ? "text-base_text border-b-2 border-base_text"
+                    : "text-white hover:text-base_text border-b-2 border-transparent"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+          <button
+            onClick={() => signOut()}
+            className="text-sm lg:text-base tracking-wide hover:text-base_text transition-colors border-b-2 border-transparent whitespace-nowrap"
+          >
+            Sign Out
+          </button>
+        </nav>
+      </div>
+
+        {/* Mobile / Tablet Navigation Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="absolute top-full left-0 w-full bg-base_color p-6 flex flex-col items-center gap-4 z-50 md:hidden"
+           className="fixed top-[120px] right-0 w-3/4 sm:w-1/2 h-[calc(100vh-120px)] bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-20 px-6 gap-6 lg:hidden z-[50] overflow-y-auto overscroll-contain"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -84,14 +95,10 @@ export default function AdminHeader({ user }) {
               const isActive = pathname.startsWith(link.href);
               return (
                 <Link
-                  href={link.href}
-                  className={
-                    isActive
-                      ? "text-base_text text-lg tracking-wide border-b-2 border-base_text pb-1"
-                      : "text-white text-lg tracking-wide border-b-2 border-transparent pb-1"
-                  }
                   key={link.name}
-                  onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                  href={link.href}
+                className="text-lg tracking-wide border-b border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
+                onClick={handleCloseMenu}
                 >
                   {link.name}
                 </Link>
@@ -106,6 +113,6 @@ export default function AdminHeader({ user }) {
           </motion.nav>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }

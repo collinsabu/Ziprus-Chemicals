@@ -3,6 +3,6 @@ import WagesAccountForm from './WagesAccountForm'
 
 export default function WagesAccount() {
   return (
-    <main className="bg-base_text py-9"><WagesAccountForm/></main>
+    <main className="bg-base_text py-9 mb-10 pt-40"><WagesAccountForm/></main>
   )
 }

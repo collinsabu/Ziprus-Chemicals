@@ -31,7 +31,7 @@ export default function AdminHeader() {
   const handleCloseMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="bg-base_color text-white fixed top-0 left-0 w-full z-50 shadow-lg">
+    <header className="bg-base_color text-white fixed top-[120px] left-0 w-full shadow-lg border-t border-white z-50 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/admin">
@@ -42,7 +42,7 @@ export default function AdminHeader() {
 
         {/* Hamburger Menu Button (Mobile) */}
         <button
-          className="md:hidden text-2xl focus:outline-none"
+          className="md:hidden text-2xl focus:outline-none relative z-[60]"
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           {isMenuOpen ? <FiX /> : <FiMenu />}
@@ -79,7 +79,7 @@ export default function AdminHeader() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-20 px-6 gap-6 md:hidden"
+            className="fixed top-[120px] right-0 w-3/4 sm:w-1/2 h-[calc(100vh-120px)] bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-20 px-6 gap-6 md:hidden z-[50] overflow-y-auto overscroll-contain"
             initial="hidden"
             animate="visible"
             exit="exit"

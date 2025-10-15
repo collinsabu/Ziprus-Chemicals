@@ -3,6 +3,6 @@ import CrudeEntriesList from './CrudeEntriesList'
 
 export default function ViewReport() {
   return (
-    <div><CrudeEntriesList/></div>
+    <div className="mb-10 pt-40"><CrudeEntriesList/></div>
   )
 }

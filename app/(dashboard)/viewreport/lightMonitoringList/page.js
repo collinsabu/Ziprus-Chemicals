@@ -61,7 +61,7 @@ const LightMonitoringList = () => {
   };
 
   return (
-    <main className="bg-base_two">
+    <main className="bg-base_two mb-10 pt-40">
       <div className="max-w-4xl mx-auto p-8 bg-base_color text-base_color font-semibold shadow-md my-10">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-2xl font-bold text-white">Light Monitoring List</h2>

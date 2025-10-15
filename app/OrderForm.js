@@ -37,13 +37,11 @@ export default function OrderForm() {
           position: "top-right",
           autoClose: 3000,
         });
-        setIsLoading(false);
       } else {
         toast.success("Order submitted successfully!", {
           position: "top-right",
           autoClose: 3000,
         });
-        setIsLoading(false);
         router.push("/thanks");
       }
     } catch (error) {
@@ -51,6 +49,7 @@ export default function OrderForm() {
         position: "top-right",
         autoClose: 3000,
       });
+    } finally {
       setIsLoading(false);
     }
   };
@@ -59,91 +58,94 @@ export default function OrderForm() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="sm:flex flex-col items-start gap-[15px]"
+        className="max-w-2xl mx-auto flex flex-col gap-5 p-4 sm:p-6 bg-base_two rounded-lg shadow-lg"
       >
-        <div className="names sm:flex gap-3 w-full">
-          <div className="mb-4 sm:mb-0 ">
-            <div className="text-white">Your Name</div>
+        {/* Name & Company */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-white mb-1">Your Name</label>
             <input
               type="text"
-              className="sm:w-60 h-9 w-full"
+              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
               required
               onChange={(e) => setName(e.target.value)}
-              value={name || ""}
+              value={name}
             />
           </div>
-
-          <div className="mb-4 sm:mb-0 ">
-            <div className="text-white">Company Name</div>
+          <div>
+            <label className="block text-white mb-1">Company Name</label>
             <input
               type="text"
-              className="sm:w-64 h-9 w-full"
+              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
               required
               onChange={(e) => setCompany(e.target.value)}
-              value={company || ""}
+              value={company}
             />
           </div>
         </div>
 
-        <div className="mb-4 sm:mb-0 w-full ">
-          <div className="text-white">Email Address</div>
+        {/* Email */}
+        <div>
+          <label className="block text-white mb-1">Email Address</label>
           <input
             type="email"
-            className="sm:w-full h-9 w-full"
+            className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
             required
             onChange={(e) => setEmail(e.target.value)}
-            value={email || ""}
+            value={email}
           />
         </div>
 
-        <div className="mb-4 sm:mb-0 w-full ">
-          <div className="text-white">Enter Supply Address</div>
+        {/* Supply Address */}
+        <div>
+          <label className="block text-white mb-1">Supply Address</label>
           <input
             type="text"
-            className="sm:w-full h-9 w-full"
+            className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
             required
             onChange={(e) => setSupply(e.target.value)}
-            value={supply || ""}
+            value={supply}
           />
         </div>
 
-        <div className="names sm:flex gap-3 w-full ">
-          <div className="mb-4 sm:mb-0">
-            <div className="text-white">Phone Number</div>
+        {/* Phone & Material */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-white mb-1">Phone Number</label>
             <input
               type="text"
-              className="sm:w-60 h-9 w-full"
+              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
               required
               onChange={(e) => setNumber(e.target.value)}
-              value={number || ""}
+              value={number}
             />
           </div>
-
-          <div className="mb-4 sm:mb-0 ">
-            <div className="text-white">Specify Material Type</div>
+          <div>
+            <label className="block text-white mb-1">Material Type</label>
             <input
               type="text"
-              className="sm:w-64 h-9 w-full"
+              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
               required
               onChange={(e) => setMaterial(e.target.value)}
-              value={material || ""}
+              value={material}
             />
           </div>
         </div>
 
-        <div className="mb-4 sm:mb-0 w-full">
-          <div className="text-white">Enter Message</div>
+        {/* Message */}
+        <div>
+          <label className="block text-white mb-1">Message</label>
           <textarea
-            className="w-full h-28"
+            className="w-full h-28 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text resize-none"
             onChange={(e) => setBody(e.target.value)}
-            value={body || ""}
-            
+            value={body}
           />
         </div>
 
-        <div className="mx-auto flex justify-center ">
+        {/* Submit */}
+        <div className="flex justify-center">
           <button
-            className="text-white bg-base_color border-2 px-14 py-2 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300"
+            className="text-white bg-base_color border-2 px-10 py-2 rounded-full cursor-pointer hover:bg-lime-950 transition-all ease-in-out duration-300"
             disabled={isLoading}
           >
             {isLoading ? "Submitting..." : "Submit"}

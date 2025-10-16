@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
-import { signOut } from "next-auth/react"; // Importing the signOut function
+import { signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -14,14 +14,13 @@ const navLinks = [
   { name: "CrudeBalance", href: "/balance/crudebalance/" },
   { name: "CrudePaymentBalance", href: "/balance/crudepaymentbalance" },
   { name: "EmptyBagsBalance", href: "/balance/bagbalance" },
-  { name: "CustomerBalance", href: "/balance/customersaccounts" }, 
+  { name: "CustomerBalance", href: "/balance/customersaccounts" },
 ];
 
 export default function AdminHeader({ user }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Animation Variants
   const menuVariants = {
     hidden: { opacity: 0, x: "100%" },
     visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
@@ -29,50 +28,53 @@ export default function AdminHeader({ user }) {
   };
 
   return (
-    <div className="menu-bar bg-base_color h-20 flex items-center justify-between px-6 md:px-20 relative pt-40 pb-10 mb-3">
-      <div className="flex items-center gap-[100px] sm:gap-[190px]">
-        <Link href={"/admin"} className="admin-nav text-white text-xl">
+    <header className="bg-base_color text-white   w-full pt-[120px] border-t border-white z-[1000px] shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between ">
+        {/* Logo */}
+        <Link href={"/admin"} className="text-xl font-semibold z-50 relative">
           Admin Balance
         </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          {navLinks.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-lg tracking-wide border-b-2 pb-1 ${
+                  isActive
+                    ? "text-base_text border-base_text"
+                    : "text-white border-transparent hover:border-base_text"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+          <button
+            onClick={() => signOut()}
+            className="text-lg tracking-wide border-b-2 border-transparent pb-1 hover:border-base_text"
+          >
+            Sign Out
+          </button>
+        </nav>
+
+        {/* Hamburger / Close Button */}
         <button
-          className="md:hidden text-white text-2xl"
+          className="lg:hidden text-2xl z-50 relative "
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
       </div>
 
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex gap-5">
-        {navLinks.map((link) => {
-          const isActive = pathname.startsWith(link.href);
-          return (
-            <Link
-              href={link.href}
-              key={link.name}
-              className={`${
-                isActive ? "text-base_text" : "text-white"
-              } text-lg tracking-wide border-b-2 ${
-                isActive ? "border-base_text" : "border-transparent"
-              } pb-1 hover:border-base_text`}
-            >
-              {link.name}
-            </Link>
-          );
-        })}
-        <button
-          onClick={() => signOut()}
-          className="text-white text-lg tracking-wide border-b-2 border-transparent pb-1 hover:border-base_text"
-        >
-          Sign Out
-        </button>
-      </nav>
-
-      {/* Mobile Navigation */}
+      {/* Mobile / Tablet Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="absolute top-full left-0 w-full bg-base_color p-6 flex flex-col items-center gap-4 z-50 md:hidden"
+            className="fixed top-20 right-0 w-3/4 sm:w-1/2 h-[calc(100vh-5rem)] bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-6 px-6 gap-4 lg:hidden z-40 overflow-y-auto"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -82,14 +84,14 @@ export default function AdminHeader({ user }) {
               const isActive = pathname.startsWith(link.href);
               return (
                 <Link
-                  href={link.href}
-                  className={`${
-                    isActive ? "text-base_text" : "text-white"
-                  } text-lg tracking-wide border-b-2 ${
-                    isActive ? "border-base_text" : "border-transparent"
-                  } pb-1`}
                   key={link.name}
-                  onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-lg tracking-wide w-full border-b-2 pb-2 pt-10 ${
+                    isActive
+                      ? "text-base_text border-base_text"
+                      : "text-white border-transparent hover:border-base_text"
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -100,13 +102,13 @@ export default function AdminHeader({ user }) {
                 setIsMenuOpen(false);
                 signOut();
               }}
-              className="text-white text-lg tracking-wide border-b-2 border-transparent pb-1 hover:border-base_text"
+              className="text-lg tracking-wide w-full border-b-2 border-transparent pb-2 hover:border-base_text"
             >
               Sign Out
             </button>
           </motion.nav>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }

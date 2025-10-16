@@ -65,7 +65,7 @@ export default function DespatchRecordDetails({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-base_color py-10 mb-10">
+    <main className="min-h-screen bg-base_color py-10 mb-10 pt-52">
       <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-base_two to-base_text text-white py-6 px-8">
@@ -74,7 +74,7 @@ export default function DespatchRecordDetails({ params }) {
         </div>
 
         {/* Details Section */}
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="p-6 sm:p-8 space-y-5">
           {[
             { label: "Time", value: entry.time },
             { label: "Material Type", value: entry.materialType },
@@ -84,16 +84,27 @@ export default function DespatchRecordDetails({ params }) {
             { label: "Number Loaded", value: entry.numberLoaded },
             { label: "Balance Bag", value: entry.balanceBag },
           ].map((field) => (
-            <div key={field.label} className="flex justify-between items-center border-b pb-4">
-              <h5 className="text-lg font-medium">{field.label}</h5>
-              <p className="text-lg text-gray-700 break-words">{field.value}</p>
+            <div
+              key={field.label}
+              className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 border-b border-gray-200 pb-3"
+            >
+              <h5 className="text-base font-medium text-gray-800 w-full sm:w-1/3">
+                {field.label}:
+              </h5>
+              <p className="text-base text-gray-700 break-words whitespace-pre-wrap w-full sm:w-2/3">
+                {field.value || "N/A"}
+              </p>
             </div>
           ))}
 
           {/* Comment Section */}
-          <div className="space-y-2">
-            <h5 className="text-lg font-medium">Comment</h5>
-            <p className="text-gray-600 break-words">{entry.comment || "No comments provided"}</p>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 pt-2">
+            <h5 className="text-base font-medium text-gray-800 w-full sm:w-1/3">
+              Comment:
+            </h5>
+            <p className="text-base text-gray-700 break-words whitespace-pre-wrap w-full sm:w-2/3">
+              {entry.comment || "No comments provided"}
+            </p>
           </div>
         </div>
 
@@ -101,7 +112,7 @@ export default function DespatchRecordDetails({ params }) {
         <div className="flex justify-end bg-gray-100 py-4 px-6">
           <button
             onClick={() => router.push("/viewreport/despatchRecordsList")}
-            className="flex items-center gap-2 px-4 py-2 bg-base_two text-white rounded-lg hover:bg-blue-600"
+            className="flex items-center gap-2 px-4 py-2 bg-base_two text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
             <FaArrowLeft />
             Go Back

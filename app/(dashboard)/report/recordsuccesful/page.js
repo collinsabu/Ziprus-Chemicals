@@ -24,7 +24,7 @@ export default function page() {
         </p>
 
         <Link
-          href="https://ziprus-chemicals.vercel.app/report"
+          href="https://www.zipruschemicals.com/report"
           className="text-white bg-base_color border-2 px-6 py-2 sm:px-10 sm:py-3 md:px-14 md:py-3 rounded-full 
           cursor-pointer hover:bg-lime-950 ease-in-out duration-300 mt-4 
           animate__animated animate__pulse animate__delay-2s"

@@ -3,12 +3,15 @@
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa";
 
+// ✅ Reusable fetch function with error handling
 async function getCrudeEntry(id) {
   try {
     const res = await fetch(`/api/crudeEntries/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
+      cache: "no-store",
     });
 
     if (!res.ok) {
@@ -30,54 +33,69 @@ export default function CrudeEntryDetails({ params }) {
   const [error, setError] = useState(null);
   const router = useRouter();
 
+  // ✅ Data Fetching
   useEffect(() => {
-    async function fetchCrudeEntry() {
+    const fetchCrudeEntry = async () => {
       try {
+        setLoading(true);
+        setError(null);
+
         const fetchedEntry = await getCrudeEntry(id);
         if (fetchedEntry) {
           setEntry(fetchedEntry);
         } else {
           setError("Crude entry not found");
         }
-      } catch (error) {
+      } catch (err) {
         setError("An unexpected error occurred while fetching data");
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchCrudeEntry();
   }, [id]);
 
+  // ✅ Loading UI
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <p className="text-lg text-gray-600 animate-pulse">Loading...</p>
+      <div className="flex justify-center items-center h-screen bg-base_two">
+        <p className="text-lg text-gray-200 animate-pulse">Loading details...</p>
       </div>
     );
   }
 
+  // ✅ Error UI
   if (error) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <p className="text-lg text-red-500">{error}</p>
+      <div className="flex flex-col justify-center items-center h-screen bg-base_two text-center px-4">
+        <p className="text-lg text-red-400 mb-4">{error}</p>
+        <button
+          onClick={() => router.refresh()}
+          className="px-4 py-2 bg-base_text text-white rounded-lg hover:bg-lime-950 transition"
+        >
+          Retry
+        </button>
       </div>
     );
   }
 
+  // ✅ Not Found
   if (!entry) {
     return notFound();
   }
 
+  // ✅ Page Content
   return (
-    <main className="min-h-screen bg-base_color mb-10 py-10">
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    <main className="min-h-screen bg-base_color py-10 mb-10 pt-52">
+      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-base_text to-base_two text-white py-6 px-8">
-          <h1 className="text-2xl font-bold">Crude Entry Details</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Crude Entry Details</h1>
+          <p className="mt-2 text-sm sm:text-md">ID: {entry._id}</p>
         </div>
 
-        {/* Entry Details Section */}
+        {/* Details Section */}
         <div className="p-6 sm:p-8 space-y-4">
           {[
             { label: "Date", value: entry.date },
@@ -89,17 +107,22 @@ export default function CrudeEntryDetails({ params }) {
             { label: "Driver Number", value: entry.driverNumber },
             { label: "Tonnage", value: entry.tonnage },
           ].map((field) => (
-            <div key={field.label} className="flex justify-between">
-              <h5 className="text-lg font-medium">{field.label}:</h5>
+            <div
+              key={field.label}
+              className="flex justify-between items-center border-b pb-3"
+            >
+              <h5 className="text-lg font-medium">{field.label}</h5>
               <p className="text-lg text-gray-700 break-words">
                 {field.value || "N/A"}
               </p>
             </div>
           ))}
-          <div className="mt-4">
-            <h5 className="text-lg font-medium">Comment:</h5>
-            <p className="text-lg text-gray-700 break-words">
-              {entry.comment || "No comments available"}
+
+          {/* Comment Section */}
+          <div className="mt-4 space-y-2">
+            <h5 className="text-lg font-medium">Comment</h5>
+            <p className="text-gray-600 break-words">
+              {entry.comment || "No comments provided"}
             </p>
           </div>
         </div>
@@ -108,8 +131,9 @@ export default function CrudeEntryDetails({ params }) {
         <div className="flex justify-end bg-gray-100 py-4 px-6">
           <button
             onClick={() => router.push("/viewreport")}
-            className="px-4 py-2 bg-base_two text-white rounded-lg hover:bg-indigo-600"
+            className="flex items-center gap-2 px-4 py-2 bg-base_two text-white rounded-lg hover:bg-indigo-600 transition"
           >
+            <FaArrowLeft />
             Go Back
           </button>
         </div>

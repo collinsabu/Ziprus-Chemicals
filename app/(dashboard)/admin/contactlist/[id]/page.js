@@ -68,7 +68,7 @@ export default function ContactDetails({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-base_color py-10">
+    <main className="min-h-screen bg-base_color py-10 pt-48">
       <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="bg-gradient-to-r from-teal-500 to-green-500 text-white py-6 px-8">
           <h1 className="text-2xl sm:text-3xl font-bold">Contact Details</h1>

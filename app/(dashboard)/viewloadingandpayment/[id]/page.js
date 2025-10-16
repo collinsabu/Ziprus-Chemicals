@@ -70,7 +70,7 @@ export default function CustomerLoadingDetails({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-base_color mb-10 py-10">
+    <main className="min-h-screen bg-base_color mb-10 py-10 pt-20">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-base_text to-base_two text-white py-6 px-8">

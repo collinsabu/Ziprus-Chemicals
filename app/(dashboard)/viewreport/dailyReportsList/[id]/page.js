@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { notFound } from "next/navigation";
+import { useRouter, notFound } from "next/navigation";
 
 async function getDailyReport(id) {
   try {
@@ -70,24 +69,29 @@ export default function DailyReportDetail({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-base_color py-10 mb-10">
-      <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    <main className="min-h-screen bg-base_color py-10 mb-10 pt-52">
+      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-base_text to-base_two text-white py-6 px-8">
           <h1 className="text-2xl font-bold">Daily Report Details</h1>
         </div>
 
         {/* Report Details Section */}
-        <div className="p-6 sm:p-8 space-y-4">
+        <div className="p-6 sm:p-8 space-y-5">
           {[
             { label: "Date", value: report.date },
             { label: "Employee Name", value: report.employeeName },
             { label: "Challenges", value: report.challenges },
             { label: "Summary Note", value: report.summaryNote },
           ].map((field) => (
-            <div key={field.label} className="flex justify-between items-center">
-              <h5 className="text-lg font-medium">{field.label}:</h5>
-              <p className="text-lg text-gray-700 break-words">
+            <div
+              key={field.label}
+              className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 border-b border-gray-200 pb-3"
+            >
+              <h5 className="text-base font-medium text-gray-800 w-full sm:w-1/3">
+                {field.label}:
+              </h5>
+              <p className="text-base text-gray-700 break-words whitespace-pre-wrap w-full sm:w-2/3">
                 {field.value || "N/A"}
               </p>
             </div>
@@ -98,7 +102,7 @@ export default function DailyReportDetail({ params }) {
         <div className="flex justify-end bg-gray-100 py-4 px-6">
           <button
             onClick={() => router.push("/viewreport/dailyReportsList")}
-            className="px-4 py-2 bg-base_two text-white rounded-lg hover:bg-teal-600"
+            className="px-4 py-2 bg-base_two text-white rounded-lg hover:bg-teal-600 transition-colors"
           >
             Go Back
           </button>

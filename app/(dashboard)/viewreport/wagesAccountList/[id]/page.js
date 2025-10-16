@@ -1,20 +1,21 @@
+// src/app/viewreport/wagesAccountList/[id]/page.js
+
 "use client";
 
-import { notFound } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
+// Fetch Wages Account Entry
 async function getWagesAccount(id) {
   try {
     const res = await fetch(`/api/wagesAccounts/${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
+      cache: "no-store", // Ensures fresh data on every visit
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch wages account details");
-    }
+    if (!res.ok) throw new Error("Failed to fetch wages account details");
 
     const data = await res.json();
     return data.entry;
@@ -31,31 +32,43 @@ export default function WagesAccountDetails({ params }) {
   const router = useRouter();
 
   useEffect(() => {
-    async function fetchWagesAccount() {
+    const fetchWagesAccount = async () => {
+      setLoading(true);
+      setError(null);
       const fetchedEntry = await getWagesAccount(params.id);
+
       if (fetchedEntry) {
         setEntry(fetchedEntry);
       } else {
         setError("Wages account record not found");
       }
       setLoading(false);
-    }
+    };
 
     fetchWagesAccount();
   }, [params.id]);
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <p className="text-lg text-gray-500 animate-pulse">Loading details...</p>
+      <div className="flex justify-center items-center h-screen bg-base_color">
+        <p className="text-lg text-gray-300 animate-pulse">
+          Loading wages account details...
+        </p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <p className="text-lg text-red-500">{error}</p>
+      <div className="flex flex-col justify-center items-center h-screen bg-base_color text-center px-4">
+        <p className="text-lg text-red-400 mb-4">{error}</p>
+        <button
+          onClick={() => router.push("/viewreport/wagesAccountList")}
+          className="flex items-center gap-2 px-4 py-2 bg-base_two text-white rounded-lg hover:bg-green-600 transition"
+        >
+          <FaArrowLeft />
+          Go Back
+        </button>
       </div>
     );
   }
@@ -64,8 +77,16 @@ export default function WagesAccountDetails({ params }) {
     return notFound();
   }
 
+  const fields = [
+    { label: "Time", value: entry.time },
+    { label: "Worker ID", value: entry.workerId },
+    { label: "Bags", value: entry.bags },
+    { label: "Material Type", value: entry.materialType },
+    { label: "Paid", value: entry.paid },
+  ];
+
   return (
-    <main className="min-h-screen bg-base_color py-10">
+    <main className="min-h-screen bg-base_color py-10 pt-52">
       <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-base_text to-base_two text-white py-6 px-8">
@@ -75,14 +96,11 @@ export default function WagesAccountDetails({ params }) {
 
         {/* Details Section */}
         <div className="p-6 sm:p-8 space-y-6">
-          {[
-            { label: "Time", value: entry.time },
-            { label: "Worker ID", value: entry.workerId },
-            { label: "Bags", value: entry.bags },
-            { label: "Material Type", value: entry.materialType },
-            { label: "Paid", value: entry.paid },
-          ].map((field) => (
-            <div key={field.label} className="flex justify-between items-center border-b pb-4">
+          {fields.map((field) => (
+            <div
+              key={field.label}
+              className="flex justify-between items-center border-b pb-4"
+            >
               <h5 className="text-lg font-medium">{field.label}</h5>
               <p className="text-lg text-gray-700 break-words">{field.value}</p>
             </div>
@@ -91,7 +109,9 @@ export default function WagesAccountDetails({ params }) {
           {/* Comment Section */}
           <div className="space-y-2">
             <h5 className="text-lg font-medium">Comment</h5>
-            <p className="text-gray-600 break-words">{entry.comment || "No comments provided"}</p>
+            <p className="text-gray-600 break-words">
+              {entry.comment || "No comments provided"}
+            </p>
           </div>
         </div>
 
@@ -99,7 +119,7 @@ export default function WagesAccountDetails({ params }) {
         <div className="flex justify-end bg-gray-100 py-4 px-6">
           <button
             onClick={() => router.push("/viewreport/wagesAccountList")}
-            className="flex items-center gap-2 px-4 py-2 bg-base_two text-white rounded-lg hover:bg-green-600"
+            className="flex items-center gap-2 px-4 py-2 bg-base_two text-white rounded-lg hover:bg-green-600 transition"
           >
             <FaArrowLeft />
             Go Back

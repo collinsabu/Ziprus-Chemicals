@@ -1,18 +1,18 @@
-// src/app/api/totalCrudePayment/route.js
-
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import CrudePayment from "../../models/CrudePayment";
 
-export async function GET(request) {
+// ✅ Force dynamic to disable caching
+export const dynamic = "force-dynamic";
+
+export async function GET() {
   try {
     await connectMongoDB();
-
     const total = await CrudePayment.aggregate([
       {
         $group: {
           _id: null,
-          total: { $sum: "$tonnage" }, // Assuming 'tonnage' is the field storing the amount in tons
+          total: { $sum: "$tonnage" },
         },
       },
     ]);

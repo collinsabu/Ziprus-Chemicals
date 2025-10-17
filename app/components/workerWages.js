@@ -36,14 +36,31 @@ const WorkerWages = () => {
   return (
     <div className="bg-base_two">
       <div className="max-w-4xl mx-auto p-8 bg-base_color text-black font-semibold shadow-md my-10">
-        <h2 className="text-2xl font-bold mb-4 text-center text-white">Worker Salary Account Balance</h2>
+        <h2 className="text-2xl font-bold text-center text-white">
+          Worker Salary Account Balance
+        </h2>
+
+        {/* Tiny explanatory text */}
+        <p className="text-center text-sm md:text-base text-gray-300 mt-2 mb-6">
+          Individual workers' salary account
+        </p>
+
         <div className="block sm:flex justify-around sm:gap-5 my-20">
-          <p className="py-20 px-10 bg-base_text text-center text-xl my-5">Worker ID: {workerId}</p>
-          <p className="py-20 px-10 bg-base_text text-center text-xl my-5">Total Production Amount: ₦{totalProductionAmount.toFixed(2)}</p>
-          <p className="py-20 px-10 bg-base_text text-center text-xl my-5">Total Salary Paid: ₦{totalPaidWages.toFixed(2)}</p>
+          <p className="py-20 px-10 bg-base_text text-center text-xl my-5">
+            Worker ID: {workerId}
+          </p>
+          <p className="py-20 px-10 bg-base_text text-center text-xl my-5">
+            Total Production Amount: ₦{totalProductionAmount.toFixed(2)}
+          </p>
+          <p className="py-20 px-10 bg-base_text text-center text-xl my-5">
+            Total Salary Paid: ₦{totalPaidWages.toFixed(2)}
+          </p>
         </div>
 
-        <h1 className="text-3xl font-bold text-center bg-base_text py-10" style={{ color: workerWageBalance < 0 ? 'red' : 'black' }}>
+        <h1
+          className="text-3xl font-bold text-center bg-base_text py-10"
+          style={{ color: workerWageBalance < 0 ? "red" : "black" }}
+        >
           Worker Wage Balance: ₦{workerWageBalance.toFixed(2)}
         </h1>
       </div>

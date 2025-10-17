@@ -10,7 +10,9 @@ const BagBalance = () => {
 
   const fetchTotalPurchases = async () => {
     try {
-      const res = await fetch("https://www.zipruschemicals.com/api/totalPurchases");
+      const res = await fetch("/api/totalPurchases", {
+        cache: "no-store",
+      });
       const data = await res.json();
       setTotalPurchases(data.total);
     } catch (error) {
@@ -20,7 +22,9 @@ const BagBalance = () => {
 
   const fetchTotalProduced = async () => {
     try {
-      const res = await fetch("https://www.zipruschemicals.com/api/totalProduced");
+      const res = await fetch("/api/totalProduced", {
+        cache: "no-store",
+      });
       const data = await res.json();
       setTotalProduced(data.total);
     } catch (error) {
@@ -29,8 +33,17 @@ const BagBalance = () => {
   };
 
   useEffect(() => {
+    // Initial fetch
     fetchTotalPurchases();
     fetchTotalProduced();
+
+    // Auto refresh every 5 seconds to get new entries
+    const interval = setInterval(() => {
+      fetchTotalPurchases();
+      fetchTotalProduced();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -40,13 +53,21 @@ const BagBalance = () => {
   return (
     <main className="bg-base_text min-h-screen">
       <div className="max-w-4xl mx-auto p-4 md:p-8 bg-base_color text-white font-semibold shadow-md my-10">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Empty Bag Balance</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center">
+          Empty Bag Balance
+        </h2>
+
+        {/* Tiny responsive explanatory text */}
+        <p className="text-center text-sm md:text-base text-gray-300 mb-6">
+          The balance left from bags after production
+        </p>
+
         <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-10">
           <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
-             Purchases: {totalPurchases} bags
+            Purchases: {totalPurchases} bags
           </p>
           <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
-             Produced: {totalProduced} bags
+            Produced: {totalProduced} bags
           </p>
         </div>
         <h1 className="text-green-500 text-3xl md:text-5xl text-center bg-base_two py-10 md:py-20 mt-5">

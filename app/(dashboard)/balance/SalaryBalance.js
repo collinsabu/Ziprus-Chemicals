@@ -10,7 +10,7 @@ const SalaryBalance = () => {
 
   const fetchTotalProduced = async () => {
     try {
-      const res = await fetch("https://www.zipruschemicals.com/api/totalProduced", { cache: "no-store" }); // Disable caching
+      const res = await fetch("/api/totalProduced", { cache: "no-store" });
       const data = await res.json();
       setTotalProduced(data.total);
     } catch (error) {
@@ -20,7 +20,7 @@ const SalaryBalance = () => {
 
   const fetchTotalBagsInWages = async () => {
     try {
-      const res = await fetch("https://www.zipruschemicals.com/api/totalBagsInWages", { cache: "no-store" }); // Disable caching
+      const res = await fetch("/api/totalBagsInWages", { cache: "no-store" });
       const data = await res.json();
       setTotalBagsInWages(data.total);
     } catch (error) {
@@ -28,21 +28,36 @@ const SalaryBalance = () => {
     }
   };
 
+  // Initial fetch + auto refresh
   useEffect(() => {
     fetchTotalProduced();
     fetchTotalBagsInWages();
+
+    const interval = setInterval(() => {
+      fetchTotalProduced();
+      fetchTotalBagsInWages();
+    }, 5000); // refresh every 5s
+
+    return () => clearInterval(interval);
   }, []);
 
+  // Calculate balance when totals change
   useEffect(() => {
-    if (totalProduced && totalBagsInWages) {
-      setSalaryBalance(totalBagsInWages - totalProduced);
-    }
+    setSalaryBalance(totalBagsInWages - totalProduced);
   }, [totalProduced, totalBagsInWages]);
 
   return (
     <main className="bg-base_text min-h-screen">
       <div className="max-w-4xl mx-auto p-4 md:p-8 bg-base_color text-white font-semibold shadow-md my-10">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Total Salary Balance Calculation</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center">
+          Total Salary Balance Calculation
+        </h2>
+
+        {/* Tiny explanatory text */}
+        <p className="text-center text-sm text-gray-300 mt-2 mb-10">
+          Total workers' salary paid
+        </p>
+
         <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-10">
           <p className="mb-2 bg-base_two py-6 md:py-10 px-4 md:px-10 text-xl md:text-2xl font-regular text-center">
             Total Production: {totalProduced} bags
@@ -51,9 +66,11 @@ const SalaryBalance = () => {
             Total Payment 4 Production: {totalBagsInWages}
           </p>
         </div>
+
         <h1 className="text-green-500 text-3xl md:text-5xl text-center bg-base_two py-10 md:py-20 mt-5">
           Balance: {salaryBalance}
         </h1>
+
         <div className="flex justify-center mt-10">
           <Link href="/admin">
             <button className="bg-base_text hover:bg-base_two hover:text-white text-base_color py-2 px-4 rounded focus:outline-none focus:shadow-outline">

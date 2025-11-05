@@ -14,6 +14,7 @@ import {
   FaTools,
   FaMapMarkerAlt,
   FaPaintRoller,
+  FaSuperpowers,
 } from "react-icons/fa";
 import { GiGoat, GiStoneWheel } from "react-icons/gi";
 import { FaBottleDroplet } from "react-icons/fa6";
@@ -27,6 +28,7 @@ const navLinks = [
   { name: "GlassLimestone", href: "/glass-grade-limestone", icon: <FaBottleDroplet /> },
   { name: "AnimalFeed", href: "/animal-feed-limestone", icon: <GiGoat /> },
   { name: "Dolomite", href: "/calcium-carbonate-dolomite", icon: <FaPaintRoller /> },
+  { name: "SuperFine", href: "/super-fine-calcium", icon:  <FaSuperpowers /> },
   { name: "Calcium", href: "/calcium-carbonate", icon: <GiStoneWheel /> },
 ];
 

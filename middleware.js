@@ -8,6 +8,7 @@ export async function middleware(req) {
   const adminRoutes = ['/admin/orderlist','/admin/contactlist','/balance','/balance/workerswages', '/balance/stockbalance', '/viewloadingandpayment','/loadingandpayment/custmerpayment', '/e-learning/adminLevelTwo', '/e-learning/marketing', '/report/crudepayment', '/business-partners', '/expenses'];
   const userRoutes = [
     '/admin', 
+    '/admin/assets',
     '/loadingandpayment', 
     '/business-partners',
     '/report',  

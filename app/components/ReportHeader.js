@@ -14,23 +14,23 @@ const navLinks = [
   { name: "Production", href: "/report/production" },
   { name: "Despatch", href: "/report/despatch" },
   { name: "SalaryRecord", href: "/report/wagesaccount" },
-  { name: "LightUsage", href: "/report/lightusage" },
-  { name: "MorningReport", href: "/report/morningreport" },
-  { name: "SituationReport", href: "/report/situationreport" },
   { name: "DailyReport", href: "/report/dailyreport" },
+  { name: "LightUsage", href: "/report/lightusage" },
+  { name: "SituationReport", href: "/report/situationreport" },
+  { name: "AssetRecord", href: "/report/assets" },
 ];
 
 export default function AdminHeader({ user }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-   const menuVariants = {
+  const menuVariants = {
     hidden: { x: "100%", opacity: 0 },
     visible: { x: 0, opacity: 1, transition: { duration: 0.4 } },
     exit: { x: "100%", opacity: 0, transition: { duration: 0.4 } },
   };
 
-   const handleCloseMenu = () => setIsMenuOpen(false);
+  const handleCloseMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="bg-base_color text-white fixed top-[120px] left-0 w-full shadow-lg border-t border-white z-50">
@@ -40,7 +40,7 @@ export default function AdminHeader({ user }) {
           Admin Report
         </Link>
 
-      {/* Hamburger Menu Button (Tablet & Mobile) */}
+        {/* Hamburger Menu Button (Tablet & Mobile) */}
         <button
           className="lg:hidden text-2xl focus:outline-none relative z-[60]"
           onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -81,11 +81,11 @@ export default function AdminHeader({ user }) {
         </nav>
       </div>
 
-        {/* Mobile / Tablet Navigation Menu */}
+      {/* Mobile / Tablet Navigation Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-           className="fixed top-[120px] right-0 w-3/4 sm:w-1/2 h-[calc(100vh-120px)] bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-20 px-6 gap-6 lg:hidden z-[50] overflow-y-auto overscroll-contain"
+            className="fixed top-[120px] right-0 w-3/4 sm:w-1/2 h-[calc(100vh-120px)] bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-20 px-6 gap-6 lg:hidden z-[50] overflow-y-auto overscroll-contain"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -97,8 +97,8 @@ export default function AdminHeader({ user }) {
                 <Link
                   key={link.name}
                   href={link.href}
-                className="text-lg tracking-wide border-b border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
-                onClick={handleCloseMenu}
+                  className="text-lg tracking-wide border-b border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
+                  onClick={handleCloseMenu}
                 >
                   {link.name}
                 </Link>

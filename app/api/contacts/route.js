@@ -1,3 +1,7 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // pages/api/contacts/index.js
 
 import connectMongoDB from "../../libs/mongodb"; // Adjust the path as necessary

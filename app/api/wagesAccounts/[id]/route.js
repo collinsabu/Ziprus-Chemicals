@@ -1,4 +1,6 @@
-// src/app/api/wagesAccounts/[id]/route.js
+// // Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;src/app/api/wagesAccounts/[id]/route.js
 
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../libs/mongodb";

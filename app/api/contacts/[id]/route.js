@@ -1,3 +1,7 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import connectMongoDB from "../../../libs/mongodb"; // Adjust the import path according to your project structure
 import Contact from "../../../models/contact"; // Adjust the import path according to your project structure
 import { NextResponse } from "next/server";

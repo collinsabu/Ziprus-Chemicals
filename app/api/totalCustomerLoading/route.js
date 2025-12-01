@@ -1,5 +1,9 @@
 // src/app/api/totalCustomerLoading/route.js
 
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import CustomerLoading from "../../models/CustomerLoading";

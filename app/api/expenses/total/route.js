@@ -1,3 +1,8 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+
 import connectMongoDB from "../../../libs/mongodb";
 import Expense from "../../../models/Expense";
 

@@ -1,3 +1,6 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 // src/app/api/dailyReports/[id]/route.js
 
 import { NextResponse } from "next/server";

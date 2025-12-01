@@ -1,11 +1,13 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 // src/app/api/crudeTotal/route.js
 
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import CrudeEntry from "../../models/CrudeEntry";
 
-// ⛔ Force dynamic rendering (no static caching by Next.js)
-export const dynamic = "force-dynamic";
+
 
 export async function GET() {
   try {

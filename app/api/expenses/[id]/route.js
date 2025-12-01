@@ -1,3 +1,7 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // 4. Dynamic Expense APIs (app/api/expenses/[id]/route.js)
 import connectMongoDB from "../../../libs/mongodb";
 import Expense from "../../../models/Expense";

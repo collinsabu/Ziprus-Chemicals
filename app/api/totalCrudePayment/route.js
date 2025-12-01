@@ -1,9 +1,13 @@
+
+// ✅ Force dynamic to disable caching
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import CrudePayment from "../../models/CrudePayment";
 
-// ✅ Force dynamic to disable caching
-export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {

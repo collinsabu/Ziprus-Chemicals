@@ -1,3 +1,7 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // pages/api/order.js
 import connectMongoDB from "../../libs/mongodb"; // Ensure you have this utility to connect to MongoDB
 import Order from "../../models/Order"; // Ensure the Order model/schema is correctly imported

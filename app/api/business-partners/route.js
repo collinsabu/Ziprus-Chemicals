@@ -1,3 +1,7 @@
+// Disable Vercel caching completely
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // app/api/business-partners/route.js
 import connectMongoDB from "../../libs/mongodb";
 import BusinessPartner from "../../models/BusinessPartner";

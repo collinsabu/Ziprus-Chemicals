@@ -83,6 +83,7 @@ export default function DespatchRecordDetails({ params }) {
             { label: "Destination", value: entry.destination },
             { label: "Number Loaded", value: entry.numberLoaded },
             { label: "Balance Bag", value: entry.balanceBag },
+            { label: "Tonnage", value: entry.tonnage },
           ].map((field) => (
             <div
               key={field.label}

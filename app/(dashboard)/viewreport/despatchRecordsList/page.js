@@ -64,6 +64,7 @@ const DespatchRecordsList = () => {
                 <p>Time: {entry.time}</p>
                 <p>Material Type: {entry.materialType}</p>
                 <p>Vehicle Number: {entry.vehicleNumber}</p>
+                <p>Tonnage: {entry.tonnage || "N/A"}</p>
               </Link>
             </li>
           ))}

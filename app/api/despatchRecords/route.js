@@ -12,7 +12,18 @@ export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, materialType, vehicleNumber, driverName, destination, numberLoaded, balanceBag, comment } = await request.json();
+    const { 
+      date, 
+      time, 
+      materialType, 
+      vehicleNumber, 
+      driverName, 
+      destination, 
+      numberLoaded, 
+      balanceBag, 
+      tonnage,        // ✅ ADDED HERE
+      comment 
+    } = await request.json();
 
     const newDespatchRecord = new DespatchRecord({
       date,
@@ -23,18 +34,21 @@ export async function POST(request) {
       destination,
       numberLoaded,
       balanceBag,
+      tonnage,         // ✅ ADDED HERE
       comment,
     });
 
     await newDespatchRecord.save();
 
-    return NextResponse.json({ message: "Despatch record created successfully", data: newDespatchRecord }, { status: 201 });
+    return NextResponse.json(
+      { message: "Despatch record created successfully", data: newDespatchRecord },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error creating despatch record:", error.message);
     return NextResponse.json({ error: "Error creating despatch record" }, { status: 500 });
   }
 }
-
 
 export async function GET(request) {
   try {

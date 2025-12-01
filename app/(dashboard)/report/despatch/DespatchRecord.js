@@ -17,6 +17,7 @@ export default function DespatchRecord() {
   const [numberLoaded, setNumberLoaded] = useState("");
   const [balanceBag, setBalanceBag] = useState("");
   const [comment, setComment] = useState("");
+  const [tonnage, setTonnage] = useState(""); // ✅ NEW FIELD
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -33,6 +34,7 @@ export default function DespatchRecord() {
       numberLoaded,
       balanceBag,
       comment,
+      tonnage, // ✅ SEND TO BACKEND
     };
 
     try {
@@ -72,6 +74,8 @@ export default function DespatchRecord() {
         <h2 className="text-2xl font-bold mb-6 text-white">
           Despatch Record
         </h2>
+
+        {/* Existing Fields (unchanged) */}
         <div className="mb-4">
           <label className="block  mb-2">Date</label>
           <input
@@ -102,9 +106,7 @@ export default function DespatchRecord() {
             required
             className="w-full px-3 py-2 border rounded-lg text-black"
           >
-            <option value="" disabled>
-              Select Material Type
-            </option>
+            <option value="" disabled>Select Material Type</option>
             <option value="Feed">Feed</option>
             <option value="Glass">Glass</option>
             <option value="Texcoat">Texcoat</option>
@@ -167,6 +169,18 @@ export default function DespatchRecord() {
             onChange={(e) => setBalanceBag(e.target.value)}
             value={balanceBag}
             required
+            className="w-full px-3 py-2 border rounded-lg text-black"
+          />
+        </div>
+
+        {/* ✅ NEW FIELD — TONNAGE */}
+        <div className="mb-4">
+          <label className="block mb-2">Tonnage (Optional)</label>
+          <input
+            type="number"
+            step="0.01"
+            onChange={(e) => setTonnage(Number(e.target.value))}
+            value={tonnage}
             className="w-full px-3 py-2 border rounded-lg text-black"
           />
         </div>

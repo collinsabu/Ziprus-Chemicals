@@ -1,3 +1,5 @@
+//just updated it
+
 {
   "extends": ["next/core-web-vitals"]
 }

@@ -24,7 +24,7 @@ const CrudeBalance = () => {
   // Fetch total dispatched to customers
   const fetchTotalCustomerLoading = async () => {
     try {
-      const res = await fetch("/api/totalCustomerLoading", { cache: "no-store" });
+      const res = await fetch("/api/totalDespatch", { cache: "no-store" });
       const data = await res.json();
       return data.total || 0;
     } catch (error) {

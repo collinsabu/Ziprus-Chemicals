@@ -1,88 +1,42 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { FaTrash, FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { FaEdit, FaTrash, FaPlus, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { motion } from "framer-motion";
 import BusinessPartnerForm from "../../components/BusinessPartnerForm";
-import EditBusinessPartnerForm from "../../components/EditBusinessPartnerForm";
 
-export default function BusinessPartnersPage() {
+export default function PhoneBookList() {
   const [partners, setPartners] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editPartner, setEditPartner] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const [partnersPerPage] = useState(10); // Show 10 partners per page
-
-  // Fetch partners
   const fetchPartners = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/business-partners");
-      if (!response.ok) throw new Error("Failed to fetch data from the server.");
-      const data = await response.json();
-      setPartners(Array.isArray(data) ? data : []);
+      const res = await fetch("/api/business-partners");
+      const data = await res.json();
+      setPartners(data || []);
     } catch (error) {
-      console.error("Error fetching data:", error);
-      toast.error("Failed to fetch business partners.");
-    } finally {
-      setIsLoading(false);
+      toast.error("Failed to load phonebook.");
     }
+    setIsLoading(false);
   };
 
-  // Delete a partner
   const deletePartner = async (id) => {
     try {
-      const response = await fetch(`/api/business-partners?id=${id}`, {
+      const res = await fetch(`/api/business-partners?id=${id}`, {
         method: "DELETE",
       });
-
-      if (response.ok) {
-        toast.success("Business partner deleted successfully!");
-        setPartners(partners.filter((partner) => partner._id !== id));
+      if (res.ok) {
+        setPartners((prev) => prev.filter((p) => p._id !== id));
+        toast.success("Deleted successfully!");
       } else {
-        toast.error("Failed to delete business partner.");
+        toast.error("Delete failed.");
       }
     } catch (error) {
-      console.error("Error deleting partner:", error);
-      toast.error("An error occurred while deleting.");
+      toast.error("Server error.");
     }
-  };
-
-  // Handle adding a new partner
-  const handlePartnerAdded = (newPartner) => {
-    setPartners((prev) => [newPartner, ...prev]);
-    setIsAddModalOpen(false);
-  };
-
-  // Handle editing a partner
-  const handlePartnerEdited = (updatedPartner) => {
-    setPartners((prev) =>
-      prev.map((partner) =>
-        partner._id === updatedPartner._id ? updatedPartner : partner
-      )
-    );
-    setIsEditModalOpen(false);
-    setEditPartner(null);
-  };
-
-  // Pagination logic
-  const indexOfLastPartner = currentPage * partnersPerPage;
-  const indexOfFirstPartner = indexOfLastPartner - partnersPerPage;
-  const currentPartners = partners.slice(indexOfFirstPartner, indexOfLastPartner);
-
-  const totalPages = Math.ceil(partners.length / partnersPerPage);
-
-  const nextPage = () => {
-    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   useEffect(() => {
@@ -90,126 +44,76 @@ export default function BusinessPartnersPage() {
   }, []);
 
   return (
-    <main className="bg-base_color">
-    <div className="max-w-4xl mx-auto text-white p-6 bg-base_color mt-6  mb-20">
-      <h1 className="text-2xl font-bold mb-6 text-center">Partners PhoneBook</h1>
-      <button
-        onClick={() => setIsAddModalOpen(true)}
-        className="mb-4 bg-base_text text-white px-4 py-2 rounded flex items-center gap-2"
-      >
-        <FaPlus /> Add Business Partner
-      </button>
+    <main className="bg-base_color min-h-screen py-10">
+      <div className="max-w-screen-lg mx-auto px-4">
 
-      {isAddModalOpen && (
-        <BusinessPartnerForm
-          onPartnerAdded={handlePartnerAdded}
-          onClose={() => setIsAddModalOpen(false)}
-        />
-      )}
+        <h1 className="text-2xl font-semibold text-center text-white mb-6">
+          Partners Phone Book
+        </h1>
 
-      {isEditModalOpen && editPartner && (
-        <EditBusinessPartnerForm
-          partner={editPartner}
-          onPartnerEdited={handlePartnerEdited}
-          onClose={() => setIsEditModalOpen(false)}
-        />
-      )}
+        {/* Add button */}
+        <button
+          onClick={() => setIsAddModalOpen(true)}
+          className="bg-base_text text-white px-4 py-2 rounded flex items-center gap-2 mb-6"
+        >
+          <FaPlus /> Add Number
+        </button>
 
-      {isLoading ? (
-        <table className="w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">Name</th>
-              <th className="border p-2">Phone Number</th>
-              <th className="border p-2">Category</th>
-              <th className="border p-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: 10 }).map((_, index) => (
-              <tr key={index}>
-                <td className="border p-2 animate-pulse bg-gray-200">&nbsp;</td>
-                <td className="border p-2 animate-pulse bg-gray-200">&nbsp;</td>
-                <td className="border p-2 animate-pulse bg-gray-200">&nbsp;</td>
-                <td className="border p-2 animate-pulse bg-gray-200">&nbsp;</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <>
-          <table className="w-full border-collapse border border-gray-300">
-            <thead>
-              <tr className="bg-base_two">
-                <th className="border p-2">Name</th>
-                <th className="border p-2">Phone Number</th>
-                <th className="border p-2">Category</th>
-                <th className="border p-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.isArray(currentPartners) &&
-                currentPartners.map((partner) => (
-                  <motion.tr
-                    key={partner._id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                  >
-                    <td className="border p-2">{partner.name}</td>
-                    <td className="border p-2">{partner.phoneNumber}</td>
-                    <td className="border p-2">{partner.category}</td>
-                    <td className="border p-2 flex gap-2">
-                      <button
-                        onClick={() => {
-                          setEditPartner(partner);
-                          setIsEditModalOpen(true);
-                        }}
-                        className="text-base_text hover:underline"
-                      >
-                        <FaEdit />
-                      </button>
-                      <button
-                        onClick={() => deletePartner(partner._id)}
-                        className="text-red-600 hover:underline"
-                      >
-                        <FaTrash />
-                      </button>
-                    </td>
-                  </motion.tr>
-                ))}
-            </tbody>
-          </table>
+        {isAddModalOpen && (
+          <BusinessPartnerForm
+            onPartnerAdded={(newPartner) => {
+              setPartners((prev) => [newPartner, ...prev]);
+              setIsAddModalOpen(false);
+            }}
+            onClose={() => setIsAddModalOpen(false)}
+          />
+        )}
 
-          {/* Pagination */}
-          <div className="flex justify-between items-center mt-4">
-            <button
-              onClick={prevPage}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 rounded ${
-                currentPage === 1 ? "bg-base_two" : "bg-base_text text-white hover:bg-base_text"
-              }`}
+        {/* Skeleton Loader */}
+        {isLoading && (
+          <p className="text-center text-gray-300">Loading...</p>
+        )}
+
+        {/* List */}
+        <div className="space-y-4">
+          {partners.map((partner) => (
+            <div
+              key={partner._id}
+              className="bg-base_text rounded-lg p-4 flex justify-between items-center shadow hover:shadow-lg transition"
             >
-              <FaChevronLeft /> Prev
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded ${
-                currentPage === totalPages
-                  ? "bg-base_two"
-                  : "bg-base_text text-white hover:bg-base_text"
-              }`}
-            >
-              Next <FaChevronRight />
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+              <Link
+                href={`/business-partners/${partner._id}`}
+                className="flex flex-col"
+              >
+                <span className="text-lg font-semibold text-base_color">
+                  {partner.name}
+                </span>
+                <a
+                  href={`tel:${partner.phoneNumber}`}
+                  className="text-base_color underline"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {partner.phoneNumber}
+                </a>
+                <span className="text-sm text-base_color/80">
+                  {partner.category}
+                </span>
+              </Link>
+
+              <button
+                onClick={() => deletePartner(partner._id)}
+                className="text-red-600 text-xl"
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
+
+          {partners.length === 0 && !isLoading && (
+            <p className="text-center text-gray-400">No partners found.</p>
+          )}
+        </div>
+      </div>
     </main>
   );
 }

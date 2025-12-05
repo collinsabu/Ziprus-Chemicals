@@ -7,7 +7,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
-    category: "Miners",
+    category: "",
     description: "",
   });
 
@@ -65,6 +65,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
           {/* Form */}
           <form onSubmit={handleSubmit}>
             <h2 className="text-xl font-semibold mb-4">Add Business Partner</h2>
+
             <div>
               <label className="block mb-1">Name</label>
               <input
@@ -76,6 +77,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
+
             <div>
               <label className="block mb-1">Phone Number</label>
               <input
@@ -87,22 +89,20 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
+
             <div>
-              <label className="block mb-1">Category</label>
-              <select
+              <label className="block mb-1">Category (Freely Typed)</label>
+              <input
+                type="text"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border border-gray-300 rounded-md bg-base_color"
-              >
-                <option value="Miners">Miners</option>
-                <option value="Tipper">Tipper</option>
-                <option value="Truck">Truck</option>
-                <option value="Welder">Welder</option>
-                <option value="Other">Other</option>
-              </select>
+                placeholder="e.g., Miner, Tipper Driver, Welder, Customer, Supplier..."
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
+              />
             </div>
+
             <div>
               <label className="block mb-1">Description</label>
               <textarea
@@ -113,6 +113,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
                 className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
+
             <button
               type="submit"
               className="mt-4 w-full bg-base_text text-white p-2 rounded-md hover:bg-base_two"

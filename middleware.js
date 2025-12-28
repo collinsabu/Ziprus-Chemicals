@@ -5,7 +5,7 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
-  const adminRoutes = ['/admin/orderlist','/admin/contactlist','/balance','/balance/workerswages', '/balance/stockbalance', '/viewloadingandpayment','/loadingandpayment/custmerpayment', '/e-learning/adminLevelTwo', '/e-learning/marketing', '/report/crudepayment', '/business-partners', '/expenses'];
+  const adminRoutes = ['/admin/orderlist','/admin/contactlist','/balance','/balance/workerswages', '/balance/stockbalance', '/viewloadingandpayment','/loadingandpayment/custmerpayment', '/e-learning/adminLevelTwo', '/e-learning/marketing', '/e-learning/secretary', '/report/crudepayment', '/business-partners', '/expenses'];
   const userRoutes = [
     '/admin', 
     '/admin/assets',
@@ -14,6 +14,7 @@ export async function middleware(req) {
     '/report',  
     '/viewreport', 
     '/e-learning',
+    '/e-learning/secretary',
     '/balance/workerswages',
     '/balance/stockbalance',
     '/applications',
@@ -94,6 +95,7 @@ export const config = {
     '/login', 
     '/register',
     '/e-learning',
+    '/e-learning/secretary',
     '/e-learning/adminLevelTwo',
     '/e-learning/marketing',
     '/balance/workerswages',

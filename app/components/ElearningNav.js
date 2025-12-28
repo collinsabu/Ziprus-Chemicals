@@ -1,9 +1,9 @@
 "use client";
 
-import Link from 'next/link';
-import { signOut } from 'next-auth/react';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import { signOut } from "next-auth/react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ElearningNav() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -12,27 +12,44 @@ export default function ElearningNav() {
   const handleSignOut = async () => {
     setIsLoggingOut(true);
     await signOut();
-    router.push('/login');
+    router.push("/login");
   };
 
   return (
-    <nav className="bg-base_two p-4 pt-40 pb-10">
-      <div className="flex flex-wrap justify-center space-x-2 sm:space-x-4">
+    <nav className="bg-base_two px-4 py-6 sm:py-10 sm:pt-40 pt-40 sm:mt-0">
+      <div
+        className="
+          flex
+          flex-col
+          gap-3
+          sm:flex-row
+          sm:flex-wrap
+          sm:justify-center
+          sm:gap-4
+        "
+      >
         <Link href="/e-learning">
-          <p className="bg-base_text text-base_two py-2 px-4 rounded mb-2 sm:mb-0">Admin Level 1</p>
+          <p className="nav-btn">Admin Level 1</p>
         </Link>
+
         <Link href="/e-learning/adminLevelTwo">
-          <p className="bg-base_text text-base_two py-2 px-4 rounded mb-2 sm:mb-0">Admin Level 2</p>
+          <p className="nav-btn">Admin Level 2</p>
         </Link>
+
         <Link href="/e-learning/marketing">
-          <p className="bg-base_text text-base_two py-2 px-4 rounded">Marketing Dept</p>
+          <p className="nav-btn">Marketing Dept</p>
         </Link>
+
+        <Link href="/e-learning/secretary">
+          <p className="nav-btn">Secretary</p>
+        </Link>
+
         <button
           onClick={handleSignOut}
-          className="bg-base_text text-base_two py-2 px-4 rounded mb-2 sm:mb-0"
           disabled={isLoggingOut}
+          className="nav-btn"
         >
-          {isLoggingOut ? 'Signing Out...' : 'Sign Out'}
+          {isLoggingOut ? "Signing Out..." : "Sign Out"}
         </button>
       </div>
     </nav>

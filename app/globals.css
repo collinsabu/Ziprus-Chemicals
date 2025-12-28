@@ -82,3 +82,8 @@
 }
 
 
+.nav-btn {
+  @apply bg-base_text text-base_two py-3 px-4 rounded text-center w-full sm:w-auto;
+}
+
+

@@ -64,10 +64,10 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
 
           {/* Form */}
           <form onSubmit={handleSubmit}>
-            <h2 className="text-xl font-semibold mb-4">Add Business Partner</h2>
+            <h2 className="text-xl font-semibold mb-4 text-white">Add Business Partner</h2>
 
             <div>
-              <label className="block mb-1">Name</label>
+              <label className="block mb-1 text-white">Name</label>
               <input
                 type="text"
                 name="name"
@@ -79,7 +79,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
             </div>
 
             <div>
-              <label className="block mb-1">Phone Number</label>
+              <label className="block mb-1 text-white">Phone Number</label>
               <input
                 type="text"
                 name="phoneNumber"
@@ -91,7 +91,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
             </div>
 
             <div>
-              <label className="block mb-1">Category (Freely Typed)</label>
+              <label className="block mb-1 text-white">Category (Freely Typed)</label>
               <input
                 type="text"
                 name="category"
@@ -104,7 +104,7 @@ export default function BusinessPartnerForm({ onPartnerAdded, onClose }) {
             </div>
 
             <div>
-              <label className="block mb-1">Description</label>
+              <label className="block mb-1 text-white">Description</label>
               <textarea
                 name="description"
                 value={formData.description}

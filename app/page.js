@@ -42,45 +42,42 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-4 mb-16 bg-gradient-to-r from-base_color via-base_two to-base_two text-base_two py-10">
-        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 px-6">
-          {/* Card 1 */}
-          <article
-            className="card w-full sm:w-1/3 bg-white text-base_color flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            aria-label="Top Quality"
-          >
-            <div className="circle bg-base_color p-4 rounded-full mb-4">
-              <SiAdguard className="text-6xl text-white" />
-            </div>
-            <p className="text-xl text-base_color sm:text-2xl font-semibold">Top Quality</p>
-            <div className="w-16 h-1 bg-base_color mt-4"></div>
-          </article>
+      <section className="mt-10 mb-24 bg-[#032C26] py-12">
+        <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {/* CARD */}
+          {[
+            { title: "Top Quality", img: "/images/quality.jpg" },
+            { title: "Fast Delivery", img: "/images/delivery.jpg" },
+            { title: "Best Price", img: "/images/pricing.jpg" },
+          ].map((item) => (
+            <article
+              key={item.title}
+              className="group relative h-44 sm:h-56 lg:h-64 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1"
+            >
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110"
+                style={{ backgroundImage: `url('${item.img}')` }}
+              />
 
-          {/* Card 2 */}
-          <article
-            className="card w-full sm:w-1/3 bg-white text-base_color flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            aria-label="Fast Delivery"
-          >
-            <div className="circle bg-base_color p-4 rounded-full mb-4">
-              <TbTruckDelivery className="text-6xl text-white" />
-            </div>
-            <p className="text-xl text-base_color sm:text-2xl font-semibold">Fast Delivery</p>
-            <div className="w-16 h-1  bg-base_color mt-4"></div>
-          </article>
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#032C26]/95 via-[#035145]/70 to-transparent transition-opacity duration-300 group-hover:from-[#032C26]" />
 
-          {/* Card 3 */}
-          <article
-            className="card w-full sm:w-1/3 bg-white text-base_color flex flex-col items-center justify-center p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            aria-label="Best Price"
-          >
-            <div className="circle bg-base_color p-4 rounded-full mb-4">
-              <TbCurrencyNaira className="text-6xl text-white" />
-            </div>
-            <p className="text-xl sm:text-2xl  text-base_color font-semibold">Best Price</p>
-            <div className="w-16 h-1 bg-base_color mt-4"></div>
-          </article>
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col justify-end p-4 sm:p-6 text-white">
+                <h3 className="text-lg sm:text-xl font-semibold tracking-wide transform transition-transform duration-300 group-hover:-translate-y-1">
+                  {item.title}
+                </h3>
+
+                {/* Accent Line */}
+                <div className="w-10 h-1 bg-[#0CC76D] mt-2 transition-all duration-300 group-hover:w-16" />
+              </div>
+            </article>
+          ))}
         </div>
       </section>
+
+      
 
       {/* {/* Factory images section white/} */}
       <section className="images-text mt-10 sm:mt-0 bg-gray-50 py-12">
@@ -156,6 +153,7 @@ export default function Home() {
         </div>
       </section>
 
+ 
       {/* ================= Order Form ========================== */}
 
       <section

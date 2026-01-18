@@ -42,7 +42,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-10 mb-24 bg-[#032C26] py-12">
+      <section className="mt-10  bg-[#032C26] py-12">
         <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
           {/* CARD */}
           {[

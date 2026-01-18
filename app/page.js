@@ -10,6 +10,7 @@ import Banner5 from "./images/img5.jpg";
 import Banner6 from "./images/img6.jpg";
 import Banner7 from "./images/img7.jpg";
 import Banner8 from "./images/img8.jpg";
+
 //import from react icons
 import { SiAdguard } from "react-icons/si";
 import { TbTruckDelivery, TbCurrencyNaira } from "react-icons/tb";

@@ -1,44 +1,76 @@
-"use client"; // Ensure this component is client-side
+"use client";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay'; // Optional for autoplay functionality
-import '../ImageCarousel.css'; // Import your custom CSS
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-// ImageCarousel component
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+
 const ImageCarousel = () => {
-  const images = [
-    '/images/chemical1.jpg', // Replace with your own image paths
-    '/images/chemical2.jpg',
-    '/images/chemical3.jpg',
-    '/images/chemical4.jpg',
+  const desktopImages = [
+    "/images/chemical1.jpg",
+    "/images/chemical2.jpg",
+    "/images/chemical3.jpg",
+    "/images/chemical4.jpg",
+  ];
+
+  const mobileImages = [
+    "/images/chemical1-mobile.jpg",
+    "/images/chemical2-mobile.jpg",
+    "/images/chemical3-mobile.jpg",
+    "/images/chemical4-mobile.jpg",
   ];
 
   return (
-    <div className="w-full bg-base_color py-6">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={30}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }} // Optional: enable autoplay
-        loop={true}
-        className="w-full h-[600px]" // Adjust height as necessary
-      >
-        {images.map((image, index) => (
-          <SwiperSlide key={index} className="flex justify-center items-center">
-            <img
-              src={image}
-              alt={`Carousel image ${index + 1}`}
-              className="w-full h-full object-cover rounded-lg"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="w-full bg-base_color">
+
+      {/* ================= DESKTOP CAROUSEL ================= */}
+      <div className="hidden md:block">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop
+          className="w-full h-[600px]"
+        >
+          {desktopImages.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`Desktop slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* ================= MOBILE CAROUSEL ================= */}
+      <div className="block md:hidden">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop
+          className="w-full h-[280px]"
+        >
+          {mobileImages.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`Mobile slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
     </div>
   );
 };

@@ -47,7 +47,7 @@ export default function UltrafinePromoSection() {
               <p className="text-white/90 text-sm sm:text-base mb-4">
                 Premium ultrafine calcium carbonate engineered for
                 plastics, paints, coatings, adhesives, and industrial
-                manufacturing where precision and consistency matter.
+                manufacturing where precision and consistency matter more.
               </p>
 
               <ul className="text-sm space-y-1 mb-5">

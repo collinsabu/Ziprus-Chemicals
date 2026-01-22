@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 import ImageCarousel from "./components/ImageCarousel";
-import UltrafinePromoSection from "../app/components/UltrafinePromosection";
+import UltrafinePromoSection from "../app/components/UltrafinePromoSection";
 
 //import from react icons
 import { SiAdguard } from "react-icons/si";

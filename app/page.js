@@ -71,8 +71,8 @@ export default function Home() {
 
       
 
-      {/* {/* Factory images section white/} */}
-      <section className="bg-[#032C26] py-20 my-10">
+      {/* {/* Factory images section /} */}
+<section className="bg-[#032C26] py-20 my-10">
   {/* Heading */}
   <div className="max-w-4xl mx-auto text-center px-6">
     <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
@@ -85,50 +85,50 @@ export default function Home() {
   </div>
 
   {/* Cards */}
-  <div className="max-w-7xl mx-auto mt-16 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div className="max-w-7xl mx-auto mt-16 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
     {[
       { title: "Raw Material Intake", desc: "Carefully sourced limestone from trusted mines." },
       { title: "Stone Sorting", desc: "Manual and mechanical sorting for purity." },
-      { title: "Dolomite Quarry", desc: "Pure white and offwhite site." },
-      { title: "Animal Feed", desc: " Fully processed Animal / Glass grade limestone." },
-      { title: "Secondary Milling", desc: "Further refinement for industrial standards." },
-      { title: "Ultrafine Grinding", desc: "Precision grinding to ultrafine levels." },
-      { title: "Particle Classification", desc: "Separation to ensure consistency." },
-      { title: "Quality Control", desc: "Strict lab testing and monitoring." },
+      { title: "Dolomite Quarry", desc: "High-grade extraction site in Ikpeshi Edo state, Nigeria." },
+      { title: "Animal Feed Grade", desc: "Processed feed & glass grade limestone." },
+      { title: "Secondary Milling", desc: "Refined to industrial standards." },
+      { title: "Ultrafine Grinding", desc: "Precision particle-size reduction." },
+      { title: "Particle Classification", desc: "Uniform consistency across batches." },
+      { title: "Quality Control", desc: "Strict lab testing & monitoring." },
       { title: "Limestone Quarry", desc: "Premium limestone excavation." },
-      { title: "Bulk Storage", desc: "Safe, contamination-free storage systems." },
-      { title: "Calcium Factory Ikpeshi", desc: "Pure calcium processing plant." },
-      { title: "Dispatch & Logistics", desc: "Reliable delivery to factories nationwide." },
+      { title: "Bulk Storage", desc: "Clean, contamination-free storage." },
+      { title: "Calcium Factory Ikpeshi", desc: "High-purity calcium processing." },
+      { title: "Dispatch & Logistics", desc: "Reliable nationwide delivery." },
     ].map((item, index) => (
       <article
         key={index}
-        className="relative h-56 rounded-2xl overflow-hidden shadow-xl group"
-        style={{
-          backgroundImage: `url('/images/process-${index + 1}.jpg')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#032C26]/95 via-[#035145]/80 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+        {/* Image */}
+        <div
+          className="h-44 sm:h-48 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('/images/process-${index + 1}.jpg')`,
+          }}
+        />
 
-        {/* Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end p-5">
-          <h3 className="text-lg font-semibold text-white">
+        {/* Text */}
+        <div className="p-5 bg-[#035145]">
+          <h3 className="text-base font-semibold text-white">
             {item.title}
           </h3>
-          <p className="text-sm text-gray-200 mt-1">
+
+          <p className="mt-1 text-sm text-gray-200">
             {item.desc}
           </p>
-          <div className="w-10 h-1 bg-[#0CC76D] mt-3 transition-all duration-300 group-hover:w-16" />
-        </div>
 
-        {/* Hover animation */}
-        <div className="absolute inset-0 ring-1 ring-transparent group-hover:ring-[#0CC76D]/60 transition duration-300 rounded-2xl" />
+          <div className="mt-3 w-10 h-0.5 bg-[#0CC76D]" />
+        </div>
       </article>
     ))}
   </div>
 </section>
+
 
 
 {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> this is the ads section >>>>>>>>>>>>>>>>>>>>>>>>>. */}

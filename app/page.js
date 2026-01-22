@@ -1,15 +1,7 @@
 import dynamic from "next/dynamic";
 
 import ImageCarousel from "./components/ImageCarousel";
-import Image from "next/image";
-
-import Banner2 from "./images/img2.jpg";
-import Banner3 from "./images/img3.jpg";
-import Banner4 from "./images/img4.jpg";
-import Banner5 from "./images/img5.jpg";
-import Banner6 from "./images/img6.jpg";
-import Banner7 from "./images/img7.jpg";
-import Banner8 from "./images/img8.jpg";
+import UltrafinePromoSection from "../app/components/UltrafinePromosection";
 
 //import from react icons
 import { SiAdguard } from "react-icons/si";
@@ -80,78 +72,73 @@ export default function Home() {
       
 
       {/* {/* Factory images section white/} */}
-      <section className="images-text mt-10 sm:mt-0 bg-gray-50 py-12">
-        {/* Heading Section */}
-        <div className="w-4/5 mx-auto text-center">
-          <h1 className="text-2xl sm:text-4xl text-base_two font-extrabold mb-4">
-            Images From Our Production Line
-          </h1>
-          <p className="text-lg sm:w-3/5 mx-auto text-base_two">
-            Step inside our production line and take a visual journey through
-            innovation and craftsmanship.
+      <section className="bg-[#032C26] py-20 my-10">
+  {/* Heading */}
+  <div className="max-w-4xl mx-auto text-center px-6">
+    <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+      Inside Our Production Process
+    </h2>
+    <p className="mt-4 text-gray-200 text-lg">
+      From raw limestone to high-performance industrial minerals — every step
+      is engineered for consistency, quality, and scale.
+    </p>
+  </div>
+
+  {/* Cards */}
+  <div className="max-w-7xl mx-auto mt-16 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {[
+      { title: "Raw Material Intake", desc: "Carefully sourced limestone from trusted mines." },
+      { title: "Stone Sorting", desc: "Manual and mechanical sorting for purity." },
+      { title: "Dolomite Quarry", desc: "Pure white and offwhite site." },
+      { title: "Animal Feed", desc: " Fully processed Animal / Glass grade limestone." },
+      { title: "Secondary Milling", desc: "Further refinement for industrial standards." },
+      { title: "Ultrafine Grinding", desc: "Precision grinding to ultrafine levels." },
+      { title: "Particle Classification", desc: "Separation to ensure consistency." },
+      { title: "Quality Control", desc: "Strict lab testing and monitoring." },
+      { title: "Limestone Quarry", desc: "Premium limestone excavation." },
+      { title: "Bulk Storage", desc: "Safe, contamination-free storage systems." },
+      { title: "Calcium Factory Ikpeshi", desc: "Pure calcium processing plant." },
+      { title: "Dispatch & Logistics", desc: "Reliable delivery to factories nationwide." },
+    ].map((item, index) => (
+      <article
+        key={index}
+        className="relative h-56 rounded-2xl overflow-hidden shadow-xl group"
+        style={{
+          backgroundImage: `url('/images/process-${index + 1}.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#032C26]/95 via-[#035145]/80 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+
+        {/* Content */}
+        <div className="relative z-10 h-full flex flex-col justify-end p-5">
+          <h3 className="text-lg font-semibold text-white">
+            {item.title}
+          </h3>
+          <p className="text-sm text-gray-200 mt-1">
+            {item.desc}
           </p>
+          <div className="w-10 h-1 bg-[#0CC76D] mt-3 transition-all duration-300 group-hover:w-16" />
         </div>
 
-        {/* Images Section */}
-        <div className="w-4/5 mx-auto mt-10">
-          {/* First Row of Images */}
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-12">
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner2}
-                alt="Production Image 1"
-              />
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner3}
-                alt="Production Image 2"
-              />
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner4}
-                alt="Production Image 3"
-              />
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner5}
-                alt="Production Image 4"
-              />
-            </div>
-          </div>
+        {/* Hover animation */}
+        <div className="absolute inset-0 ring-1 ring-transparent group-hover:ring-[#0CC76D]/60 transition duration-300 rounded-2xl" />
+      </article>
+    ))}
+  </div>
+</section>
 
-          {/* Second Row of Images */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner6}
-                alt="Production Image 5"
-              />
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner7}
-                alt="Production Image 6"
-              />
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-              <Image
-                className="w-full h-full object-cover"
-                src={Banner8}
-                alt="Production Image 7"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+
+{/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> this is the ads section >>>>>>>>>>>>>>>>>>>>>>>>>. */}
+
+
+
+<section className="my-10">
+<UltrafinePromoSection />
+</section>
+
 
  
       {/* ================= Order Form ========================== */}

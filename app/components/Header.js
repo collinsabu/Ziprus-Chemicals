@@ -154,7 +154,7 @@ export default function Header() {
             <a
               href="#order-form"
               onClick={() => setIsMenuOpen(false)}
-              className="text-lg tracking-wide border-b border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
+              className="text-lg tracking-wide border-b text-white border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
             >
               Place an Order
             </a>

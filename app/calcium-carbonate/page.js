@@ -3,142 +3,184 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-// Internal imports (update paths if necessary)
+// Images
 import img1 from "./img1.jpg";
 import img2 from "./img2.jpg";
 import img3 from "./img3.jpg";
 import banner from "./banner.jpg";
 
-// Dynamically import OrderForm for optimization
+// Dynamic form (client-side only)
 const OrderForm = dynamic(() => import("../OrderForm"), { ssr: false });
 
-/* ✅ SEO METADATA */
+/* =========================
+   SEO METADATA (APP ROUTER)
+========================= */
 export const metadata = {
-  title: 'Buy Calcium Carbonate',
+  title: "Buy Calcium Carbonate & Dolomite in Nigeria | Bulk Supply",
   description:
-    'Top supplier of high-purity calcium carbonate  in Nigeria. Suitable for paint production, toothpaste, plastics, and construction industries. Bulk orders available starting from 15 tons.',
+    "Buy high-purity calcium carbonate and dolomite in Nigeria. Ideal for paint, plastics, toothpaste, adhesives, and animal feed. Bulk supply from 15 tons with nationwide delivery.",
   keywords:
-    'calcium carbonate Nigeria, calcium carbonate, dolomite, dolomite supplier Nigeria, pure white dolomite, calcium carbonate for paint, calcium carbonate for toothpaste, calcium carbonate for plastics, industrial minerals supplier Nigeria, bulk calcium carbonate Nigeria, Ziprus Chemicals, Nigeria calcium carbonate wholesaler, Affordable Calcium Carbonate for Paint Producers, Calcium Carbonate Suppliers, adhesive feed calcium, limestone supplier, Nigeria minerals',
+    "buy calcium carbonate Nigeria, calcium carbonate supplier Nigeria, dolomite supplier Nigeria, ultrafine calcium carbonate, calcium carbonate for paint, toothpaste calcium carbonate, plastics calcium carbonate, limestone supplier Nigeria",
   openGraph: {
-    title: 'Buy Calcium Carbonate in Nigeria - Ziprus Chemicals',
+    title: "Buy Calcium Carbonate in Nigeria | Ziprus Chemicals",
     description:
-      'Premium calcium carbonate and dolomite for industries like paint, toothpaste, plastics, animal feed, and construction. Bulk supply with guaranteed quality and fast delivery across Nigeria.',
+      "Reliable supplier of calcium carbonate and dolomite for industrial use in Nigeria. Bulk orders available with fast nationwide delivery.",
   },
 };
 
 const CalciumCarbonate = () => {
   return (
-    <div className="bg-white text-black pt-20 mb-20">
-      <header>
-        <meta
-          name="description"
-          content="Buy premium calcium carbonate from Ziprus Chemicals. Bulk orders for paint, toothpaste, and more."
-        />
-        <title>Buy Calcium Carbonate in Nigeria - Ziprus Chemicals</title>
-      </header>
+    <main className="bg-white text-black pt-20">
 
-      <section className="relative bg-base_color w-full">
-        <div className="relative h-[60vh] sm:h-[80vh] w-full">
+      {/* ================= HERO ================= */}
+      <section className="relative w-full">
+        <div className="relative h-[65vh] sm:h-[80vh]">
           <Image
             src={banner}
-            alt="High-purity calcium carbonate and dolomite for industrial use in Nigeria"
-            layout="fill"
-            objectFit="cover"
+            alt="High-purity calcium carbonate and dolomite supplier in Nigeria"
+            fill
             priority
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-6 sm:px-16">
-            <h1 className="text-2xl sm:text-4xl font-bold text-white mb-4 leading-tight max-w-xl">
-              Buy High-Purity Calcium Carbonate in Nigeria
-            </h1>
-            <p className="text-white text-sm sm:text-base mb-6 max-w-lg">
-              Trusted calcium carbonate supplier for paint, toothpaste, plastics, and cement industries. Bulk supply starts from 15 tons!
-            </p>
-            <Link href="#quote-form" passHref className="inline-block bg-base_two text-white px-6 py-3 font-semibold rounded hover:bg-base_color hover:text-white transition duration-200">
-              Place Order Now!
-            </Link>
+
+          {/* Text panel */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="bg-[#032C26]/95 max-w-xl mx-6 sm:ml-16 p-6 sm:p-10 rounded-2xl shadow-2xl">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                Buy Calcium Carbonate & Dolomite in Nigeria
+              </h1>
+
+              <p className="mt-4 text-gray-200 text-sm sm:text-base">
+                Trusted industrial supplier for paint, plastics, toothpaste,
+                adhesives, and animal feed manufacturers. Bulk supply from 15 tons
+                with reliable nationwide delivery.
+              </p>
+
+              <Link
+                href="#quote-form"
+                className="inline-block mt-6 bg-[#0CC76D] text-[#032C26] px-6 py-3 rounded-lg font-semibold shadow hover:opacity-90 transition"
+              >
+                Get Bulk Price Quote
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-base_color text-white px-4 sm:px-10 py-16">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">
-            Why Buy Calcium Carbonate  from Ziprus Chemicals?
+      {/* ================= WHY US ================= */}
+      <section className="bg-[#032C26] text-white py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10">
+            Why Manufacturers Choose Ziprus Chemicals
           </h2>
-          <div className="flex flex-col md:flex-row justify-center items-start md:items-center gap-8">
-            <ul className="space-y-4 text-lg list-inside">
-              <li>✅ High Purity Calcium Carbonate for paint, toothpaste, and industrial use</li>
-              <li>✅ Pure White Dolomite ideal for ceramics, paints, and adhesives</li>
-              <li>✅ Learn more about our <Link href="https://blog.zipruschemicals.com/calcium-carbonate-in-paint-industry/" target="_blank" className="underline text-white hover:text-base_two">calcium carbonate in the paint industry</Link></li>
-            </ul>
-            <ul className="space-y-4 text-lg list-inside">
-              <li>✅ Consistent Particle Size and Quality Guaranteed</li>
-              <li>✅ Nationwide Delivery Across Nigeria, Timely & Reliable</li>
-              <li>✅ View full product page: <Link href="https://www.zipruschemicals.com/calcium-carbonate-dolomite" target="_blank" className="underline text-white hover:text-base_two">Calcium Carbonate & Dolomite</Link></li>
-            </ul>
-          </div>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-12">
-            <div className="w-full sm:w-1/3">
-              <Image
-                src={img1}
-                alt="Calcium carbonate powder for paint production"
-                className="rounded shadow"
-                placeholder="blur"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full sm:w-1/3">
-              <Image
-                src={img2}
-                alt="Pure white calcium carbonate dolomite powder for industrial use"
-                className="rounded shadow"
-                placeholder="blur"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full sm:w-1/3">
-              <Image
-                src={img3}
-                alt="calcium carbonate, Feed-grade limestone for livestock nutrition"
-                className="rounded shadow"
-                placeholder="blur"
-                loading="lazy"
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+            <ul className="space-y-4">
+              <li>✅ High-purity calcium carbonate & dolomite</li>
+              <li>✅ Suitable for paint, plastics, toothpaste & adhesives</li>
+              <li>✅ Consistent particle size & high whiteness</li>
+            </ul>
+            <ul className="space-y-4">
+              <li>✅ Bulk orders starting from 15 tons</li>
+              <li>✅ Reliable nationwide delivery across Nigeria</li>
+              <li>✅ Trusted long-term industrial supply partner</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="bg-base_text text-white py-12 px-4">
+      {/* ================= USE-CASE CARDS ================= */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+          {/* CARD 1 */}
+          <div className="rounded-xl overflow-hidden shadow-lg group">
+            <Image
+              src={img1}
+              alt="Calcium carbonate for paint and coatings manufacturers"
+              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="bg-[#032C26] px-4 py-3">
+              <h3 className="text-white font-semibold text-sm">
+                Our Calcium Factory
+              </h3>
+              <p className="text-[#0CC76D] text-xs mt-1">
+                Auchi, Ikpeshi • Reliabilty • High efficiency
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 2 */}
+          <div className="rounded-xl overflow-hidden shadow-lg group">
+            <Image
+              src={img2}
+              alt="Ultrafine calcium carbonate for plastics and adhesives production"
+              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="bg-[#032C26] px-4 py-3">
+              <h3 className="text-white font-semibold text-sm">
+                Plastics & Adhesives Grade
+              </h3>
+              <p className="text-[#0CC76D] text-xs mt-1">
+                Uniform particles • Strength enhancement
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 3 */}
+          <div className="rounded-xl overflow-hidden shadow-lg group">
+            <Image
+              src={img3}
+              alt="Feed-grade calcium carbonate limestone for livestock nutrition"
+              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="bg-[#032C26] px-4 py-3">
+              <h3 className="text-white font-semibold text-sm">
+                Animal Feed Grade
+              </h3>
+              <p className="text-[#0CC76D] text-xs mt-1">
+                Safe • Nutrient-rich • Trusted quality
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ================= INDUSTRIES ================= */}
+      <section className="bg-[#035145] text-white py-14 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-            Industries We Supply in Nigeria
+            Industries We Supply Across Nigeria
           </h2>
           <p className="text-base sm:text-lg leading-relaxed">
-            Paint & Coating Manufacturers | Toothpaste & Personal Care Producers | Plastics & Polymers Industry | Animal Feed Producers | Glass & Ceramics Companies | Construction Industry | Adhesives and Sealants Manufacturers
-          </p>
-          <p className="mt-6 text-sm">
-            See why we're listed among the <a href="https://www.nairaland.com/8394938/trusted-calcium-carbonate-supplier-nigeria#134930172" target="_blank" className="underline hover:text-base_two">most trusted calcium carbonate suppliers in Nigeria</a> and <a href="https://www.nairaland.com/8404044/top-calcium-carbonate-manufacturers-nigeria#135062191" target="_blank" className="underline hover:text-base_two">top calcium carbonate manufacturers</a>.
+            Paint & Coatings • Toothpaste & Personal Care • Plastics & Polymers •
+            Animal Feed • Glass & Ceramics • Construction • Adhesives & Sealants
           </p>
         </div>
       </section>
 
-      <section className="order-form bg-base_color py-16 px-4 sm:px-0" id="quote-form">
-        <div className="order-form-container w-3/4 mx-auto flex items-center flex-col pt-16">
-          <h2 className="text-xl sm:text-3xl font-bold text-base_text mb-4 text-center">
-            Request a Quote - Bulk Orders Starting from 15 Tons!
+      {/* ================= ORDER FORM ================= */}
+      <section
+        id="quote-form"
+        className="bg-[#032C26] py-20 px-6 mb-20"
+      >
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#0CC76D] mb-4">
+            Request a Bulk Price Quote
           </h2>
-          <p className="text-white mb-8 leading-relaxed text-center hidden sm:block">
-            Complete the form below to place an order for calcium carbonate. Our sales team will promptly contact you with pricing and delivery options. We guarantee quality and timely delivery anywhere in Nigeria.
+          <p className="text-white mb-10 max-w-2xl mx-auto">
+            Minimum order quantity is 15 tons. Submit your request and our sales
+            team will respond with pricing, specifications, and delivery details.
           </p>
 
-          <div className="w-[99%] sm:w-[50%] sm:p-10 sm:rounded-[50px] sm:border-2 border-white border-solid mb-[40px]">
+          <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-xl max-w-2xl mx-auto text-left">
             <OrderForm />
           </div>
         </div>
       </section>
-    </div>
+
+    </main>
   );
 };
 

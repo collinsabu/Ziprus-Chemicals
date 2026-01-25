@@ -3,142 +3,186 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-// Internal imports (update paths if necessary)
+// Images
 import img1 from "./img1.jpg";
 import img2 from "./img2.jpg";
 import img3 from "./img3.jpg";
 import banner from "./banner.jpg";
 
-// Dynamically import OrderForm for optimization
+// Dynamic form
 const OrderForm = dynamic(() => import("../OrderForm"), { ssr: false });
 
-/* ✅ SEO METADATA */
+/* =========================
+   SEO METADATA (APP ROUTER)
+========================= */
 export const metadata = {
-  title: 'Buy Superfine / Ultrafine Calcium Carbonate',
+  title: "Superfine & Ultrafine Calcium Carbonate Supplier in Nigeria | Bulk",
   description:
-    'Premium superfine and ultrafine calcium carbonate in Nigeria. Ideal for high-grade paint production, toothpaste, plastics, coatings, adhesives, and industrial applications. Bulk orders start from 15 tons.',
+    "Buy superfine and ultrafine calcium carbonate in Nigeria. High-purity micronized CaCO3 for premium paint, plastics, toothpaste, coatings, and adhesives. Bulk orders from 30 tons.",
   keywords:
-    'superfine calcium carbonate Nigeria, ultrafine calcium carbonate, micronized calcium carbonate, nano CaCO3 Nigeria, CaCO3 for paint, calcium carbonate toothpaste, plastics filler Nigeria, high-purity CaCO3 supplier Nigeria, Ziprus Chemicals, fine calcium carbonate Nigeria, industrial minerals Nigeria',
+    "superfine calcium carbonate Nigeria, ultrafine calcium carbonate Nigeria, micronized calcium carbonate, CaCO3 for paint, toothpaste calcium carbonate, plastics filler Nigeria, industrial calcium carbonate supplier",
   openGraph: {
-    title: 'Buy Superfine / Ultrafine Calcium Carbonate in Nigeria - Ziprus Chemicals',
+    title: "Superfine & Ultrafine Calcium Carbonate Supplier in Nigeria",
     description:
-      'High-purity superfine and ultrafine calcium carbonate designed for premium industries such as paints, plastics, adhesives, and toothpaste manufacturing. Reliable nationwide supply.',
+      "Premium micronized calcium carbonate for industrial manufacturing. Reliable bulk supply across Nigeria.",
   },
 };
 
 const CalciumCarbonate = () => {
   return (
-    <div className="bg-white text-black pt-20 mb-20">
-      <header>
-        <meta
-          name="description"
-          content="Buy superfine / ultrafine calcium carbonate from Ziprus Chemicals. Bulk orders for premium industrial applications."
-        />
-        <title>Buy Superfine / Ultrafine Calcium Carbonate in Nigeria - Ziprus Chemicals</title>
-      </header>
+    <main className="bg-white text-black pt-20">
 
-      <section className="relative bg-base_color w-full">
-        <div className="relative h-[60vh] sm:h-[80vh] w-full">
+      {/* ================= HERO ================= */}
+      <section className="relative w-full">
+        <div className="relative h-[65vh] sm:h-[80vh]">
           <Image
             src={banner}
-            alt="Superfine and ultrafine calcium carbonate for premium industrial use in Nigeria"
-            layout="fill"
-            objectFit="cover"
+            alt="Superfine and ultrafine calcium carbonate supplier in Nigeria"
+            fill
             priority
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-6 sm:px-16">
-            <h1 className="text-2xl sm:text-4xl font-bold text-white mb-4 leading-tight max-w-xl">
-              Buy Superfine / Ultrafine Calcium Carbonate in Nigeria
-            </h1>
-            <p className="text-white text-sm sm:text-base mb-6 max-w-lg">
-              High-purity micronized calcium carbonate designed for premium paint, plastics, toothpaste, and industrial manufacturing. Bulk supply starts from 15 tons!
-            </p>
-            <Link href="#quote-form" passHref className="inline-block bg-base_two text-white px-6 py-3 font-semibold rounded hover:bg-base_color hover:text-white transition duration-200">
-              Place Order Now!
-            </Link>
+
+          {/* Text Panel (same structure as last page) */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="bg-[#032C26]/95 max-w-xl mx-6 sm:ml-16 p-6 sm:p-10 rounded-2xl shadow-2xl">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                Superfine & Ultrafine Calcium Carbonate in Nigeria
+              </h1>
+
+              <p className="mt-4 text-gray-200 text-sm sm:text-base">
+                High-purity micronized calcium carbonate engineered for premium
+                paint, plastics, toothpaste, coatings, and adhesive production.
+                Bulk supply from 30 tons nationwide.
+              </p>
+
+              <Link
+                href="#quote-form"
+                className="inline-block mt-6 bg-[#0CC76D] text-[#032C26] px-6 py-3 rounded-lg font-semibold shadow hover:opacity-90 transition"
+              >
+                Request Bulk Quote
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-base_color text-white px-4 sm:px-10 py-16">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">
-            Why Choose Superfine / Ultrafine Calcium Carbonate from Ziprus Chemicals?
+      {/* ================= WHY US ================= */}
+      <section className="bg-[#032C26] text-white py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10">
+            Why Choose Our Superfine & Ultrafine Calcium Carbonate?
           </h2>
-          <div className="flex flex-col md:flex-row justify-center items-start md:items-center gap-8">
-            <ul className="space-y-4 text-lg list-inside">
-              <li>✅ Ultra-fine particle size for superior smoothness & brightness</li>
-              <li>✅ Ideal for high-end paint, coatings, adhesives, toothpaste, and plastics</li>
-              <li>✅ Learn more about <Link href="https://blog.zipruschemicals.com/calcium-carbonate-in-paint-industry/" target="_blank" className="underline text-white hover:text-base_two">CaCO3 in the paint industry</Link></li>
-            </ul>
-            <ul className="space-y-4 text-lg list-inside">
-              <li>✅ High whiteness & excellent dispersibility</li>
-              <li>✅ Nationwide fast delivery across Nigeria</li>
-              <li>✅ See related products: <Link href="https://www.zipruschemicals.com/calcium-carbonate-dolomite" target="_blank" className="underline text-white hover:text-base_two">Calcium Carbonate & Dolomite</Link></li>
-            </ul>
-          </div>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-12">
-            <div className="w-full sm:w-1/3">
-              <Image
-                src={img1}
-                alt="Superfine calcium carbonate powder for high-quality paint"
-                className="rounded shadow"
-                placeholder="blur"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full sm:w-1/3">
-              <Image
-                src={img2}
-                alt="Ultrafine calcium carbonate for plastics and industrial applications"
-                className="rounded shadow"
-                placeholder="blur"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full sm:w-1/3">
-              <Image
-                src={img3}
-                alt="Micronized CaCO3 for toothpaste and adhesives"
-                className="rounded shadow"
-                placeholder="blur"
-                loading="lazy"
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+            <ul className="space-y-4">
+              <li>✅ Ultra-fine particle size for smooth finishes</li>
+              <li>✅ High brightness & consistent whiteness</li>
+              <li>✅ Excellent dispersion in liquid systems</li>
+            </ul>
+            <ul className="space-y-4">
+              <li>✅ Ideal for premium industrial formulations</li>
+              <li>✅ Stable quality for mass production</li>
+              <li>✅ Reliable nationwide delivery</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="bg-base_text text-white py-12 px-4">
+      {/* ================= USE-CASE CARDS (SAME STRUCTURE) ================= */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+          {/* CARD 1 */}
+          <div className="rounded-xl overflow-hidden shadow-lg group">
+            <Image
+              src={img1}
+              alt="Superfine calcium carbonate for premium paint and coatings"
+              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="bg-[#032C26] px-4 py-3">
+              <h3 className="text-white font-semibold text-sm">
+                Ultrafine loaded 
+              </h3>
+              <p className="text-[#0CC76D] text-xs mt-1">
+                A truck of Ultrafine ready for delivery
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 2 */}
+          <div className="rounded-xl overflow-hidden shadow-lg group">
+            <Image
+              src={img2}
+              alt="Ultrafine calcium carbonate for plastics and adhesives"
+              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="bg-[#032C26] px-4 py-3">
+              <h3 className="text-white font-semibold text-sm">
+                Plastics & Adhesives (Ultrafine Grade)
+              </h3>
+              <p className="text-[#0CC76D] text-xs mt-1">
+                Strength enhancement • Fine particle control
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 3 */}
+          <div className="rounded-xl overflow-hidden shadow-lg group">
+            <Image
+              src={img3}
+              alt="Micronized calcium carbonate for toothpaste manufacturing"
+              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="bg-[#032C26] px-4 py-3">
+              <h3 className="text-white font-semibold text-sm">
+                Toothpaste & Paints etc
+              </h3>
+              <p className="text-[#0CC76D] text-xs mt-1">
+                Safe • Consistent • High purity
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ================= INDUSTRIES ================= */}
+      <section className="bg-[#035145] text-white py-14 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-            Industries We Supply in Nigeria
+            Industries We Supply Across Nigeria
           </h2>
           <p className="text-base sm:text-lg leading-relaxed">
-            Premium Paint & Coating Manufacturers | Toothpaste Producers | Plastics & Polymers | Adhesives & Sealants | Printing Ink | High-grade Packaging | Industrial Chemical Manufacturers
-          </p>
-          <p className="mt-6 text-sm">
-            Recognized among the <a href="https://www.nairaland.com/8394938/trusted-calcium-carbonate-supplier-nigeria#134930172" target="_blank" className="underline hover:text-base_two">trusted fine CaCO3 suppliers in Nigeria</a> and <a href="https://www.nairaland.com/8404044/top-calcium-carbonate-manufacturers-nigeria#135062191" target="_blank" className="underline hover:text-base_two">top industrial mineral distributors</a>.
+            Paint & Coatings • Toothpaste & Personal Care • Plastics & Polymers •
+            Adhesives & Sealants • Printing Ink • Packaging Materials
           </p>
         </div>
       </section>
 
-      <section className="order-form bg-base_color py-16 px-4 sm:px-0" id="quote-form">
-        <div className="order-form-container w-3/4 mx-auto flex items-center flex-col pt-16">
-          <h2 className="text-xl sm:text-3xl font-bold text-base_text mb-4 text-center">
-            Request a Quote - Bulk Orders Starting from 30 Tons!
+      {/* ================= ORDER FORM ================= */}
+      <section
+        id="quote-form"
+        className="bg-[#032C26] py-20 px-6 mb-20"
+      >
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#0CC76D] mb-4">
+            Request a Bulk Price Quote
           </h2>
-          <p className="text-white mb-8 leading-relaxed text-center hidden sm:block">
-            Complete the form below to order superfine / ultrafine calcium carbonate. Our sales team will respond with pricing and delivery options.
+
+          <p className="text-white mb-10 max-w-2xl mx-auto">
+            Minimum order quantity: 30 tons. Submit your requirements for
+            superfine or ultrafine calcium carbonate and our team will respond
+            with pricing, specifications, and delivery timelines.
           </p>
 
-          <div className="w-[99%] sm:w-[50%] sm:p-10 sm:rounded-[50px] sm:border-2 border-white border-solid mb-[40px]">
+          <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-xl max-w-2xl mx-auto text-left">
             <OrderForm />
           </div>
         </div>
       </section>
-    </div>
+
+    </main>
   );
 };
 

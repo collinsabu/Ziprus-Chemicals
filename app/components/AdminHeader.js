@@ -16,6 +16,7 @@ const navLinks = [
   { name: "Loading/Payment", href: "/loadingandpayment" },
   { name: "View Load/Payment", href: "/viewloadingandpayment" },
   { name: "Balance", href: "/balance" },
+  { name: "Pricing", href: "/internal/pricing" },
   { name: "PhoneBook", href: "/business-partners" },
 ];
 

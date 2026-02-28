@@ -10,7 +10,7 @@ const data = [
     id: 2,
     question: "How long does it take to process and supply an order?",
     answer:
-      "We strive to process and deliver your order as quickly as possible. Typically, orders are processed and dispatched within [insert number of days, e.g., 5-7 business days]. However, delivery times may vary depending on factors such as truck availability and distance to the destination. We always aim to keep you informed of any delays and work to resolve them promptly",
+      "We strive to process and deliver your order as quickly as possible. Typically, orders are processed and dispatched ASAP e.g., 5-7 business days. However, delivery times may vary depending on factors such as truck availability and distance to the destination. We always aim to keep you informed of any delays and work to resolve them promptly",
   },
 
   {

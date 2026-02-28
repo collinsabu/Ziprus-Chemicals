@@ -2,26 +2,36 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-// pages/api/order.js
-import connectMongoDB from "../../libs/mongodb"; // Ensure you have this utility to connect to MongoDB
-import Order from "../../models/Order"; // Ensure the Order model/schema is correctly imported
+import connectMongoDB from "../../libs/mongodb";
+import Order from "../../models/Order";
 import { NextResponse } from "next/server";
 
+// ======================
+// CREATE ORDER
+// ======================
 export async function POST(request) {
   try {
-    // Extract data from the request body
-    const { name, company, email, supply, number, material, body } = await request.json();
+    const { name, company, email, supply, number, material, body } =
+      await request.json();
 
-    // Check if all required fields are provided
-    if (!name || !company || !email || !supply || !number || !material || !body) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    if (
+      !name ||
+      !company ||
+      !email ||
+      !supply ||
+      !number ||
+      !material ||
+      !body
+    ) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
-    // Connect to MongoDB
     await connectMongoDB();
 
-    // Create a new order document using the Order model/schema
-    const order = new Order({
+    const order = await Order.create({
       name,
       company,
       email,
@@ -31,30 +41,51 @@ export async function POST(request) {
       body,
     });
 
-    // Save the order to the database
-    await order.save();
-
-    // Return a success response
-    return NextResponse.json({ message: "Order Created", order }, { status: 201 });
+    return NextResponse.json(
+      { message: "Order Created", order },
+      { status: 201 },
+    );
   } catch (error) {
-    // Handle errors
     console.error("Error creating order:", error.message);
-    return NextResponse.json({ error: "Error creating order" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error creating order" },
+      { status: 500 },
+    );
   }
 }
 
-export async function GET(request) {
+// ======================
+// GET ORDERS (Newest First)
+// ======================
+export async function GET() {
   try {
     await connectMongoDB();
-    const orders = await Order.find({});
+
+    const orders = await Order.find({})
+      .sort({ createdAt: -1 })
+      .exec();
+
+    // ✅ ADD THE LOG RIGHT HERE
+    console.log(
+      orders.map(o => ({
+        id: o._id,
+        createdAt: o.createdAt
+      }))
+    );
 
     return NextResponse.json(orders, { status: 200 });
   } catch (error) {
-    console.error("Error fetching orders:", error.message);
-    return NextResponse.error({ message: error.message });
+    console.error("Error fetching orders:", error);
+    return NextResponse.json(
+      { error: "Error fetching orders" },
+      { status: 500 }
+    );
   }
 }
 
+// ======================
+// DELETE ORDER
+// ======================
 export async function DELETE(request) {
   try {
     const url = new URL(request.url);
@@ -65,15 +96,22 @@ export async function DELETE(request) {
     }
 
     await connectMongoDB();
+
     const result = await Order.findByIdAndDelete(id);
 
     if (!result) {
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ message: "Order deleted successfully" }, { status: 200 });
+    return NextResponse.json(
+      { message: "Order deleted successfully" },
+      { status: 200 },
+    );
   } catch (error) {
     console.error("Error deleting order:", error.message);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error deleting order" },
+      { status: 500 },
+    );
   }
 }

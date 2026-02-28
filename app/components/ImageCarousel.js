@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import "./carousel.css"; // 👈 Add this line
 
 const ImageCarousel = () => {
   const desktopImages = [
@@ -25,7 +26,7 @@ const ImageCarousel = () => {
 
   return (
     <div className="w-full bg-base_color">
-
+      
       {/* ================= DESKTOP CAROUSEL ================= */}
       <div className="hidden md:block">
         <Swiper
@@ -35,7 +36,7 @@ const ImageCarousel = () => {
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           loop
-          className="w-full h-[600px]"
+          className="w-full h-[600px] custom-swiper"
         >
           {desktopImages.map((image, index) => (
             <SwiperSlide key={index}>
@@ -57,7 +58,7 @@ const ImageCarousel = () => {
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           loop
-          className="w-full h-[280px]"
+          className="w-full h-[280px] custom-swiper"
         >
           {mobileImages.map((image, index) => (
             <SwiperSlide key={index}>
@@ -70,7 +71,6 @@ const ImageCarousel = () => {
           ))}
         </Swiper>
       </div>
-
     </div>
   );
 };

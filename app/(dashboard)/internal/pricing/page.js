@@ -1,11 +1,23 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const states = [
   "All States",
-  "Lagos","Ogun","Benin","Asaba","Owerri","Onitsha",
-  "Enugu","Aba","Abuja","Kaduna","Jos","Benue","Sokoto"
+  "Lagos",
+  "Ogun",
+  "Benin",
+  "Asaba",
+  "Owerri",
+  "Onitsha",
+  "Enugu",
+  "Aba",
+  "Abuja",
+  "Kaduna",
+  "Jos",
+  "Benue",
+  "Sokoto",
 ];
 
 const materials = [
@@ -93,10 +105,15 @@ export default function PricingPage() {
   return (
     <main className="py-40 bg-base_text">
       <div className="px-4 md:px-6 max-w-7xl mx-auto py-10 bg-base_color">
-
-        <h1 className="text-2xl font-bold mb-6 text-base_text">
-          Internal Pricing Dashboard
-        </h1>
+        <div className="flex between justify-between">
+          {" "}
+          <h1 className="text-2xl font-bold mb-6 text-base_text">
+            Internal Pricing Dashboard
+          </h1>
+          <Link href="/admin" className="text-2xl font-bold mb-6 text-base_text cursor-pointer">
+            Return to Admin
+          </Link>
+        </div>
 
         {/* ================= ADD FORM ================= */}
 
@@ -104,12 +121,9 @@ export default function PricingPage() {
           onSubmit={handleSubmit}
           className="grid md:grid-cols-3 gap-4 mb-10 bg-base_two p-6 rounded-xl shadow border"
         >
-
           <select
             value={form.state}
-            onChange={(e) =>
-              setForm({ ...form, state: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, state: e.target.value })}
             className="border p-2 rounded"
             required
           >
@@ -121,9 +135,7 @@ export default function PricingPage() {
 
           <select
             value={form.material}
-            onChange={(e) =>
-              setForm({ ...form, material: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, material: e.target.value })}
             className="border p-2 rounded"
             required
           >
@@ -155,17 +167,13 @@ export default function PricingPage() {
           <button className="bg-base_text text-black py-2 rounded font-semibold hover:opacity-90 transition">
             Add Price
           </button>
-
         </form>
 
         {/* ================= STATE FILTER MENU ================= */}
 
         <div className="mb-6 overflow-x-auto">
-
           <div className="flex gap-2 min-w-max">
-
             {states.map((state) => (
-
               <button
                 key={state}
                 onClick={() => setSelectedState(state)}
@@ -178,81 +186,58 @@ export default function PricingPage() {
               >
                 {state}
               </button>
-
             ))}
-
           </div>
-
         </div>
 
         {/* ================= PROFIT TOGGLE ================= */}
 
         <div className="flex justify-between mb-6">
-
           <button
             onClick={() => setShowProfit(!showProfit)}
             className="bg-base_text px-4 py-2 rounded font-medium"
           >
             {showProfit ? "Hide Profit" : "Show Profit"}
           </button>
-
         </div>
 
         {/* ================= EMPTY STATE ================= */}
 
         {filteredPrices.length === 0 && (
-
           <div className="text-center py-10 text-white opacity-80">
             No pricing found for {selectedState}
           </div>
-
         )}
 
         {/* ================= DESKTOP TABLE ================= */}
 
         {filteredPrices.length > 0 && (
-
           <div className="hidden md:block overflow-x-auto rounded-xl shadow border">
-
             <table className="w-full table-fixed border-collapse">
-
               <thead className="bg-base_two sticky top-0 text-white">
                 <tr>
-
                   <th className="w-[15%] px-4 py-3 text-left">State</th>
                   <th className="w-[30%] px-4 py-3 text-left">Material</th>
 
                   {showProfit && (
-                    <th className="w-[15%] px-4 py-3 text-right">
-                      Profit
-                    </th>
+                    <th className="w-[15%] px-4 py-3 text-right">Profit</th>
                   )}
 
-                  <th className="w-[20%] px-4 py-3 text-right">
-                    Price / Ton
-                  </th>
+                  <th className="w-[20%] px-4 py-3 text-right">Price / Ton</th>
 
-                  <th className="w-[20%] px-4 py-3 text-center">
-                    Actions
-                  </th>
-
+                  <th className="w-[20%] px-4 py-3 text-center">Actions</th>
                 </tr>
               </thead>
 
               <tbody>
-
                 {filteredPrices.map((p) => (
-
                   <tr
                     key={p._id}
                     className="border-t text-white hover:bg-black"
                   >
-
                     <td className="px-4 py-3">{p.state}</td>
 
-                    <td className="px-4 py-3 truncate">
-                      {p.material}
-                    </td>
+                    <td className="px-4 py-3 truncate">{p.material}</td>
 
                     {showProfit && (
                       <td className="px-4 py-3 text-right">
@@ -265,9 +250,7 @@ export default function PricingPage() {
                     </td>
 
                     <td className="px-4 py-3">
-
                       <div className="flex justify-center gap-2">
-
                         <button
                           onClick={() => setEditing(p)}
                           className="bg-blue-500 text-white px-3 py-1 rounded text-sm"
@@ -281,34 +264,23 @@ export default function PricingPage() {
                         >
                           Delete
                         </button>
-
                       </div>
-
                     </td>
-
                   </tr>
-
                 ))}
-
               </tbody>
-
             </table>
-
           </div>
-
         )}
 
         {/* ================= MOBILE CARDS ================= */}
 
         <div className="md:hidden space-y-4">
-
           {filteredPrices.map((p) => (
-
             <div
               key={p._id}
               className="bg-white rounded-xl shadow border p-4 space-y-2"
             >
-
               <div className="flex justify-between">
                 <span className="font-medium">State</span>
                 <span className="font-medium">{p.state}</span>
@@ -316,9 +288,7 @@ export default function PricingPage() {
 
               <div className="flex justify-between">
                 <span className="font-medium">Material</span>
-                <span className="font-medium text-right">
-                  {p.material}
-                </span>
+                <span className="font-medium text-right">{p.material}</span>
               </div>
 
               {showProfit && (
@@ -334,7 +304,6 @@ export default function PricingPage() {
               </div>
 
               <div className="flex gap-2 pt-2">
-
                 <button
                   onClick={() => setEditing(p)}
                   className="flex-1 bg-base_color font-medium text-white py-2 rounded"
@@ -348,51 +317,36 @@ export default function PricingPage() {
                 >
                   Delete
                 </button>
-
               </div>
-
             </div>
-
           ))}
-
         </div>
 
         {/* ================= EDIT MODAL ================= */}
 
         {editing && (
-
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center px-4">
-
             <div className="bg-white p-6 rounded-xl w-full max-w-md space-y-3">
+              <h2 className="text-lg font-bold">Edit Price</h2>
 
-              <h2 className="text-lg font-bold">
-                Edit Price
-              </h2>
-
-              {[
-                "materialCost",
-                "transportCost",
-                "loadingCost",
-                "profit",
-              ].map((f) => (
-
-                <input
-                  key={f}
-                  type="number"
-                  value={editing[f]}
-                  onChange={(e) =>
-                    setEditing({
-                      ...editing,
-                      [f]: e.target.value,
-                    })
-                  }
-                  className="w-full border p-2 rounded"
-                />
-
-              ))}
+              {["materialCost", "transportCost", "loadingCost", "profit"].map(
+                (f) => (
+                  <input
+                    key={f}
+                    type="number"
+                    value={editing[f]}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        [f]: e.target.value,
+                      })
+                    }
+                    className="w-full border p-2 rounded"
+                  />
+                ),
+              )}
 
               <div className="flex justify-end gap-3">
-
                 <button
                   onClick={() => setEditing(null)}
                   className="px-4 py-2 border rounded"
@@ -406,15 +360,10 @@ export default function PricingPage() {
                 >
                   Save
                 </button>
-
               </div>
-
             </div>
-
           </div>
-
         )}
-
       </div>
     </main>
   );

@@ -20,7 +20,7 @@ export const metadata = {
   description:
     'High-purity dolomite for industrial applications in Nigeria. Ideal for metallurgy, chemical production, ceramics, and agriculture. Bulk supply from 15 tons.',
   keywords:
-    'dolomite Nigeria, industrial dolomite, dolomite for metallurgy, dolomite for ceramics, dolomite for agriculture, magnesium source, chemical dolomite, bulk dolomite supplier, high purity dolomite, Ziprus Chemicals',
+    'dolomite Nigeria, industrial dolomite, dolomite for paint production, dolomite for ceramics, dolomite for agriculture, magnesium source, chemical dolomite, bulk dolomite supplier, high purity dolomite, Ziprus Chemicals',
   openGraph: {
     title: 'Industrial Dolomite Supplier in Nigeria | Ziprus Chemicals',
     description:
@@ -73,7 +73,7 @@ const DolomiteLanding = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
             <ul className="space-y-4">
               <li>✅ High-purity dolomite with consistent particle size</li>
-              <li>✅ Ideal for metallurgical, chemical, ceramic, and agricultural applications</li>
+              <li>✅ Ideal for Piant Production, chemical, ceramic, and agricultural applications etc</li>
               <li>✅ Reliable, industrial-grade dolomite tested for quality</li>
             </ul>
             <ul className="space-y-4">

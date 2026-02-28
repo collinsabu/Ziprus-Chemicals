@@ -1,0 +1,52 @@
+/* ========================= */
+/* NAVIGATION ARROWS */
+/* ========================= */
+
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.custom-swiper .swiper-button-next:hover,
+.custom-swiper .swiper-button-prev:hover {
+  background-color: #0ea5e9; /* Change to your brand color */
+  transform: scale(1.1);
+}
+
+/* Change arrow icon size */
+.custom-swiper .swiper-button-next::after,
+.custom-swiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+  .custom-swiper .swiper-button-next,
+  .custom-swiper .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* ========================= */
+/* PAGINATION DOTS */
+/* ========================= */
+
+.custom-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.custom-swiper .swiper-pagination-bullet-active {
+  background-color: white; /* Active color */
+  opacity: 1;
+  transform: scale(1.3);
+}

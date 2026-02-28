@@ -57,7 +57,7 @@ export default function UltrafinePromoSection() {
               </ul>
 
               <Link
-                href="/ultrafine-calcium"
+                href="/super-fine-calcium"
                 className="inline-block bg-[#0CC76D] text-[#032C26] font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform"
               >
                 Request a Quote →

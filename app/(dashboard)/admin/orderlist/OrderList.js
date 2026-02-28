@@ -1,14 +1,15 @@
 import Link from "next/link";
 import RemoveBtn from "../../../components/RemoveBtn";
 
+// ======================
+// FETCH ORDERS FROM LOCAL API
+// ======================
 async function getList() {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL || "https://www.zipruschemicals.com/";
-    const res = await fetch(`${baseUrl}/api/order`, {
+    // ✅ Use relative URL in server components
+    const res = await fetch(`https://www.zipruschemicals.com/api/order`, {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
+      cache: "no-store", // ensures we always get fresh data
     });
 
     if (!res.ok) throw new Error("Failed to fetch orders");
@@ -20,8 +21,11 @@ async function getList() {
   }
 }
 
+// ======================
+// ORDER LIST PAGE
+// ======================
 export default async function OrderList() {
-  const orders = await getList();
+  const orders = await getList(); // now always fetches local API
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);

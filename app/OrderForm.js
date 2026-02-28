@@ -17,8 +17,58 @@ export default function OrderForm() {
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+
+  // ----------------------
+  // VALIDATION FUNCTION
+  // ----------------------
+  const validate = () => {
+    const newErrors = {};
+
+    if (!name.trim()) newErrors.name = "Name is required";
+    else if (!/^[a-zA-Z\s]{3,50}$/.test(name))
+      newErrors.name = "3–50 letters only";
+
+    if (!company.trim()) newErrors.company = "Company name is required";
+
+    if (!email.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      newErrors.email = "Invalid email address";
+
+    if (!supply.trim()) newErrors.supply = "Supply address is required";
+
+    if (!number.trim()) newErrors.number = "Phone number required";
+    else if (!/^[0-9]{7,15}$/.test(number))
+      newErrors.number = "7–15 digits only";
+
+    if (!material.trim()) newErrors.material = "Material type is required";
+
+    if (body && (body.length < 10 || body.length > 500))
+      newErrors.body = "Message must be 10–500 characters";
+
+    setErrors(newErrors);
+    return newErrors;
+  };
+
+  const handleBlur = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    validate();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      toast.error("Please fix the errors before submitting", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     const newOrder = { name, company, email, supply, number, material, body };
@@ -32,8 +82,8 @@ export default function OrderForm() {
 
       const json = await res.json();
 
-      if (json.error) {
-        toast.error(json.error, {
+      if (!res.ok || json.error) {
+        toast.error(json.error || "Submission failed", {
           position: "top-right",
           autoClose: 3000,
         });
@@ -54,6 +104,15 @@ export default function OrderForm() {
     }
   };
 
+  const inputClass = (field) =>
+    `w-full h-10 px-3 rounded-md border bg-white text-black
+     focus:outline-none focus:ring-2 focus:ring-base_text transition
+     ${
+       touched[field] && errors[field]
+         ? "border-red-500"
+         : "border-gray-300"
+     }`;
+
   return (
     <>
       <form
@@ -66,21 +125,28 @@ export default function OrderForm() {
             <label className="block text-white mb-1">Your Name</label>
             <input
               type="text"
-              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
-              required
-              onChange={(e) => setName(e.target.value)}
+              className={inputClass("name")}
               value={name}
+              onChange={(e) => setName(e.target.value)}
+              onBlur={() => handleBlur("name")}
             />
+            {touched.name && errors.name && (
+              <p className="text-red-400 text-xs mt-1">{errors.name}</p>
+            )}
           </div>
+
           <div>
             <label className="block text-white mb-1">Company Name</label>
             <input
               type="text"
-              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
-              required
-              onChange={(e) => setCompany(e.target.value)}
+              className={inputClass("company")}
               value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              onBlur={() => handleBlur("company")}
             />
+            {touched.company && errors.company && (
+              <p className="text-red-400 text-xs mt-1">{errors.company}</p>
+            )}
           </div>
         </div>
 
@@ -89,11 +155,14 @@ export default function OrderForm() {
           <label className="block text-white mb-1">Email Address</label>
           <input
             type="email"
-            className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
-            required
-            onChange={(e) => setEmail(e.target.value)}
+            className={inputClass("email")}
             value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => handleBlur("email")}
           />
+          {touched.email && errors.email && (
+            <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+          )}
         </div>
 
         {/* Supply Address */}
@@ -101,11 +170,14 @@ export default function OrderForm() {
           <label className="block text-white mb-1">Supply Address</label>
           <input
             type="text"
-            className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
-            required
-            onChange={(e) => setSupply(e.target.value)}
+            className={inputClass("supply")}
             value={supply}
+            onChange={(e) => setSupply(e.target.value)}
+            onBlur={() => handleBlur("supply")}
           />
+          {touched.supply && errors.supply && (
+            <p className="text-red-400 text-xs mt-1">{errors.supply}</p>
+          )}
         </div>
 
         {/* Phone & Material */}
@@ -114,21 +186,30 @@ export default function OrderForm() {
             <label className="block text-white mb-1">Phone Number</label>
             <input
               type="text"
-              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
-              required
-              onChange={(e) => setNumber(e.target.value)}
+              className={inputClass("number")}
               value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              onBlur={() => handleBlur("number")}
             />
+            {touched.number && errors.number && (
+              <p className="text-red-400 text-xs mt-1">{errors.number}</p>
+            )}
           </div>
+
           <div>
             <label className="block text-white mb-1">Material Type</label>
             <input
               type="text"
-              className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text"
-              required
-              onChange={(e) => setMaterial(e.target.value)}
+              className={inputClass("material")}
               value={material}
+              onChange={(e) => setMaterial(e.target.value)}
+              onBlur={() => handleBlur("material")}
             />
+            {touched.material && errors.material && (
+              <p className="text-red-400 text-xs mt-1">
+                {errors.material}
+              </p>
+            )}
           </div>
         </div>
 
@@ -136,17 +217,28 @@ export default function OrderForm() {
         <div>
           <label className="block text-white mb-1">Message</label>
           <textarea
-            className="w-full h-28 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-base_text resize-none"
-            onChange={(e) => setBody(e.target.value)}
+            className={`w-full h-28 px-3 py-2 rounded-md border bg-white text-black
+            focus:outline-none focus:ring-2 focus:ring-base_text transition resize-none
+            ${
+              touched.body && errors.body
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
             value={body}
+            onChange={(e) => setBody(e.target.value)}
+            onBlur={() => handleBlur("body")}
           />
+          {touched.body && errors.body && (
+            <p className="text-red-400 text-xs mt-1">{errors.body}</p>
+          )}
         </div>
 
-        {/* Submit */}
+        {/* Submit (Original Style Kept) */}
         <div className="flex justify-center">
           <button
-            className="text-white bg-base_color border-2 px-10 py-2 rounded-full cursor-pointer hover:bg-lime-950 transition-all ease-in-out duration-300"
+            type="submit"
             disabled={isLoading}
+            className="text-white bg-base_color border-2 px-10 py-2 rounded-full cursor-pointer hover:bg-lime-950 transition-all ease-in-out duration-300 disabled:opacity-50"
           >
             {isLoading ? "Submitting..." : "Submit"}
           </button>

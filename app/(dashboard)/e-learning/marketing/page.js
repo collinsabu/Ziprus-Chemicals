@@ -31,7 +31,7 @@ export default function MarketingManualPage() {
   };
 
   return (
-    <main className="flex min-h-screen bg-gradient-to-b from-base_two to-base_color text-white my-14 pl-20 py-10">
+    <main className="flex min-h-screen bg-gradient-to-b from-base_two to-base_color text-white my-14 pl-20 py-8">
       {/* Sidebar */}
       <aside className="hidden lg:flex lg:flex-col w-64 sticky top-0 h-screen bg-base_text/10 p-6 overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Contents</h2>

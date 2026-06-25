@@ -2,17 +2,18 @@
 // Disable Vercel caching completely
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-// src/app/api/bagAccountEntries/route.js
 
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import BagAccountEntry from "../../models/BagAccountEntry";
+import { sendBagAccountEmail } from "./email";
 
 export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, purchase, used, balance, comment } = await request.json();
+    const { date, time, purchase, used, balance, comment } =
+      await request.json();
 
     const newBagAccountEntry = new BagAccountEntry({
       date,
@@ -25,10 +26,23 @@ export async function POST(request) {
 
     await newBagAccountEntry.save();
 
-    return NextResponse.json({ message: "Bag account entry created successfully", data: newBagAccountEntry }, { status: 201 });
+    // ✅ SEND EMAIL NOTIFICATION
+    await sendBagAccountEmail(newBagAccountEntry);
+
+    return NextResponse.json(
+      {
+        message: "Bag account entry created successfully",
+        data: newBagAccountEntry,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error creating bag account entry:", error.message);
-    return NextResponse.json({ error: "Error creating bag account entry" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Error creating bag account entry" },
+      { status: 500 }
+    );
   }
 }
 

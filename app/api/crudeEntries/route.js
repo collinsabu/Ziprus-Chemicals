@@ -1,18 +1,26 @@
-// Disable Vercel caching completely
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-// src/app/api/crudeEntries/route.js
 
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import CrudeEntry from "../../models/CrudeEntry";
+import { sendCrudeEntryEmail } from "./email";
 
 export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, materialKind, materialType, vehicleNumber, driverName, driverNumber, tonnage, comment } = await request.json();
+    const {
+      date,
+      time,
+      materialKind,
+      materialType,
+      vehicleNumber,
+      driverName,
+      driverNumber,
+      tonnage,
+      comment,
+    } = await request.json();
 
     const newCrudeEntry = new CrudeEntry({
       date,
@@ -28,13 +36,25 @@ export async function POST(request) {
 
     await newCrudeEntry.save();
 
-    return NextResponse.json({ message: "Crude entry created successfully", data: newCrudeEntry }, { status: 201 });
+    // 📧 SEND EMAIL NOTIFICATION
+    await sendCrudeEntryEmail(newCrudeEntry);
+
+    return NextResponse.json(
+      {
+        message: "Crude entry created successfully",
+        data: newCrudeEntry,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error creating crude entry:", error.message);
-    return NextResponse.json({ error: "Error creating crude entry" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Error creating crude entry" },
+      { status: 500 }
+    );
   }
 }
-
 
 export async function GET(request) {
   try {

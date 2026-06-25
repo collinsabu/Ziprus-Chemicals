@@ -2,11 +2,10 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-// src/app/api/productionRecords/route.js
-
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import ProductionRecord from "../../models/ProductionRecord";
+import { sendProductionRecordEmail } from "./email";
 
 export async function POST(request) {
   try {
@@ -15,7 +14,7 @@ export async function POST(request) {
     const {
       date,
       time,
-      workerId, // Replaced customerId with workerId
+      workerId,
       materialType,
       totalProduce,
       amountPerBag,
@@ -26,7 +25,7 @@ export async function POST(request) {
     const newProductionRecord = new ProductionRecord({
       date,
       time,
-      workerId, // Changed from customerId to workerId
+      workerId,
       materialType,
       totalProduce,
       amountPerBag,
@@ -36,13 +35,29 @@ export async function POST(request) {
 
     await newProductionRecord.save();
 
+    // SEND EMAIL
+    await sendProductionRecordEmail(newProductionRecord);
+
     return NextResponse.json(
-      { message: "Production record created successfully", data: newProductionRecord },
-      { status: 201 }
+      {
+        message: "Production record created successfully",
+        data: newProductionRecord,
+      },
+      {
+        status: 201,
+      }
     );
   } catch (error) {
-    console.error("Error creating production record:", error.message);
-    return NextResponse.json({ error: "Error creating production record" }, { status: 500 });
+    console.error("Error creating production record:", error);
+
+    return NextResponse.json(
+      {
+        error: "Error creating production record",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 

@@ -1,28 +1,26 @@
-// Disable Vercel caching completely
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-// src/app/api/despatchRecords/route.js
 
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import DespatchRecord from "../../models/DespatchRecord";
+import { sendDespatchEmail } from "./email";
 
 export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { 
-      date, 
-      time, 
-      materialType, 
-      vehicleNumber, 
-      driverName, 
-      destination, 
-      numberLoaded, 
-      balanceBag, 
-      tonnage,        // ✅ ADDED HERE
-      comment 
+    const {
+      date,
+      time,
+      materialType,
+      vehicleNumber,
+      driverName,
+      destination,
+      numberLoaded,
+      balanceBag,
+      tonnage,
+      comment,
     } = await request.json();
 
     const newDespatchRecord = new DespatchRecord({
@@ -34,19 +32,28 @@ export async function POST(request) {
       destination,
       numberLoaded,
       balanceBag,
-      tonnage,         // ✅ ADDED HERE
+      tonnage,
       comment,
     });
 
     await newDespatchRecord.save();
 
+    // ✅ SEND EMAIL AFTER SAVE
+    await sendDespatchEmail(newDespatchRecord);
+
     return NextResponse.json(
-      { message: "Despatch record created successfully", data: newDespatchRecord },
+      {
+        message: "Despatch record created successfully",
+        data: newDespatchRecord,
+      },
       { status: 201 }
     );
   } catch (error) {
     console.error("Error creating despatch record:", error.message);
-    return NextResponse.json({ error: "Error creating despatch record" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error creating despatch record" },
+      { status: 500 }
+    );
   }
 }
 

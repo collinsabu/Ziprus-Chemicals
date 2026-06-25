@@ -5,17 +5,27 @@ export const revalidate = 0;
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../libs/mongodb";
 import WagesAccount from "../../models/WagesAccount";
+import { sendWagesAccountEmail } from "./email";
 
 export async function POST(request) {
   try {
     await connectMongoDB();
 
-    const { date, time, workerId, bags, materialType, paid, comment } = await request.json();
+    const {
+      date,
+      time,
+      workerId,
+      bags,
+      materialType,
+      paid,
+      comment,
+    } = await request.json();
 
+    // 1️⃣ Create and save record
     const newWagesAccount = new WagesAccount({
       date,
       time,
-      workerId, // Updated from workerName to workerId
+      workerId,
       bags,
       materialType,
       paid,
@@ -24,12 +34,32 @@ export async function POST(request) {
 
     await newWagesAccount.save();
 
-    return NextResponse.json({ message: "Wages account record created successfully", data: newWagesAccount }, { status: 201 });
+    // 2️⃣ Send email (DO NOT block API if email fails)
+    try {
+      await sendWagesAccountEmail(newWagesAccount);
+    } catch (emailError) {
+      console.error("Email send failed (non-blocking):", emailError.message);
+    }
+
+    // 3️⃣ Return success response
+    return NextResponse.json(
+      {
+        message: "Wages account record created successfully",
+        data: newWagesAccount,
+      },
+      { status: 201 }
+    );
+
   } catch (error) {
     console.error("Error creating wages account record:", error.message);
-    return NextResponse.json({ error: "Error creating wages account record" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Error creating wages account record" },
+      { status: 500 }
+    );
   }
 }
+
 
 export async function GET(request) {
   try {

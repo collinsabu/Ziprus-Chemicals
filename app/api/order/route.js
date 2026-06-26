@@ -5,14 +5,22 @@ export const revalidate = 0;
 import connectMongoDB from "../../libs/mongodb";
 import Order from "../../models/Order";
 import { NextResponse } from "next/server";
+import { sendOrderEmail } from "./email";
 
 // ======================
 // CREATE ORDER
 // ======================
 export async function POST(request) {
   try {
-    const { name, company, email, supply, number, material, body } =
-      await request.json();
+    const {
+      name,
+      company,
+      email,
+      supply,
+      number,
+      material,
+      body,
+    } = await request.json();
 
     if (
       !name ||
@@ -25,7 +33,7 @@ export async function POST(request) {
     ) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -41,15 +49,22 @@ export async function POST(request) {
       body,
     });
 
+    // Send notification email
+    await sendOrderEmail(order);
+
     return NextResponse.json(
-      { message: "Order Created", order },
-      { status: 201 },
+      {
+        message: "Order Created",
+        order,
+      },
+      { status: 201 }
     );
   } catch (error) {
     console.error("Error creating order:", error.message);
+
     return NextResponse.json(
       { error: "Error creating order" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

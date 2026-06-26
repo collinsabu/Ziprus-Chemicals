@@ -5,6 +5,7 @@ export const revalidate = 0;
 import connectMongoDB from "../../libs/mongodb"; // adjust path
 import Contact from "../../models/contact";
 import { NextResponse } from "next/server";
+import { sendContactEmail } from "./email";
 
 // pages/api/contacts/index.js
 export async function GET() {
@@ -23,33 +24,84 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { fullname, email, phonenumber, message } = await request.json();
+    const { fullname, email, phonenumber, message } =
+      await request.json();
 
+    // Validation
     const nameRegex = /^[a-zA-Z\s]{3,50}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]{7,15}$/;
 
-    if (!fullname || !nameRegex.test(fullname.trim()))
-      return NextResponse.json({ error: "Invalid full name" }, { status: 400 });
+    if (!fullname || !nameRegex.test(fullname.trim())) {
+      return NextResponse.json(
+        { error: "Invalid full name" },
+        { status: 400 }
+      );
+    }
 
-    if (!email || !emailRegex.test(email.trim()))
-      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+    if (!email || !emailRegex.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 }
+      );
+    }
 
-    if (!phonenumber || !phoneRegex.test(phonenumber.trim()))
-      return NextResponse.json({ error: "Invalid phone number" }, { status: 400 });
+    if (!phonenumber || !phoneRegex.test(phonenumber.trim())) {
+      return NextResponse.json(
+        { error: "Invalid phone number" },
+        { status: 400 }
+      );
+    }
 
-    if (!message || message.trim().length < 10 || message.trim().length > 500)
-      return NextResponse.json({ error: "Message must be 10-500 characters" }, { status: 400 });
+    if (
+      !message ||
+      message.trim().length < 10 ||
+      message.trim().length > 500
+    ) {
+      return NextResponse.json(
+        { error: "Message must be 10-500 characters" },
+        { status: 400 }
+      );
+    }
 
     await connectMongoDB();
 
-    const newContact = new Contact({ fullname, email, phonenumber, message });
-    await newContact.save();
+    // Save contact
+    const newContact = await Contact.create({
+      fullname: fullname.trim(),
+      email: email.trim(),
+      phonenumber: phonenumber.trim(),
+      message: message.trim(),
+    });
 
-    return NextResponse.json({ message: "Contact Created", contact: newContact }, { status: 201 });
+    // Send email notification
+    try {
+      await sendContactEmail(newContact);
+    } catch (emailError) {
+      console.error(
+        "Contact notification email failed:",
+        emailError
+      );
+      // Do not fail the request if email sending fails
+    }
+
+    return NextResponse.json(
+      {
+        message: "Contact Created",
+        contact: newContact,
+      },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error("Error creating contact:", error.message);
-    return NextResponse.json({ error: "Error creating contact" }, { status: 500 });
+    console.error(
+      "Error creating contact:",
+      error.message
+    );
+
+    return NextResponse.json(
+      { error: "Error creating contact" },
+      { status: 500 }
+    );
   }
 }
 

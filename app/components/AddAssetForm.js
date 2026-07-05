@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const AddAssetForm = () => {
+const AddAssetForm = ({ onSuccess, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -17,6 +17,8 @@ const AddAssetForm = () => {
     description: "",
   });
 
+  const [imageFile, setImageFile] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -26,214 +28,201 @@ const AddAssetForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
 
     try {
-      const res = await fetch("/api/assets", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      const data = new FormData();
+
+      // append text fields
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value);
       });
 
-      if (res.ok) {
-        setMessage("✅ Asset recorded successfully!");
-        setFormData({
-          name: "",
-          category: "",
-          purchaseDate: "",
-          purchaseCost: "",
-          supplier: "",
-          condition: "Good",
-          status: "Available",
-          assignedTo: "",
-          location: "",
-          serialNumber: "",
-          description: "",
-        });
-      } else {
-        setMessage("❌ Error saving asset.");
+      // append image
+      if (imageFile) {
+        data.append("image", imageFile);
       }
+
+      const res = await fetch("/api/assets", {
+        method: "POST",
+        body: data,
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        setMessage(json.error || "❌ Failed to save asset");
+        setLoading(false);
+        return;
+      }
+
+      setMessage("✅ Asset created successfully!");
+
+      // reset form
+      setFormData({
+        name: "",
+        category: "",
+        purchaseDate: "",
+        purchaseCost: "",
+        supplier: "",
+        condition: "Good",
+        status: "Available",
+        assignedTo: "",
+        location: "",
+        serialNumber: "",
+        description: "",
+      });
+
+      setImageFile(null);
+
+      if (onSuccess) onSuccess();
+      if (onClose) onClose();
     } catch (error) {
-      console.error("Error submitting form:", error);
-      setMessage("❌ Failed to connect to server.");
+      console.error(error);
+      setMessage("❌ Server error");
     }
+
+    setLoading(false);
   };
 
   return (
-    <div className="bg-base_text min-h-screen py-10">
-      <div className="max-w-3xl mx-auto bg-base_color text-white p-6 md:p-10 rounded shadow-lg">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-          Record New Asset / Property
-        </h2>
+    <form onSubmit={handleSubmit} className="space-y-4">
 
-        {message && (
-          <p
-            className={`text-center mb-4 ${
-              message.startsWith("✅") ? "text-green-400" : "text-red-400"
-            }`}
-          >
-            {message}
-          </p>
-        )}
+      {/* NAME */}
+      <input
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Asset Name"
+        className="w-full p-2 border rounded"
+        required
+      />
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
-          <div>
-            <label className="block mb-2 font-semibold">Asset Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-3 py-2 rounded text-black"
-              required
-            />
-          </div>
+      {/* CATEGORY */}
+      <input
+        name="category"
+        value={formData.category}
+        onChange={handleChange}
+        placeholder="Category"
+        className="w-full p-2 border rounded"
+      />
 
-          {/* Category */}
-          <div>
-            <label className="block mb-2 font-semibold">Category</label>
-            <input
-              type="text"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full px-3 py-2 rounded text-black"
-              placeholder="e.g., Electronics, Vehicles"
-            />
-          </div>
+      {/* DATE + COST */}
+      <div className="flex gap-2">
+        <input
+          type="date"
+          name="purchaseDate"
+          value={formData.purchaseDate}
+          onChange={handleChange}
+          className="w-full p-2 border rounded"
+        />
 
-          {/* Purchase Date & Cost */}
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block mb-2 font-semibold">Purchase Date</label>
-              <input
-                type="date"
-                name="purchaseDate"
-                value={formData.purchaseDate}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded text-black"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block mb-2 font-semibold">Purchase Cost (₦)</label>
-              <input
-                type="number"
-                name="purchaseCost"
-                value={formData.purchaseCost}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded text-black"
-                placeholder="e.g., 50000"
-              />
-            </div>
-          </div>
-
-          {/* Supplier */}
-          <div>
-            <label className="block mb-2 font-semibold">Supplier</label>
-            <input
-              type="text"
-              name="supplier"
-              value={formData.supplier}
-              onChange={handleChange}
-              className="w-full px-3 py-2 rounded text-black"
-              placeholder="e.g., Jumia, Konga"
-            />
-          </div>
-
-          {/* Condition & Status */}
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block mb-2 font-semibold">Condition</label>
-              <select
-                name="condition"
-                value={formData.condition}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded text-black"
-              >
-                <option>New</option>
-                <option>Good</option>
-                <option>Damaged</option>
-                <option>Disposed</option>
-              </select>
-            </div>
-
-            <div className="flex-1">
-              <label className="block mb-2 font-semibold">Status</label>
-              <select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded text-black"
-              >
-                <option>Available</option>
-                <option>In Use</option>
-                <option>Under Maintenance</option>
-                <option>Disposed</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Assigned To & Location */}
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block mb-2 font-semibold">Assigned To</label>
-              <input
-                type="text"
-                name="assignedTo"
-                value={formData.assignedTo}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded text-black"
-                placeholder="Employee or Department"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block mb-2 font-semibold">Location</label>
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded text-black"
-                placeholder="e.g., Lagos Office"
-              />
-            </div>
-          </div>
-
-          {/* Serial Number */}
-          <div>
-            <label className="block mb-2 font-semibold">Serial Number / Model</label>
-            <input
-              type="text"
-              name="serialNumber"
-              value={formData.serialNumber}
-              onChange={handleChange}
-              className="w-full px-3 py-2 rounded text-black"
-              placeholder="e.g., SN-12345"
-            />
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="block mb-2 font-semibold">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full px-3 py-2 rounded text-black"
-              rows={3}
-              placeholder="Additional notes about this asset..."
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="bg-base_two hover:bg-base_text text-white py-2 px-6 rounded mt-4 w-full font-semibold"
-          >
-            Save Asset
-          </button>
-        </form>
+        <input
+          type="number"
+          name="purchaseCost"
+          value={formData.purchaseCost}
+          onChange={handleChange}
+          placeholder="Cost"
+          className="w-full p-2 border rounded"
+        />
       </div>
-    </div>
+
+      {/* SUPPLIER */}
+      <input
+        name="supplier"
+        value={formData.supplier}
+        onChange={handleChange}
+        placeholder="Supplier"
+        className="w-full p-2 border rounded"
+      />
+
+      {/* CONDITION + STATUS */}
+      <div className="flex gap-2">
+        <select
+          name="condition"
+          value={formData.condition}
+          onChange={handleChange}
+          className="w-full p-2 border rounded"
+        >
+          <option>Good</option>
+          <option>New</option>
+          <option>Damaged</option>
+          <option>Disposed</option>
+        </select>
+
+        <select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+          className="w-full p-2 border rounded"
+        >
+          <option>Available</option>
+          <option>In Use</option>
+          <option>Maintenance</option>
+          <option>Disposed</option>
+        </select>
+      </div>
+
+      {/* ASSIGNED + LOCATION */}
+      <div className="flex gap-2">
+        <input
+          name="assignedTo"
+          value={formData.assignedTo}
+          onChange={handleChange}
+          placeholder="Assigned To"
+          className="w-full p-2 border rounded"
+        />
+
+        <input
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          placeholder="Location"
+          className="w-full p-2 border rounded"
+        />
+      </div>
+
+      {/* SERIAL */}
+      <input
+        name="serialNumber"
+        value={formData.serialNumber}
+        onChange={handleChange}
+        placeholder="Serial Number"
+        className="w-full p-2 border rounded"
+      />
+
+      {/* DESCRIPTION */}
+      <textarea
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        placeholder="Description"
+        className="w-full p-2 border rounded"
+      />
+
+      {/* IMAGE UPLOAD */}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImageFile(e.target.files[0])}
+        className="w-full"
+      />
+
+      {/* MESSAGE */}
+      {message && (
+        <p className="text-sm text-center text-blue-600">{message}</p>
+      )}
+
+      {/* BUTTON */}
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-green-600 text-white py-2 rounded"
+      >
+        {loading ? "Saving..." : "Save Asset"}
+      </button>
+    </form>
   );
 };
 

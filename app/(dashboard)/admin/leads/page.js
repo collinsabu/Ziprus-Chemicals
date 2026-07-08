@@ -76,10 +76,9 @@ export default async function LeadsPage() {
       className="
       bg-base_two
       min-h-screen
-      py-10
       px-4
       sm:px-10
-      pt-40
+      py-40
       "
     >
 
@@ -91,6 +90,7 @@ export default async function LeadsPage() {
         text-center
         mb-10
         text-base_text
+        pt-10
         "
       >
 

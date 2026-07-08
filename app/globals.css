@@ -96,3 +96,6 @@
   animation: float 4s ease-in-out infinite;
 }
 
+.inputStyle{
+@apply w-full border border-gray-300 rounded-xl p-3 text-black text-sm outline-none focus:ring-2 focus:ring-green-500;
+}

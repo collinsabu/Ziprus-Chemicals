@@ -7,7 +7,7 @@ async function getLeads() {
 
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL ||
-      "http://localhost:3000";
+      "https://www.zipruschemicals.com";
 
 
     const res = await fetch(

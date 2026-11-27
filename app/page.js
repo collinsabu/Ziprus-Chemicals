@@ -147,18 +147,15 @@ export default function Home() {
         className="order-form bg-base_color mb-10 sm:mb-16"
         id="order-form"
       >
-        <div className="order-form-container w-3/4 mx-auto flex items-center flex-col pt-16">
+        <div className="order-form-container w-full px-4 mx-auto flex items-center flex-col pt-16">
           <h1 className="text-xl text-center sm:text-4xl text-base_text font-bold">
-            Kindly fill the form below to place an order.
+            Request a Quotation
           </h1>
           <p className="sm:w-2/4 mb-10 mt-3 text-white text-center font-light">
-            Please complete the form below to submit your order. Once your order
-            is successfully submitted, one of our sales representatives will
-            promptly contact you. Kindly ensure that all the information
-            provided is accurate and up-to-date.
+            Tell us which material you need, your estimated quantity and delivery location. Our sales team will review your requirements and contact you to discuss pricing and availability.
           </p>
 
-          <div className="w-[99%] sm:w-[50%] sm:p-10 sm:rounded-[50px] sm:border-2 border-white border-solid mb-[40px]">
+          <div className="w-full max-w-2xl mb-[40px]">
             <OrderForm />
           </div>
         </div>

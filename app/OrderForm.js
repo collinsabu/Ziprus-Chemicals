@@ -250,4 +250,4 @@ function LegacyOrderForm() {
     </>
   );
 }
-export default function OrderForm(){return process.env.NEXT_PUBLIC_WEBSITE_OS_FORMS==="true"?<WebsiteSubmissionForm type="order" dark/>:<LegacyOrderForm/>;}
+export default function OrderForm(){return process.env.NEXT_PUBLIC_WEBSITE_OS_FORMS==="true"?<WebsiteSubmissionForm type="quotation" dark/>:<LegacyOrderForm/>;}

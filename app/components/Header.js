@@ -99,10 +99,10 @@ export default function Header() {
         </nav>
 
         <a
-          href="#order-form"
+          href="/#order-form"
           className="text-white bg-base_color border-2 px-7 py-2 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300 hidden lg:block"
         >
-          Place an Order
+          Request a Quotation
         </a>
 
         {/* Hamburger Button */}
@@ -152,11 +152,11 @@ export default function Header() {
             })}
 
             <a
-              href="#order-form"
+              href="/#order-form"
               onClick={() => setIsMenuOpen(false)}
               className="text-lg tracking-wide border-b text-white border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
             >
-              Place an Order
+              Request a Quotation
             </a>
           </motion.nav>
         )}

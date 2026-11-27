@@ -1,5 +1,4 @@
 import "./globals.css";
-import { AuthProvider } from "./Providers";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CallbackPopup from "./components/CallbackPopup";
@@ -52,9 +51,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Header />
-        <AuthProvider>{children}
+        {children}
           <CallbackPopup />
-        </AuthProvider>
+        
         <Footer />
       </body>
     </html>

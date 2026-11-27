@@ -1,0 +1,1 @@
+export function pageMetadata({title,description,path,image="/images/industrial-minerals.jpg"}){return {title,description,alternates:{canonical:path},openGraph:{type:"website",siteName:"Ziprus Chemicals",title,description,url:path,images:[{url:image,alt:"Ziprus Chemicals industrial minerals"}]},twitter:{card:"summary_large_image",title,description,images:[image]}};}

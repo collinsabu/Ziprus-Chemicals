@@ -11,8 +11,8 @@ export const metadata={
  metadataBase:new URL("https://zipruschemicals.com"),
  title:"Ziprus Chemicals | Industrial Minerals Nigeria",
  description,
- openGraph:{type:"website",siteName:"Ziprus Chemicals",title:"Ziprus Chemicals | Industrial Minerals Nigeria",description,locale:"en_NG"},
- twitter:{card:"summary",title:"Ziprus Chemicals | Industrial Minerals Nigeria",description},
+ openGraph:{type:"website",siteName:"Ziprus Chemicals",title:"Ziprus Chemicals | Industrial Minerals Nigeria",description,locale:"en_NG",images:[{url:"/images/industrial-minerals.jpg",alt:"Ziprus Chemicals industrial minerals"}]},
+ twitter:{card:"summary_large_image",images:["/images/industrial-minerals.jpg"],title:"Ziprus Chemicals | Industrial Minerals Nigeria",description},
  ...(process.env.GOOGLE_SITE_VERIFICATION?{verification:{google:process.env.GOOGLE_SITE_VERIFICATION}}:{})
 };
 const organization={"@context":"https://schema.org","@type":"Organization","@id":"https://zipruschemicals.com/#organization",name:"Ziprus Chemicals Limited",url:"https://zipruschemicals.com",email:"info@zipruschemicals.com",telephone:"+2347055552429",address:{"@type":"PostalAddress",streetAddress:"Km 102 Auchi Igarra Road, Ikpeshi",addressRegion:"Edo State",addressCountry:"NG"}};

@@ -8,9 +8,7 @@ export const metadata = {
     url: "https://zipruschemicals.com/partnership",
     images: [
       {
-        url: "https://zipruschemicals.com/images/partnership-banner.jpg", // replace with a relevant image
-        width: 800,
-        height: 600,
+        url: "https://zipruschemicals.com/images/industrial-minerals.jpg", // replace with a relevant image
         alt: "Partner with Ziprus",
       },
     ],
@@ -18,10 +16,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@ziprus",
     title: "Partner with Us - Ziprus",
     description: "Discover how you can partner with Ziprus and benefit from our innovative solutions. Join us in driving success together.",
-    images: ["https://zipruschemicals.com/images/partnership-banner.jpg"], // replace with a relevant image
+    images: ["https://zipruschemicals.com/images/industrial-minerals.jpg"], // replace with a relevant image
   },
 };
 

@@ -54,6 +54,7 @@ export default function Home() {
       </section>
 
       <section className="bg-emerald-50 px-6 py-14"><div className="mx-auto max-w-7xl"><h2 className="text-3xl font-bold">Industries we serve</h2><div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{industries.map(i=><Link key={i.slug} href={"/industries/"+i.slug} className="rounded-xl bg-white p-4 font-semibold shadow-sm hover:underline">{i.name}</Link>)}</div><Link href="/industries" className="mt-6 inline-block font-semibold underline">Explore all industries</Link></div></section>
+<section className="mx-auto max-w-7xl px-6 py-14"><h2 className="text-3xl font-bold">Source minerals from Nigeria</h2><p className="mt-3 text-slate-600">Discuss supply requirements for your manufacturing location with our Edo State team.</p><div className="mt-6 flex flex-wrap gap-3">{[["Nigeria","nigeria"],["Ghana","ghana"],["West Africa","west-africa"]].map(([name,slug])=><Link key={slug} href={"/markets/"+slug} className="rounded-lg bg-emerald-50 px-5 py-3 font-semibold hover:underline">{name}</Link>)}</div></section>
 <section className="mt-10  bg-[#032C26] py-12">
         <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
           {/* CARD */}

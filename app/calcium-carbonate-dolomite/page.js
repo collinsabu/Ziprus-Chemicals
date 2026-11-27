@@ -18,19 +18,19 @@ const OrderForm = dynamic(() => import("../OrderForm"), { ssr: false });
 export const metadata = {
   title: 'Buy Industrial Dolomite in Nigeria | Ziprus Chemicals',
   description:
-    'High-purity dolomite for industrial applications in Nigeria. Ideal for metallurgy, chemical production, ceramics, and agriculture. Bulk supply from 15 tons.',
+    'High-purity dolomite for industrial applications in Nigeria. Ideal for metallurgy, chemical production, ceramics, and agriculture. Bulk supply enquiries.',
   keywords:
     'dolomite Nigeria, industrial dolomite, dolomite for paint production, dolomite for ceramics, dolomite for agriculture, magnesium source, chemical dolomite, bulk dolomite supplier, high purity dolomite, Ziprus Chemicals',
   openGraph: {
     title: 'Industrial Dolomite Supplier in Nigeria | Ziprus Chemicals',
     description:
-      'Reliable supplier of high-purity dolomite for steel, chemical, ceramic, and agricultural industries. Nationwide bulk supply from 15 tons.',
+      'Reliable supplier of high-purity dolomite for steel, chemical, ceramic, and agricultural industries. Nationwide bulk supply enquiries.',
   },
 };
 
 const DolomiteLanding = () => {
   return (
-    <main className="bg-white text-black pt-20">
+    <main className="bg-white text-black pt-[120px]">
 
       {/* ================= HERO ================= */}
       <section className="relative w-full">
@@ -49,7 +49,7 @@ const DolomiteLanding = () => {
                 Buy High-Purity Dolomite in Nigeria
               </h1>
               <p className="mt-4 text-gray-200 text-sm sm:text-base">
-                Premium dolomite for metallurgy, ceramics, chemical production, and agriculture. Bulk supply from 15 tons.
+                Premium dolomite for metallurgy, ceramics, chemical production, and agriculture. Bulk supply enquiries.
               </p>
 
               <Link
@@ -165,11 +165,11 @@ const DolomiteLanding = () => {
             Request a Quote
           </h2>
           <p className="text-white mb-10 max-w-2xl mx-auto">
-            Bulk orders starting from 15 tons. Complete the form below and our team will contact you with pricing, specifications, and delivery timelines.
+            Contact us to confirm minimum quantities and delivery arrangements. Complete the form below and our team will contact you with pricing, specifications, and delivery timelines.
           </p>
 
           <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-xl max-w-2xl mx-auto text-left">
-            <OrderForm />
+            <div className="space-y-4"><Link href="/pure-white-dolomite" className="block font-semibold text-base_two underline">Pure White Dolomite</Link><Link href="/off-white-dolomite" className="block font-semibold text-base_two underline">Off-White Dolomite</Link><OrderForm /></div>
           </div>
         </div>
       </section>

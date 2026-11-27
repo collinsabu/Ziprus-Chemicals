@@ -1,9 +1,9 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
 import Script from "next/script";
-const products=["Pure White Dolomite","Off-White Dolomite","Calcium Carbonate","Superfine Calcium Carbonate","Ultrafine Calcium Carbonate","Coated Calcium Carbonate","Animal Feed Grade Limestone","Kaolin","Other"];
+const products=["Pure White Dolomite","Off-White Dolomite","Calcium Carbonate","Superfine Calcium Carbonate","Ultrafine Calcium Carbonate","Coated Calcium Carbonate","Animal Feed Grade Limestone","Glass Grade Limestone","Kaolin","Other"];
 const siteKey=process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-export default function WebsiteSubmissionForm({type, dark=false}){
+export default function WebsiteSubmissionForm({type, dark=false, initialProduct=""}){
  const [ready,setReady]=useState(false),[token,setToken]=useState(""),[busy,setBusy]=useState(false),[error,setError]=useState(""),[reference,setReference]=useState("");
  const container=useRef(null),widget=useRef(null),attempt=useRef(null),lock=useRef(false);
  const commercial=["order","quotation"].includes(type),career=type==="career";
@@ -41,7 +41,7 @@ export default function WebsiteSubmissionForm({type, dark=false}){
  <fieldset disabled={busy} className="space-y-4">
  <div className="grid gap-4 sm:grid-cols-2"><label className="block text-sm">Full name *<input className={field} name="fullName" autoComplete="name" required maxLength={200}/></label>{!career&&<label className="block text-sm">Company {commercial?"*":""}<input className={field} name="companyName" autoComplete="organization" required={commercial} maxLength={200}/></label>}
  <label className="block text-sm">Email {type==="callback"?"":"*"}<input className={field} name="email" type="email" autoComplete="email" required={type!=="callback"} maxLength={254}/></label><label className="block text-sm">Phone *<input className={field} name="phone" type="tel" autoComplete="tel" required maxLength={50}/></label></div>
- {(commercial||type==="callback")&&<label className="block text-sm">Product {commercial?"*":""}<select className={field} name="product" required={commercial}><option value="">Select product</option>{products.map(p=><option key={p}>{p}</option>)}</select></label>}
+ {(commercial||type==="callback")&&<label className="block text-sm">Product {commercial?"*":""}<select className={field} name="product" defaultValue={products.includes(initialProduct)?initialProduct:""} required={commercial}><option value="">Select product</option>{products.map(p=><option key={p}>{p}</option>)}</select></label>}
  {commercial&&<div className="grid gap-4 sm:grid-cols-2"><label className="block text-sm">Estimated quantity (tonnes) {type==="order"?"*":"(optional)"}<input className={field} name="quantity" type="number" min="0.001" max="1000000" step="any" required={type==="order"}/></label><label className="block text-sm">Delivery location *<input className={field} name="deliveryLocation" required maxLength={500}/></label></div>}
  {career&&<><label className="block text-sm">Position *<input className={field} name="position" required maxLength={200}/></label><label className="block text-sm">CV (PDF, up to 2 MiB) *<input className={field} name="cv" type="file" accept="application/pdf,.pdf" required/></label></>}
  <label className="block text-sm">{career?"Cover letter":"Message / requirements"} {type==="contact"?"*":""}<textarea className={field} name="message" rows={3} maxLength={10000} required={type==="contact"}/></label>

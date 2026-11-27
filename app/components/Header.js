@@ -6,7 +6,7 @@ import {usePathname} from "next/navigation";
 import {HiOutlineMenu,HiChevronDown} from "react-icons/hi";
 import {IoClose} from "react-icons/io5";
 import logo from "./logo_white.png";
-const products=[["Calcium carbonate","/calcium-carbonate"],["Superfine calcium carbonate","/super-fine-calcium"],["Dolomite","/calcium-carbonate-dolomite"],["Animal feed limestone","/animal-feed-limestone"],["Glass grade limestone","/glass-grade-limestone"],["Other mineral grades","/quote"]];
+const products=[["Calcium carbonate","/calcium-carbonate"],["Superfine calcium carbonate","/super-fine-calcium"],["Dolomite","/calcium-carbonate-dolomite"],["Animal feed limestone","/animal-feed-limestone"],["Glass grade limestone","/glass-grade-limestone"],["View all products","/products"]];
 const links=[["Home","/"],["About us","/about"],["FAQ","/faq"],["Contact","/contact"]];
 export default function Header(){
  const path=usePathname(),[mobile,setMobile]=useState(false),[expanded,setExpanded]=useState(false);

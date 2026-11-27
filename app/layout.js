@@ -1,41 +1,29 @@
 import "./globals.css";
+import StructuredData from "./components/StructuredData";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CallbackPopup from "./components/CallbackPopup";
 
 
 
-export const metadata = {
-  metadataBase: new URL("https://zipruschemicals.com"),
-  title: "Ziprus - Your Trusted Mineral Producers",
-  description: "Discover Ziprus, a leading mineral production company in Africa. Explore our products, learn about our company, and get in touch with us.",
-  openGraph: {
-    title: "Ziprus - Your Trusted Mineral Producers",
-    description: "Discover Ziprus, a leading mineral production company in Africa. Explore our products, learn about our company, and get in touch with us.",
-    url: "https://zipruschemicals.com",
-    images: [
-      {
-        url: "https://zipruschemicals.com/favicon.png",
-        width: 800,
-        height: 600,
-        alt: "Ziprus Logo",
-      },
-    ],
-    siteName: "Ziprus",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@ziprus",
-    title: "Ziprus - Your Trusted Mineral Producers",
-    description: "Discover Ziprus, a leading mineral production company in Africa. Explore our products, learn about our company, and get in touch with us.",
-    images: ["https://zipruschemicals.com/favicon.png"],
-  },
+const description="Ziprus Chemicals supplies calcium carbonate, dolomite, limestone and kaolin for industrial buyers in Nigeria and West Africa.";
+export const metadata={
+ metadataBase:new URL("https://zipruschemicals.com"),
+ title:"Ziprus Chemicals | Industrial Minerals Nigeria",
+ description,
+ openGraph:{type:"website",siteName:"Ziprus Chemicals",title:"Ziprus Chemicals | Industrial Minerals Nigeria",description,locale:"en_NG"},
+ twitter:{card:"summary",title:"Ziprus Chemicals | Industrial Minerals Nigeria",description},
+ ...(process.env.GOOGLE_SITE_VERIFICATION?{verification:{google:process.env.GOOGLE_SITE_VERIFICATION}}:{})
 };
+const organization={"@context":"https://schema.org","@type":"Organization","@id":"https://zipruschemicals.com/#organization",name:"Ziprus Chemicals Limited",url:"https://zipruschemicals.com",email:"info@zipruschemicals.com",telephone:"+2347055552429",address:{"@type":"PostalAddress",streetAddress:"Km 102 Auchi Igarra Road, Ikpeshi",addressRegion:"Edo State",addressCountry:"NG"}};
+const website={"@context":"https://schema.org","@type":"WebSite","@id":"https://zipruschemicals.com/#website",url:"https://zipruschemicals.com",name:"Ziprus Chemicals",publisher:{"@id":organization["@id"]}};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <StructuredData data={organization}/>
+        <StructuredData data={website}/>
         <Header />
         {children}
           <CallbackPopup />

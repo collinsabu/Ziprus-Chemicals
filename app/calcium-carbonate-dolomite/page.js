@@ -1,3 +1,4 @@
+import {pageMetadata} from "../lib/seo";
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -15,18 +16,7 @@ const OrderForm = dynamic(() => import("../OrderForm"), { ssr: false });
 /* =========================
    SEO METADATA
 ========================= */
-export const metadata = {
-  title: 'Buy Industrial Dolomite in Nigeria | Ziprus Chemicals',
-  description:
-    'High-purity dolomite for industrial applications in Nigeria. Ideal for metallurgy, chemical production, ceramics, and agriculture. Bulk supply enquiries.',
-  keywords:
-    'dolomite Nigeria, industrial dolomite, dolomite for paint production, dolomite for ceramics, dolomite for agriculture, magnesium source, chemical dolomite, bulk dolomite supplier, high purity dolomite, Ziprus Chemicals',
-  openGraph: {
-    title: 'Industrial Dolomite Supplier in Nigeria | Ziprus Chemicals',
-    description:
-      'Reliable supplier of high-purity dolomite for steel, chemical, ceramic, and agricultural industries. Nationwide bulk supply enquiries.',
-  },
-};
+export const metadata=pageMetadata({"title":"Industrial Dolomite Supplier in Nigeria | Ziprus Chemicals","description":"Explore pure white and off-white dolomite for industrial applications. Discuss grade requirements and bulk supply with Ziprus Chemicals.","path":"/calcium-carbonate-dolomite"});
 
 const DolomiteLanding = () => {
   return (
@@ -77,7 +67,7 @@ const DolomiteLanding = () => {
               <li>✅ Reliable, industrial-grade dolomite tested for quality</li>
             </ul>
             <ul className="space-y-4">
-              <li>✅ Bulk orders starting from 15 tons</li>
+              <li>✅ Bulk supply enquiries welcome</li>
               <li>✅ Nationwide delivery across Nigeria</li>
               <li>✅ Trusted supplier for industrial applications</li>
             </ul>

@@ -1,28 +1,5 @@
-export const metadata = {
-  title: "Contact Us - Ziprus",
-  description: "Get in touch with Ziprus, your trusted mineral producers. Contact us for inquiries, orders, or support.",
-  openGraph: {
-    title: "Contact Us - Ziprus",
-    description: "Get in touch with Ziprus, your trusted mineral producers. Contact us for inquiries, orders, or support.",
-    url: "https://www.ziprus.com/contact",
-    images: [
-      {
-        url: "https://www.ziprus.com/images/contact-us-banner.jpg", // replace with a relevant image
-        width: 800,
-        height: 600,
-        alt: "Contact Ziprus",
-      },
-    ],
-    siteName: "Ziprus",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@ziprus",
-    title: "Contact Us - Ziprus",
-    description: "Get in touch with Ziprus, your trusted mineral producers. Contact us for inquiries, orders, or support.",
-    images: ["https://www.ziprus.com/images/contact-us-banner.jpg"], // replace with a relevant image
-  },
-};
+import {pageMetadata} from "../lib/seo";
+export const metadata=pageMetadata({"title":"Contact Ziprus Chemicals | Mineral Supply Enquiries","description":"Contact Ziprus Chemicals in Ikpeshi, Edo State, for calcium carbonate, dolomite, limestone and kaolin supply enquiries.","path":"/contact"});
 
 // React icons import
 import { MdLocationPin } from "react-icons/md";

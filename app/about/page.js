@@ -1,31 +1,5 @@
-export const metadata = {
-  title: "About Ziprus - Your Trusted Mineral Producers",
-  description:
-    "Learn more about Ziprus, a leading mineral production company in Africa. Discover our vision, mission, and values.",
-  openGraph: {
-    title: "About Ziprus - Your Trusted Mineral Producers",
-    description:
-      "Learn more about Ziprus, a leading mineral production company in Africa. Discover our vision, mission, and values.",
-    url: "https://www.ziprus.com/about",
-    images: [
-      {
-        url: "https://www.ziprus.com/images/about-us-banner.jpg", // replace with a relevant image
-        width: 800,
-        height: 600,
-        alt: "Ziprus About Us",
-      },
-    ],
-    siteName: "Ziprus",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@ziprus",
-    title: "About Ziprus - Your Trusted Mineral Producers",
-    description:
-      "Learn more about Ziprus, a leading mineral production company in Africa. Discover our vision, mission, and values.",
-    images: ["https://www.ziprus.com/images/about-us-banner.jpg"], // replace with a relevant image
-  },
-};
+import {pageMetadata} from "../lib/seo";
+export const metadata=pageMetadata({"title":"About Ziprus Chemicals | Industrial Minerals Nigeria","description":"Learn about Ziprus Chemicals, our industrial minerals business in Edo State, Nigeria, and our approach to quality and customer service.","path":"/about"});
 
 import Image from "next/image";
 import Image1 from "./img1.jpg";

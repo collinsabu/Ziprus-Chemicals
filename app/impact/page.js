@@ -15,15 +15,15 @@ export default function Impact() {
   return (
     <section className=" bg-base_color poppins mb-10 sm:mb-16 pt-36">
       <div className="banner relative ">
-        <Image className="img-container" src={banner} />
+        <Image className="img-container" src={banner} alt="Ziprus Chemicals community impact" />
         <div className="overlay"></div>
         <div className="absolute top-40  left-16">
-          <h4 className="text-3xl font-semibold text-white tracking-wides mb-2 ">
+          <h1 className="text-3xl font-semibold text-white tracking-wides mb-2 ">
             Our <span className="text-base_text">Reaching</span> Arms <br /> to
             Africa
-          </h4>
+          </h1>
           <p className="text-white mb-4">
-            Join us to share Love and <br /> raech as many people possible
+            Join us to share Love and <br /> reach as many people possible
           </p>
           <Link
             href="/partnership"

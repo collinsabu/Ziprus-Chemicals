@@ -14,13 +14,11 @@ export default function About() {
             <Image src={Image2} alt="About Us Image" width={800} />
           </div>
           <div className="sm:pr-20 sm:pl-9 mt-12 sm:w-2/4">
-            <h2 className="text-base_text text-2xl font-semibold mb-6">
-              About Us
-            </h2>
+            <h1 className="text-base_text text-2xl font-semibold mb-6">About Ziprus Chemicals</h1>
             <div className="text-white font-extralight text-sm">
               <p className="mb-7">
                 Welcome to Ziprus Chemical, a leading industrial solid mineral
-                producer located on Auchi-Igara Road, Ikpeshi, Lagos, Nigeria.
+                producer located on Auchi-Igarra Road, Ikpeshi, Edo State, Nigeria.
                 We specialize in the extraction and production of high-quality
                 solid minerals, including Calcite, Dolomite, Kaolin, and other
                 essential materials for various industrial applications. Our

@@ -1,11 +1,12 @@
 "use client";
+import WebsiteSubmissionForm from "./components/WebsiteSubmissionForm";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function OrderForm() {
+function LegacyOrderForm() {
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -249,3 +250,4 @@ export default function OrderForm() {
     </>
   );
 }
+export default function OrderForm(){return process.env.NEXT_PUBLIC_WEBSITE_OS_FORMS==="true"?<WebsiteSubmissionForm type="order" dark/>:<LegacyOrderForm/>;}

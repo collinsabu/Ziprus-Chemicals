@@ -1,11 +1,12 @@
 "use client";
+import WebsiteSubmissionForm from "../components/WebsiteSubmissionForm";
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ContactForm() {
+function LegacyContactForm() {
   const router = useRouter();
 
   const [fullname, setFullName] = useState("");
@@ -228,3 +229,4 @@ export default function ContactForm() {
     </>
   );
 }
+export default function ContactForm(){return process.env.NEXT_PUBLIC_WEBSITE_OS_FORMS==="true"?<WebsiteSubmissionForm type="contact"/>:<LegacyContactForm/>;}

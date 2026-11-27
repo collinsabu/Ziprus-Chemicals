@@ -1,0 +1,3 @@
+import WebsiteSubmissionForm from "../components/WebsiteSubmissionForm";
+export const metadata={title:"Request a Quotation | Ziprus Chemicals",description:"Request a quotation for industrial minerals from Ziprus Chemicals.",robots:{index:false,follow:false}};
+export default function QuotePage(){return <main className="min-h-screen bg-gray-50 px-4 pb-12 pt-36"><h1 className="mb-6 text-center text-3xl font-bold text-base_two">Request a Quotation</h1>{process.env.NEXT_PUBLIC_WEBSITE_OS_FORMS==="true"?<WebsiteSubmissionForm type="quotation"/>:<p className="mx-auto max-w-xl text-center">Our online quotation form is being prepared. Please <a className="underline" href="/contact">contact our team</a> for a quotation.</p>}</main>;}

@@ -1,11 +1,12 @@
 // pages/career/page.js
 
 "use client";
+import WebsiteSubmissionForm from "../components/WebsiteSubmissionForm";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CareerPage() {
+function LegacyCareerPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -158,3 +159,5 @@ export default function CareerPage() {
     </div>
   );
 }
+
+export default function CareerPage(){return process.env.NEXT_PUBLIC_WEBSITE_OS_FORMS==="true" && process.env.NEXT_PUBLIC_WEBSITE_OS_CAREER==="true"?<main className="min-h-screen bg-base_color px-4 pb-12 pt-36"><h1 className="mb-6 text-center text-3xl font-bold text-white">Work with Us</h1><WebsiteSubmissionForm type="career"/></main>:<LegacyCareerPage/>;}

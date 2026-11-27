@@ -1,3 +1,5 @@
+import {pageMetadata} from "../lib/seo";
+export const metadata=pageMetadata({"title":"Community and Social Impact | Ziprus Chemicals","description":"Learn about Ziprus Chemicals and its community engagement aspirations.","path":"/impact"});
 import React from "react";
 
 import Image from "next/image";
@@ -13,8 +15,8 @@ export default function Impact() {
   return (
     <section className=" bg-base_color poppins mb-10 sm:mb-16 pt-36">
       <div className="banner relative ">
-        <Image class="img-container" src={banner} />
-        <div class="overlay"></div>
+        <Image className="img-container" src={banner} />
+        <div className="overlay"></div>
         <div className="absolute top-40  left-16">
           <h4 className="text-3xl font-semibold text-white tracking-wides mb-2 ">
             Our <span className="text-base_text">Reaching</span> Arms <br /> to
@@ -37,7 +39,7 @@ export default function Impact() {
             <div>
               
 
-              <p class="text-sm font-extralight leading-loose">
+              <p className="text-sm font-extralight leading-loose">
                 At Ziprus Chemical, we believe that a successful business is one
                 that gives back to the community and makes a positive impact
                 beyond its core operations. As a leading provider of industrial
@@ -55,7 +57,7 @@ export default function Impact() {
 
               <h4>1. Providing Clean Drinking Water in Ikpeshi</h4>
 
-              <p class="text-sm font-extralight leading-loose">
+              <p className="text-sm font-extralight leading-loose">
                 Many communities in Africa still face challenges in accessing
                 clean water, a fundamental human right. We are committed to
                 addressing this issue by providing clean and safe drinking water
@@ -67,7 +69,7 @@ export default function Impact() {
 
               <h4>2. School Uniforms for Auchi Village</h4>
 
-              <p class="text-sm font-extralight leading-loose">
+              <p className="text-sm font-extralight leading-loose">
                 Education is the key to a brighter future, and we believe in
                 removing barriers to learning. We plan to provide school
                 uniforms to students in Auchi Village, helping alleviate the
@@ -78,7 +80,7 @@ export default function Impact() {
 
               <h4>3. Reaching Out to the Needy</h4>
 
-              <p class="text-sm font-extralight leading-loose">
+              <p className="text-sm font-extralight leading-loose">
                 Our commitment extends beyond specific projects to a broader
                 mission of supporting the most vulnerable. Whether through food
                 donations, healthcare support, or other forms of assistance, we
@@ -90,7 +92,7 @@ export default function Impact() {
 
               <h4 className="text-xl font-semibold">Our Vision for the Future</h4>
 
-              <p class="text-sm font-extralight leading-loose">
+              <p className="text-sm font-extralight leading-loose">
                 Our "Reaching Arm to Africa" initiative is guided by our core
                 values of compassion, integrity, and responsibility. As we move
                 forward, we envision a future where Ziprus Chemical not only
@@ -107,7 +109,7 @@ export default function Impact() {
                 communities.
              </p>
 
-              <p class="text-sm font-extralight leading-loose">
+              <p className="text-sm font-extralight leading-loose">
                 Stay tuned for updates on our projects as we work to bring these
                 initiatives to life and create a better tomorrow for all.
               </p>

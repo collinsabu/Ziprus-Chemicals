@@ -1,0 +1,1 @@
+export const metadata={title:"Local Weather | Ziprus Chemicals",alternates:{canonical:"/weather"},robots:{index:false,follow:true}};export default function Layout({children}){return children;}

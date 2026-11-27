@@ -1,3 +1,5 @@
+import {pageMetadata} from "../lib/seo";
+export const metadata=pageMetadata({"title":"Product Quality and Supply | Ziprus Chemicals","description":"Learn about product quality requirements and discuss grade-specific mineral specifications with our sales team.","path":"/guarantee"});
 import React from "react";
 
 export default function Gaurantee() {
@@ -23,10 +25,7 @@ export default function Gaurantee() {
             <strong>Unparalleled Purity</strong>
             <br />
             Our calcium and other solid minerals are processed with precision to
-            ensure they meet the specific needs of your industry. We guarantee
-            that our products are free from contaminants and impurities, giving
-            you the peace of mind that comes with knowing you're using the best
-            materials available on the market.
+            ensure they meet the specific needs of your industry. Ask our sales team to confirm impurity limits and available batch documentation for your required grade.
           </p>
           <p className="text-sm font-extralight leading-loose">
             <strong>Consistent Excellence</strong> <br />

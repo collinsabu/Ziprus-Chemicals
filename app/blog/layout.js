@@ -1,0 +1,1 @@
+export const metadata={title:"Blog | Ziprus Chemicals",alternates:{canonical:"/blog"},robots:{index:false,follow:true}};export default function Layout({children}){return children;}

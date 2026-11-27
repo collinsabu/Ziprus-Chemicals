@@ -4,7 +4,7 @@ export const metadata = {
   title: "Terms of Service | Ziprus Chemicals Limited",
   description:
     "Terms governing the Ziprus Chemicals website and the authorised use of Ziprus OS Social Publisher.",
-  alternates: { canonical: "https://www.zipruschemicals.com/term" },
+  alternates: { canonical: "https://zipruschemicals.com/term" },
 };
 
 const updated = "21 November 2026";

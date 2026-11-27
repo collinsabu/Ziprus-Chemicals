@@ -4,7 +4,7 @@ export const metadata = {
   title: "Privacy Policy | Ziprus Chemicals Limited",
   description:
     "How Ziprus Chemicals Limited and Ziprus OS Social Publisher handle website, business and Google/YouTube account information.",
-  alternates: { canonical: "https://zipruschemicals.com/policy" },
+  alternates: { canonical: "https://www.zipruschemicals.com/policy" },
 };
 
 const updated = "27 November 2026";

@@ -5,10 +5,10 @@ export const metadata = {
   openGraph: {
     title: "Partner with Us - Ziprus",
     description: "Discover how you can partner with Ziprus and benefit from our innovative solutions. Join us in driving success together.",
-    url: "https://zipruschemicals.com/partnership",
+    url: "https://www.zipruschemicals.com/partnership",
     images: [
       {
-        url: "https://zipruschemicals.com/images/industrial-minerals.jpg", // replace with a relevant image
+        url: "https://www.zipruschemicals.com/images/industrial-minerals.jpg", // replace with a relevant image
         alt: "Partner with Ziprus",
       },
     ],
@@ -18,7 +18,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Partner with Us - Ziprus",
     description: "Discover how you can partner with Ziprus and benefit from our innovative solutions. Join us in driving success together.",
-    images: ["https://zipruschemicals.com/images/industrial-minerals.jpg"], // replace with a relevant image
+    images: ["https://www.zipruschemicals.com/images/industrial-minerals.jpg"], // replace with a relevant image
   },
 };
 

@@ -4,7 +4,7 @@ export const metadata = {
   title: "Ziprus OS Social Publisher | Official Application",
   description:
     "Official information about Ziprus OS Social Publisher, a Ziprus Chemicals Limited business tool for managing authorised social channels and YouTube uploads.",
-  alternates: { canonical: "https://zipruschemicals.com/ziprus-os-social-publisher" },
+  alternates: { canonical: "https://www.zipruschemicals.com/ziprus-os-social-publisher" },
 };
 
 const features = [

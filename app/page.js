@@ -1,4 +1,6 @@
 import dynamic from "next/dynamic";
+import {industries} from "./lib/industries";
+import Link from "next/link";
 
 import ImageCarousel from "./components/ImageCarousel";
 import UltrafinePromoSection from "../app/components/UltrafinePromoSection";
@@ -51,7 +53,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-10  bg-[#032C26] py-12">
+      <section className="bg-emerald-50 px-6 py-14"><div className="mx-auto max-w-7xl"><h2 className="text-3xl font-bold">Industries we serve</h2><div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{industries.map(i=><Link key={i.slug} href={"/industries/"+i.slug} className="rounded-xl bg-white p-4 font-semibold shadow-sm hover:underline">{i.name}</Link>)}</div><Link href="/industries" className="mt-6 inline-block font-semibold underline">Explore all industries</Link></div></section>
+<section className="mt-10  bg-[#032C26] py-12">
         <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
           {/* CARD */}
           {[

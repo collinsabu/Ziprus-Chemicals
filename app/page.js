@@ -4,8 +4,6 @@ import ImageCarousel from "./components/ImageCarousel";
 import UltrafinePromoSection from "../app/components/UltrafinePromoSection";
 
 //import from react icons
-import { SiAdguard } from "react-icons/si";
-import { TbTruckDelivery, TbCurrencyNaira } from "react-icons/tb";
 
 import TawkToWidget from "./components/TawkToWidget";
 
@@ -15,11 +13,10 @@ const OrderForm = dynamic(() => import("./OrderForm"), {
 });
 
 export const metadata = {
-  title: "Ziprus - Solid Mineral Producers in Africa",
+  title: "Calcium Carbonate, Dolomite & Limestone Supplier in Nigeria | Ziprus Chemicals",
   description:
-    "Your Number 1 trusted Solid Mineral Producers in Africa. Top quality, fast delivery, and best prices guaranteed.",
-  keywords:
-    "solid minerals, calcium carbornate production, linestone, dolomite, calcite, Ziprus, top quality, fast delivery, best prices",
+    "Ziprus Chemicals supplies industrial calcium carbonate, dolomite, limestone and kaolin from Edo State, Nigeria. Request a quotation for your manufacturing requirements.",
+  alternates: { canonical: "/" },
   icons: {
     icon: "/favicon.png",
   },
@@ -28,9 +25,29 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="z-0 pt-28">
-      <section className="banner-container poppins">
-        <div className="bg-base_color text-base_text">
-          <ImageCarousel />
+      <section className="bg-base_color text-white">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 sm:py-20 lg:grid-cols-2">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-base_text">Industrial minerals · Edo State, Nigeria</p>
+            <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">Minerals for modern manufacturing.</h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-emerald-50">Source calcium carbonate, dolomite, limestone and kaolin for your industrial requirements. Speak to our team about grades, quantities and delivery across Nigeria and West Africa.</p>
+            <div className="mt-8 flex flex-wrap gap-3"><a href="#order-form" className="rounded-lg bg-base_text px-6 py-3 font-bold text-base_color">Request a quotation</a><a href="#products" className="rounded-lg border border-white/50 px-6 py-3 font-semibold">Explore products</a></div>
+          </div>
+          <div className="overflow-hidden rounded-2xl shadow-xl"><ImageCarousel /></div>
+        </div>
+      </section>
+      <section id="products" className="mx-auto max-w-7xl scroll-mt-32 px-6 py-16">
+        <p className="text-sm font-semibold uppercase tracking-widest text-base_two">Our materials</p>
+        <h2 className="mt-2 text-3xl font-bold text-base_color sm:text-4xl">Find the right mineral for your business</h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            ["Calcium carbonate","Industrial mineral filler for manufacturing applications.","/calcium-carbonate"],
+            ["Superfine calcium carbonate","Fine particle grades for specialist applications.","/super-fine-calcium"],
+            ["Dolomite","Discuss white and off-white mineral grades with our team.","/calcium-carbonate-dolomite"],
+            ["Animal feed limestone","Limestone for animal feed manufacturing requirements.","/animal-feed-limestone"],
+            ["Glass grade limestone","Discuss limestone specifications for glass production.","/glass-grade-limestone"],
+            ["Ultrafine, coated calcium & kaolin","Contact us to discuss specialist mineral requirements.","/quote"]
+          ].map(([name,description,href])=><article key={name} className="flex flex-col rounded-2xl bg-white p-6 shadow-md ring-1 ring-emerald-900/5"><h3 className="text-xl font-bold text-base_color">{name}</h3><p className="mt-3 flex-1 leading-relaxed text-slate-600">{description}</p><a href={href} className="mt-5 font-semibold text-base_two hover:underline">Explore material →</a></article>)}
         </div>
       </section>
 
@@ -145,12 +162,12 @@ export default function Home() {
 
       <section
         className="order-form bg-base_color mb-10 sm:mb-16"
-        id="order-form"
+        id="order-form" style={{scrollMarginTop: "120px"}}
       >
         <div className="order-form-container w-full px-4 mx-auto flex items-center flex-col pt-16">
-          <h1 className="text-xl text-center sm:text-4xl text-base_text font-bold">
+          <h2 className="text-xl text-center sm:text-4xl text-base_text font-bold">
             Request a Quotation
-          </h1>
+          </h2>
           <p className="sm:w-2/4 mb-10 mt-3 text-white text-center font-light">
             Tell us which material you need, your estimated quantity and delivery location. Our sales team will review your requirements and contact you to discuss pricing and availability.
           </p>

@@ -99,3 +99,7 @@
 .inputStyle{
 @apply w-full border border-gray-300 rounded-xl p-3 text-black text-sm outline-none focus:ring-2 focus:ring-green-500;
 }
+
+body { background: #fff; color: #032C26; }
+a:focus-visible, button:focus-visible { outline: 3px solid #0CC76D; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }

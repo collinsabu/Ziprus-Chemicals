@@ -1,27 +1,3 @@
-// components/TawkToWidget.js
-"use client"
-
-import { useEffect } from "react";
-
-const TawkToWidget = () => {
-  useEffect(() => {
-    // Check if window is available to avoid issues with SSR
-    if (typeof window !== "undefined") {
-      var Tawk_API = Tawk_API || {};
-      var Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/60b44b18de99a4282a1a7219/1f704amqk';  // Your Tawk.to embed URL
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-      })();
-    }
-  }, []); // Empty dependency array ensures this runs once when the component is mounted
-
-  return null;
-};
-
-export default TawkToWidget;
+"use client";
+import {useState,useEffect} from "react";
+export default function TawkToWidget(){const [enabled,E]=useState(false);useEffect(()=>{if(!enabled||document.getElementById("ziprus-tawk"))return;window.Tawk_API=window.Tawk_API||{};window.Tawk_LoadStart=new Date();const script=document.createElement("script");script.id="ziprus-tawk";script.async=true;script.src="https://embed.tawk.to/60b44b18de99a4282a1a7219/1f704amqk";script.crossOrigin="anonymous";document.head.appendChild(script)},[enabled]);return enabled?null:<div className="mx-auto max-w-7xl px-6 pb-8 text-center"><button type="button" onClick={()=>E(true)} className="rounded-lg bg-base_two px-5 py-3 font-semibold text-white">Start live chat</button><p className="mt-2 text-xs text-slate-600">Loads our third-party chat service when selected.</p></div>}

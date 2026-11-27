@@ -1,3 +1,4 @@
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import {industries} from "./lib/industries";
 import Link from "next/link";
@@ -68,10 +69,7 @@ export default function Home() {
               className="group relative h-44 sm:h-56 lg:h-64 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1"
             >
               {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url('${item.img}')` }}
-              />
+              <Image src={item.img} alt="" fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#032C26]/95 via-[#035145]/70 to-transparent transition-opacity duration-300 group-hover:from-[#032C26]" />
@@ -126,12 +124,7 @@ export default function Home() {
         className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
       >
         {/* Image */}
-        <div
-          className="h-44 sm:h-48 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('/images/process-${index + 1}.jpg')`,
-          }}
-        />
+        <div className="relative h-44 sm:h-48"><Image src={`/images/process-${index+1}.jpg`} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover" /></div>
 
         {/* Text */}
         <div className="p-5 bg-[#035145]">

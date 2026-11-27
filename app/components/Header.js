@@ -1,166 +1,32 @@
 "use client";
-
-import { useState } from "react";
+import {useState,useEffect,useRef} from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { HiOutlineMenu } from "react-icons/hi";
-import { IoClose } from "react-icons/io5";
-import {
-  FaEnvelope,
-  FaYoutube,
-  FaFacebookSquare,
-  FaUserAlt,
-  FaTools,
-  FaMapMarkerAlt,
-  FaPaintRoller,
-  FaSuperpowers,
-} from "react-icons/fa";
-import { GiGoat, GiStoneWheel } from "react-icons/gi";
-import { FaBottleDroplet } from "react-icons/fa6";
 import Image from "next/image";
+import {usePathname} from "next/navigation";
+import {HiOutlineMenu,HiChevronDown} from "react-icons/hi";
+import {IoClose} from "react-icons/io5";
 import logo from "./logo_white.png";
-
-const navLinks = [
-  { name: "Who we are", href: "/about", icon: <FaUserAlt /> },
-  { name: "How we work", href: "/faq", icon: <FaTools /> },
-  { name: "Visit our Factory", href: "/contact", icon: <FaMapMarkerAlt /> },
-  { name: "GlassLimestone", href: "/glass-grade-limestone", icon: <FaBottleDroplet /> },
-  { name: "AnimalFeed", href: "/animal-feed-limestone", icon: <GiGoat /> },
-  { name: "Dolomite", href: "/calcium-carbonate-dolomite", icon: <FaPaintRoller /> },
-  { name: "SuperFine", href: "/super-fine-calcium", icon:  <FaSuperpowers /> },
-  { name: "Calcium", href: "/calcium-carbonate", icon: <GiStoneWheel /> },
-];
-
-export default function Header() {
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const menuVariants = {
-    hidden: { x: "100%", opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.4 } },
-    exit: { x: "100%", opacity: 0, transition: { duration: 0.4 } },
-  };
-
-  return (
-    <motion.main initial="hidden" animate="visible">
-      {/* Top Bar */}
-      <div className="top-bar flex justify-between items-center px-5 sm:px-7 bg-base_two h-10 text-base_text fixed w-full z-[60]">
-        <div>
-          <h6 className="font-semibold text-sm">+2347055552429</h6>
-        </div>
-        <div className="socials flex items-center gap-2">
-          <a href="mailto:info@zipruschemicals.com" target="_blank" rel="noopener noreferrer">
-            <FaEnvelope className="text-lg" />
-          </a>
-          <a
-            href="https://youtube.com/@zipruschemicals?si=PyDgAhGYlthsP5zW"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaYoutube className="text-xl" />
-          </a>
-          <a
-            href="https://www.facebook.com/ZiprusGold"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebookSquare className="text-lg" />
-          </a>
-          <div className="division-line mr-1">|</div>
-          <Link href="https://blog.zipruschemicals.com/">
-            <span className="font-semibold text-sm cursor-pointer">NEWS</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Navbar */}
-      <div className="menu-bar bg-base_color h-20 flex items-center justify-between px-5 sm:px-20 fixed w-full top-10 z-[50] shadow-md">
-        <Link href="/">
-          <Image src={logo} alt="ziprus logo white" width={150} priority={false} />
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex gap-6 items-center overflow-x-auto whitespace-nowrap scrollbar-hide max-w-[80%]">
-          {navLinks.map((link) => {
-            const isActive = pathname.startsWith(link.href);
-            return (
-              <Link
-                href={link.href}
-                key={link.name}
-                className={`text-lg ${
-                  isActive ? "text-base_text font-bold" : "text-white hover:text-base_text"
-                }`}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <a
-          href="/#order-form"
-          className="text-white bg-base_color border-2 px-7 py-2 rounded-full cursor-pointer hover:bg-lime-950 ease-in-out duration-300 hidden lg:block"
-        >
-          Request a Quotation
-        </a>
-
-        {/* Hamburger Button */}
-        <button
-          className="lg:hidden text-white text-3xl cursor-pointer relative z-[70]"
-          onClick={() => setIsMenuOpen(true)}
-        >
-          <HiOutlineMenu />
-        </button>
-      </div>
-
-      {/* Mobile / Tablet Navigation Drawer */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.nav
-            className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-screen bg-base_color border-l-2 border-base_text flex flex-col items-start justify-start pt-10 px-6 gap-6 lg:hidden z-[80] overflow-y-auto overscroll-contain"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={menuVariants}
-          >
-            {/* Close Icon inside the menu */}
-            <button
-              className="text-white text-3xl self-end mb-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <IoClose />
-            </button>
-
-            {navLinks.map((link) => {
-              const isActive = pathname.startsWith(link.href);
-              return (
-                <Link
-                  href={link.href}
-                  key={link.name}
-                  className={`text-lg tracking-wide border-b pb-2 w-full transition-all duration-300 flex items-center gap-3 ${
-                    isActive
-                      ? "text-base_text border-base_text"
-                      : "text-white hover:text-base_text border-base_text/50"
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.icon}
-                  {link.name}
-                </Link>
-              );
-            })}
-
-            <a
-              href="/#order-form"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-lg tracking-wide border-b text-white border-base_text pb-2 w-full hover:text-base_text transition-all duration-300"
-            >
-              Request a Quotation
-            </a>
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </motion.main>
-  );
+const products=[["Calcium carbonate","/calcium-carbonate"],["Superfine calcium carbonate","/super-fine-calcium"],["Dolomite","/calcium-carbonate-dolomite"],["Animal feed limestone","/animal-feed-limestone"],["Glass grade limestone","/glass-grade-limestone"],["Other mineral grades","/quote"]];
+const links=[["Home","/"],["About us","/about"],["FAQ","/faq"],["Contact","/contact"]];
+export default function Header(){
+ const path=usePathname(),[mobile,setMobile]=useState(false),[expanded,setExpanded]=useState(false);
+ const header=useRef(null),toggle=useRef(null),productToggle=useRef(null);
+ const close=()=>{setMobile(false);setExpanded(false);};
+ useEffect(()=>{const outside=e=>{if(!header.current?.contains(e.target))close();};const key=e=>{if(e.key==="Escape"){if(mobile)toggle.current?.focus();else if(expanded)productToggle.current?.focus();close();}};document.addEventListener("pointerdown",outside);document.addEventListener("keydown",key);return()=>{document.removeEventListener("pointerdown",outside);document.removeEventListener("keydown",key);};},[mobile,expanded]);
+ const navLink=([label,href])=><Link key={href} href={href} onClick={close} aria-current={path===href?"page":undefined} className={path===href?"font-semibold text-base_text":"text-white hover:text-base_text"}>{label}</Link>;
+ return <header ref={header} className="fixed inset-x-0 top-0 z-[60] shadow-md">
+ <div className="h-10 bg-base_two text-white"><div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-3 px-4 text-xs sm:px-6 sm:text-sm"><a href="tel:+2347055552429">+234 705 555 2429</a><a className="hidden sm:block" href="mailto:info@zipruschemicals.com">info@zipruschemicals.com</a><a href="https://blog.zipruschemicals.com/">News &amp; insights</a></div></div>
+ <div className="bg-base_color"><div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-5 px-4 sm:px-6">
+ <Link href="/" onClick={close} aria-label="Ziprus Chemicals home"><Image src={logo} alt="Ziprus Chemicals" width={150} priority/></Link>
+ <nav aria-label="Main navigation" className="hidden items-center gap-6 lg:flex">
+ {navLink(links[0])}
+ <div className="relative"><button ref={productToggle} type="button" aria-expanded={expanded} aria-controls="product-navigation" onClick={()=>setExpanded(v=>!v)} className="flex items-center gap-1 text-white hover:text-base_text">Products <HiChevronDown/></button>
+ {expanded&&<div id="product-navigation" className="absolute left-0 top-full mt-4 w-72 rounded-xl bg-white p-2 shadow-xl ring-1 ring-black/5">{products.map(([label,href])=><Link key={href} href={href} onClick={close} className="block rounded-lg px-4 py-3 text-sm font-medium text-base_color hover:bg-emerald-50">{label}</Link>)}</div>}</div>
+ {links.slice(1).map(navLink)}
+ </nav>
+ <Link href="/#order-form" onClick={close} className="hidden rounded-lg bg-base_text px-5 py-3 text-sm font-bold text-base_color lg:block">Request a quotation</Link>
+ <button ref={toggle} type="button" aria-label={mobile?"Close navigation":"Open navigation"} aria-expanded={mobile} aria-controls="mobile-navigation" onClick={()=>{setMobile(v=>!v);setExpanded(false);}} className="p-2 text-3xl text-white lg:hidden">{mobile?<IoClose/>:<HiOutlineMenu/>}</button>
+ </div></div>
+ {mobile&&<nav id="mobile-navigation" aria-label="Mobile navigation" className="max-h-[calc(100dvh-120px)] overflow-y-auto bg-base_color px-6 pb-6 pt-2 lg:hidden"><div className="flex flex-col gap-4">{links.map(navLink)}<p className="mt-2 text-xs font-bold uppercase tracking-widest text-base_text">Products</p>{products.map(navLink)}<Link href="/#order-form" onClick={close} className="mt-3 rounded-lg bg-base_text p-3 text-center font-bold text-base_color">Request a quotation</Link></div></nav>}
+ </header>;
 }

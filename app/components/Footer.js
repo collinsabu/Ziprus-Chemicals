@@ -1,90 +1,13 @@
-"use client";
 import Link from "next/link";
-import { FaEnvelope, FaYoutube, FaFacebookSquare } from "react-icons/fa";
-import { PiInstagramLogoFill } from "react-icons/pi";
-
-export default function Footer() {
-  return (
-    <footer className="bg-base_color text-white poppins">
-      {/* Top Section */}
-      <div className="px-5 sm:px-16 pt-10">
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-10 sm:mb-12 text-center sm:text-left">
-          Your Number 1 Trusted Solid Mineral Producers <br />
-          in Africa...
-        </h1>
-
-        {/* Footer Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 pb-10">
-          {/* Office */}
-          <div className="text-center sm:text-left">
-            <h4 className="mb-4 text-gray-400 font-semibold">OFFICE</h4>
-            <p className="text-sm font-light leading-7 mb-4">
-              Km 102 Auchi Igarra Road, Ikpeshi, Edo State, Nigeria.
-              <br />
-              Landmark Freedom Junction
-            </p>
-            <div className="flex justify-center sm:justify-start gap-4 mt-2">
-              <a href="mailto:info@zipruschemicals.com">
-                <FaEnvelope className="text-lg" />
-              </a>
-              <a
-                href="https://youtube.com/@zipruschemicals?si=PyDgAhGYlthsP5zW"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaYoutube className="text-xl" />
-              </a>
-              <a
-                href="https://www.facebook.com/ZiprusGold"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebookSquare className="text-lg" />
-              </a>
-              <a
-                href="https://www.instagram.com/ziprus_chemicals"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <PiInstagramLogoFill className="text-xl" />
-              </a>
-            </div>
-          </div>
-
-          {/* Company Links */}
-          <div className="text-center sm:text-left">
-            <h4 className="mb-4 text-gray-400 font-semibold">COMPANY</h4>
-            <ul className="space-y-2 text-sm font-light">
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/contact">Contact Us</Link></li>
-              <li><Link href="/">Place Order</Link></li>
-              <li><Link href="/career">Career</Link></li>
-              <li><Link href="/faq">FAQ</Link></li>
-            </ul>
-          </div>
-
-          {/* Meet Ziprus Links */}
-          <div className="text-center sm:text-left">
-            <h4 className="mb-4 text-gray-400 font-semibold">MEET ZIPRUS</h4>
-            <ul className="space-y-2 text-sm font-light">
-              <li><Link href="/guarantee">Our Guarantee</Link></li>
-              <li><Link href="/impact">Ziprus Impact</Link></li>
-              <li><Link href="/testimonial">Customer Stories</Link></li>
-              <li><Link href="/partnership">Partnership</Link></li>
-              <li><Link href="/weather">Auchi Weather</Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Copyright Section */}
-      <div className="bg-base_two text-white flex flex-col sm:flex-row justify-between items-center py-4 sm:py-3 px-5 sm:px-16 text-sm sm:text-base font-semibold">
-        <p className="mb-2 sm:mb-0">© 2024 Ziprus - Nigeria</p>
-        <div className="flex gap-6">
-          <Link href="/term">Terms of Use</Link>
-          <Link href="/policy">Privacy Policy</Link>
-        </div>
-      </div>
-    </footer>
-  );
-}
+import Image from "next/image";
+import logo from "./logo_white.png";
+import {FaYoutube,FaFacebookSquare,FaInstagram} from "react-icons/fa";
+const groups=[["Products",[["Calcium carbonate","/calcium-carbonate"],["Superfine calcium carbonate","/super-fine-calcium"],["Dolomite","/calcium-carbonate-dolomite"],["Animal feed limestone","/animal-feed-limestone"],["Glass grade limestone","/glass-grade-limestone"]]],["Company",[["About us","/about"],["Contact us","/contact"],["Careers","/career"],["FAQ","/faq"],["Our guarantee","/guarantee"],["Partnership","/partnership"],["Customer stories","/testimonial"],["Our impact","/impact"],["Auchi weather","/weather"],["News & insights","https://blog.zipruschemicals.com/"]]]];
+export default function Footer(){return <footer className="bg-base_color text-white">
+<div className="mx-auto max-w-7xl px-6 py-12">
+<div className="mb-10 flex flex-col items-start justify-between gap-5 rounded-2xl bg-base_two p-6 sm:flex-row sm:items-center sm:p-8"><div><h2 className="text-2xl font-bold">Let’s discuss your mineral requirements.</h2><p className="mt-2 text-emerald-50">Connect with our sales team in Nigeria.</p></div><Link href="/#order-form" className="shrink-0 rounded-lg bg-base_text px-5 py-3 font-bold text-base_color">Request a quotation</Link></div>
+<div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+<div><Link href="/"><Image src={logo} alt="Ziprus Chemicals" width={150}/></Link><p className="mt-4 text-sm leading-relaxed text-emerald-50">Industrial minerals for manufacturing businesses in Nigeria and West Africa.</p><div className="mt-5 flex gap-4 text-xl"><a aria-label="YouTube" href="https://youtube.com/@zipruschemicals"><FaYoutube/></a><a aria-label="Facebook" href="https://www.facebook.com/ZiprusGold"><FaFacebookSquare/></a><a aria-label="Instagram" href="https://www.instagram.com/ziprus_chemicals"><FaInstagram/></a></div></div>
+{groups.map(([title,items])=><div key={title}><h3 className="mb-4 font-bold text-base_text">{title}</h3><ul className="space-y-3 text-sm">{items.map(([label,href])=><li key={href}><Link className="hover:underline" href={href}>{label}</Link></li>)}</ul></div>)}
+<div><h3 className="mb-4 font-bold text-base_text">Contact &amp; factory</h3><address className="space-y-3 text-sm not-italic leading-relaxed"><p>Km 102 Auchi Igarra Road, Ikpeshi, Edo State, Nigeria.<br/>Landmark: Freedom Junction</p><p><a href="tel:+2347055552429">+234 705 555 2429</a></p><p className="break-all"><a href="mailto:info@zipruschemicals.com">info@zipruschemicals.com</a></p></address></div>
+</div></div><div className="bg-base_two"><div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-4 px-6 py-5 text-sm"><p>© {new Date().getFullYear()} Ziprus Chemicals Limited.</p><div className="flex gap-5"><Link href="/term">Terms of use</Link><Link href="/policy">Privacy policy</Link></div></div></div></footer>;}

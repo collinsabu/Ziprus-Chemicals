@@ -1,0 +1,3 @@
+# GA4 setup
+
+Set NEXT_PUBLIC_GA_MEASUREMENT_ID to the web stream G- ID in Vercel and redeploy. Before enabling, disable enhanced measurement in the GA4 web stream (including automatic page views, form interactions and outbound clicks), advertising features and Google signals. The site sends manual page_view and generate_lead events after opt-in. Mark generate_lead as a key event. Test accept, decline, withdrawal, navigation and successful enquiry in DebugView/Realtime. No form contents are intentionally sent. Existing third-party chat and security scripts require a separate privacy audit. URL query parameters are omitted from manual page locations; campaign reporting remains in Ziprus OS.

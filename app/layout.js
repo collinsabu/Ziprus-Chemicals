@@ -1,6 +1,7 @@
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import CampaignAttribution from "./components/CampaignAttribution";
+import AnalyticsConsent from "./components/AnalyticsConsent";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CallbackPopup from "./components/CallbackPopup";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
           <CallbackPopup />
         
         <Footer />
+        <AnalyticsConsent />
       </body>
     </html>
   );

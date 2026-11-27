@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
 import Script from "next/script";
+import {trackEnquiry} from "../lib/analytics";
 import {captureAttribution} from "../lib/attribution";
 const products=["Pure White Dolomite","Off-White Dolomite","Calcium Carbonate","Superfine Calcium Carbonate","Ultrafine Calcium Carbonate","Coated Calcium Carbonate","Animal Feed Grade Limestone","Glass Grade Limestone","Kaolin","Other"];
 const siteKey=process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
@@ -30,7 +31,7 @@ export default function WebsiteSubmissionForm({type, dark=false, initialProduct=
    const fingerprint=JSON.stringify(data);if(attempt.current?.fingerprint!==fingerprint)attempt.current={fingerprint,key:crypto.randomUUID()};
    const response=await fetch("https://os.zipruschemicals.com/api/public/website/"+type,{method:"POST",signal:controller.signal,credentials:"omit",headers:{"Content-Type":"application/json","Idempotency-Key":attempt.current.key},body:JSON.stringify({...data,turnstileToken:token})});
    const result=await response.json().catch(()=>null);if(!result)throw Error("The server returned an unexpected response. Please retry.");if(!response.ok||!result.success||!result.reference)throw Error(result.message||"Unable to submit. Please try again.");
-   setReference(result.reference);attempt.current=null;
+   setReference(result.reference);attempt.current=null;try{trackEnquiry(type);}catch{}
   }catch(err){setError(err.name==="AbortError"?"The request is taking longer than expected. Please retry without changing your details so we can avoid duplicate submissions.":err.message||"Unable to submit. Please try again.");}
   finally{clearTimeout(timeout);setBusy(false);lock.current=false;setToken("");if(widget.current!=null){try{window.turnstile?.reset(widget.current);}catch{setError("Please refresh the page if verification does not restart.");}}}
  }

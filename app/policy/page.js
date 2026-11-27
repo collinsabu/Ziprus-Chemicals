@@ -4,10 +4,10 @@ export const metadata = {
   title: "Privacy Policy | Ziprus Chemicals Limited",
   description:
     "How Ziprus Chemicals Limited and Ziprus OS Social Publisher handle website, business and Google/YouTube account information.",
-  alternates: { canonical: "https://www.zipruschemicals.com/policy" },
+  alternates: { canonical: "https://zipruschemicals.com/policy" },
 };
 
-const updated = "21 November 2026";
+const updated = "27 November 2026";
 const email = "info@zipruschemicals.com";
 
 function Section({ number, title, children }) {
@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
           </Section>
 
           <Section number="8" title="Cookies and similar technology">
-            <p>Our website and internal system may use cookies and comparable technologies for sign-in sessions, security, preferences and service performance. Third-party services embedded on a page may use their own cookies under their respective privacy notices. Where consent is legally required for optional tracking, we will obtain it.</p>
+            <p>Our website and internal system may use cookies and comparable technologies for sign-in sessions, security, preferences and service performance. Third-party services embedded on a page may use their own cookies under their respective privacy notices. Where consent is legally required for optional tracking, we will obtain it.</p><p>If enabled, Google Analytics is loaded only after you allow optional analytics. It measures page visits and successful commercial enquiries. Our analytics events do not include form contents, names, email addresses, telephone numbers or CVs. Google may process device and network information and use analytics cookies. You can change your choice using Analytics preferences at the bottom of the website. Declining does not affect enquiry forms.</p>
           </Section>
 
           <Section number="9" title="Your privacy rights">

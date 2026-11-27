@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
 import Script from "next/script";
+import {captureAttribution} from "../lib/attribution";
 const products=["Pure White Dolomite","Off-White Dolomite","Calcium Carbonate","Superfine Calcium Carbonate","Ultrafine Calcium Carbonate","Coated Calcium Carbonate","Animal Feed Grade Limestone","Glass Grade Limestone","Kaolin","Other"];
 const siteKey=process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 export default function WebsiteSubmissionForm({type, dark=false, initialProduct=""}){
@@ -25,9 +26,7 @@ export default function WebsiteSubmissionForm({type, dark=false, initialProduct=
    if(data.quantity) data.quantity=Number(data.quantity);else delete data.quantity;
    if(career){const file=form.get("cv");delete data.cv;if(!file||file.size>2097152||!file.size||file.type!=="application/pdf")throw Error("Please choose a PDF CV up to 2 MiB.");
     data.cvBase64=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(",")[1]);reader.onerror=()=>reject(Error("Unable to read CV."));reader.readAsDataURL(file);});}
-   const params=new URLSearchParams(window.location.search);
-   let source=params.get("utm_source")||"";if(!source&&document.referrer){try{source=new URL(document.referrer).hostname;}catch{}}
-   data.attribution={source:source.slice(0,200),medium:(params.get("utm_medium")||"").slice(0,200),campaign:(params.get("utm_campaign")||"").slice(0,200),landingPage:window.location.pathname.slice(0,500)};
+   data.attribution=captureAttribution();
    const fingerprint=JSON.stringify(data);if(attempt.current?.fingerprint!==fingerprint)attempt.current={fingerprint,key:crypto.randomUUID()};
    const response=await fetch("https://os.zipruschemicals.com/api/public/website/"+type,{method:"POST",signal:controller.signal,credentials:"omit",headers:{"Content-Type":"application/json","Idempotency-Key":attempt.current.key},body:JSON.stringify({...data,turnstileToken:token})});
    const result=await response.json().catch(()=>null);if(!result)throw Error("The server returned an unexpected response. Please retry.");if(!response.ok||!result.success||!result.reference)throw Error(result.message||"Unable to submit. Please try again.");

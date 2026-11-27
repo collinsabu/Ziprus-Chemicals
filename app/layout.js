@@ -1,5 +1,6 @@
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
+import CampaignAttribution from "./components/CampaignAttribution";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CallbackPopup from "./components/CallbackPopup";
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
       <body>
         <StructuredData data={organization}/>
         <StructuredData data={website}/>
+        <CampaignAttribution />
         <Header />
         {children}
           <CallbackPopup />

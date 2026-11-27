@@ -33,7 +33,7 @@ export default function Home() {
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-base_text">Industrial minerals · Edo State, Nigeria</p>
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">Minerals for modern manufacturing.</h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-emerald-50">Source calcium carbonate, dolomite, limestone and kaolin for your industrial requirements. Speak to our team about grades, quantities and delivery across Nigeria and West Africa.</p>
-            <div className="mt-8 flex flex-wrap gap-3"><a href="#order-form" className="rounded-lg bg-base_text px-6 py-3 font-bold text-base_color">Request a quotation</a><a href="/products" className="rounded-lg border border-white/50 px-6 py-3 font-semibold">Explore products</a></div>
+            <div className="mt-8 flex flex-wrap gap-3"><a href="#order-form" className="rounded-lg bg-base_text px-6 py-3 font-bold text-base_color">Request a quotation</a><Link href="/products" className="rounded-lg border border-white/50 px-6 py-3 font-semibold">Explore products</Link></div>
           </div>
           <div className="overflow-hidden rounded-2xl shadow-xl"><ImageCarousel /></div>
         </div>
@@ -49,7 +49,7 @@ export default function Home() {
             ["Animal feed limestone","Limestone for animal feed manufacturing requirements.","/animal-feed-limestone"],
             ["Glass grade limestone","Discuss limestone specifications for glass production.","/glass-grade-limestone"],
             ["Ultrafine, coated calcium & kaolin","Contact us to discuss specialist mineral requirements.","/products"]
-          ].map(([name,description,href])=><article key={name} className="flex flex-col rounded-2xl bg-white p-6 shadow-md ring-1 ring-emerald-900/5"><h3 className="text-xl font-bold text-base_color">{name}</h3><p className="mt-3 flex-1 leading-relaxed text-slate-600">{description}</p><a href={href} className="mt-5 font-semibold text-base_two hover:underline">Explore material →</a></article>)}
+          ].map(([name,description,href])=><article key={name} className="flex flex-col rounded-2xl bg-white p-6 shadow-md ring-1 ring-emerald-900/5"><h3 className="text-xl font-bold text-base_color">{name}</h3><p className="mt-3 flex-1 leading-relaxed text-slate-600">{description}</p><Link href={href} className="mt-5 font-semibold text-base_two hover:underline">Explore material →</Link></article>)}
         </div>
       </section>
 

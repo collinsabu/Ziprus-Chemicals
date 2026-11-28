@@ -1,5 +1,78 @@
 "use client";
-import Image from "next/image";
-import {useState} from "react";
-const slides=[1,2,3,4];
-export default function ImageCarousel(){const [active,setActive]=useState(0);return <section aria-label="Ziprus Chemicals image gallery" className="relative w-full bg-base_color"><div className="relative h-[280px] md:h-[600px]"><Image key={active} src={"/images/chemical"+slides[active]+".jpg"} alt={"Ziprus Chemicals promotional image "+(active+1)} fill sizes="(max-width: 1024px) 100vw, 50vw" priority={active===0} className="object-cover"/></div><div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 bg-black/40 p-3"><button type="button" aria-label="Previous image" onClick={()=>setActive(i=>(i+3)%4)} className="rounded-full bg-white px-3 py-2 text-base_color">‹</button>{slides.map((n,i)=><button key={n} type="button" aria-label={"Show image "+n} aria-pressed={i===active} onClick={()=>setActive(i)} className={"h-4 w-4 rounded-full border border-white "+(i===active?"bg-base_text":"bg-white/40")}/>)}<button type="button" aria-label="Next image" onClick={()=>setActive(i=>(i+1)%4)} className="rounded-full bg-white px-3 py-2 text-base_color">›</button></div></section>}
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import "./carousel.css"; // 👈 Add this line
+
+const ImageCarousel = () => {
+  const desktopImages = [
+    "/images/chemical1.jpg",
+    "/images/chemical2.jpg",
+    "/images/chemical3.jpg",
+    "/images/chemical4.jpg",
+  ];
+
+  const mobileImages = [
+    "/images/chemical1-mobile.jpg",
+    "/images/chemical2-mobile.jpg",
+    "/images/chemical3-mobile.jpg",
+    "/images/chemical4-mobile.jpg",
+  ];
+
+  return (
+    <div className="w-full bg-base_color">
+      
+      {/* ================= DESKTOP CAROUSEL ================= */}
+      <div className="hidden md:block">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop
+          className="w-full h-[600px] custom-swiper"
+        >
+          {desktopImages.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`Desktop slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* ================= MOBILE CAROUSEL ================= */}
+      <div className="block md:hidden">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop
+          className="w-full h-[280px] custom-swiper"
+        >
+          {mobileImages.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`Mobile slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
+};
+
+export default ImageCarousel;

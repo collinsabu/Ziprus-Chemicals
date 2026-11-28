@@ -26,15 +26,17 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="z-0 pt-28">
+      <section className="banner-container poppins" aria-label="Ziprus Chemicals promotional banner">
+        <div className="bg-base_color text-base_text"><ImageCarousel /></div>
+      </section>
       <section className="bg-base_color text-white">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 sm:py-20 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl px-6 py-10 sm:py-12">
           <div>
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-base_text">Industrial minerals · Edo State, Nigeria</p>
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">Minerals for modern manufacturing.</h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-emerald-50">Source calcium carbonate, dolomite, limestone and kaolin for your industrial requirements. Speak to our team about grades, quantities and delivery across Nigeria and West Africa.</p>
             <div className="mt-8 flex flex-wrap gap-3"><a href="#order-form" className="rounded-lg bg-base_text px-6 py-3 font-bold text-base_color">Request a quotation</a><Link href="/products" className="rounded-lg border border-white/50 px-6 py-3 font-semibold">Explore products</Link></div>
           </div>
-          <div className="overflow-hidden rounded-2xl shadow-xl"><ImageCarousel /></div>
         </div>
       </section>
       <section id="products" className="mx-auto max-w-7xl scroll-mt-32 px-6 py-16">
